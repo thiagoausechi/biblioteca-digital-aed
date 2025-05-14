@@ -102,6 +102,8 @@ public:
             else if (opcao_selecionada != 0)
                 std::cout << RED << "Opção inválida. Tente novamente." << RESET << std::endl;
         } while (opcao_selecionada != 0);
+
+        std::cout << cabecalho("Até mais!") << std::endl;
     }
 
     static void limpar_terminal() {
