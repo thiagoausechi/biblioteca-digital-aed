@@ -20,8 +20,8 @@ struct Opcao final : ItemDoMenu {
     std::function<void()> acao;
     int id = -1;
 
-    explicit Opcao(const std::string &descricao, const std::function<void()> &acao)
-        : descricao(descricao)
+    explicit Opcao(std::string descricao, const std::function<void()> &acao)
+        : descricao(std::move(descricao))
           , acao(acao) {
     }
 
@@ -33,7 +33,7 @@ struct Opcao final : ItemDoMenu {
 struct Categoria final : ItemDoMenu {
     std::string nome;
 
-    explicit Categoria(const std::string &nome) : nome(nome) {
+    explicit Categoria(std::string nome) : nome(std::move(nome)) {
     }
 
     void exibir() const override {
