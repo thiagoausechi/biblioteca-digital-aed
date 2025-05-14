@@ -53,7 +53,7 @@ public:
     Menu() {
         // Não é bem uma categoria, somente uma mensagem de boas-vindas
         this->inserir(new Categoria{"* =-=-=-=-=-=-=-=-=-=-= Bem-vindo(a)! =-=-=-=-=-=-=-=-=-=-= *"});
-        this->inserir(new Opcao{"Sair", []() { exit(0); }});
+        this->inserir(new Opcao{"Sair", []() { ; }});
     }
 
     void inserir(ItemDoMenu *item) {
@@ -79,6 +79,7 @@ public:
             std::cout << "\nDigite o número da opção que você deseja executar: ";
             std::cin >> opcao_selecionada;
 
+            limpar_terminal();
             if (opcao_selecionada >= 1 && opcao_selecionada < _ultimo_id_opcao)
                 try {
                     const auto indice_opcao = this->_mapa_indice_opcoes.at(opcao_selecionada);
@@ -89,8 +90,15 @@ public:
                 }
             else if (opcao_selecionada != 0)
                 std::cout << RED << "Opção inválida. Tente novamente." << RESET << std::endl;
-            std::cout << BLUE << "* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *" << RESET << std::endl;
         } while (opcao_selecionada != 0);
+    }
+
+    static void limpar_terminal() {
+#ifdef _WIN32
+        system("cls");
+#else
+        system("clear");
+#endif
     }
 };
 
