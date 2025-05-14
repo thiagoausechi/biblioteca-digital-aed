@@ -1,6 +1,8 @@
 #include <iostream>
 
+#include "utils/terminal_colors.h"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << BLUE << "Hello, World!" << std::endl;
     return 0;
 }
