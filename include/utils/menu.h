@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <iostream>
+#include <utility>
 #include <vector>
 
 #include "terminal_colors.h"
@@ -46,7 +47,7 @@ class Menu {
     int _ultimo_id_opcao = 0;
 
     // Nem sempre o ID da opção é o mesmo que o índice do vetor
-    std::unordered_map<int, int> _mapa_indice_opcoes;
+    std::unordered_map<int, unsigned long> _mapa_indice_opcoes;
     std::vector<ItemDoMenu *> _itens_do_menu;
 
 public:
