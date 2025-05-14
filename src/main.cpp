@@ -2,9 +2,13 @@
 #include <clocale>
 
 #include "utils/menu.h"
-#include "utils/terminal_colors.h"
 
 using namespace std;
+
+// TODO: Limpar código temporário
+inline void NAO_IMPLEMENTADO() {
+    std::cout << RED << "Não implementado!" << RESET << std::endl;
+}
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
