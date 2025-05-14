@@ -51,6 +51,8 @@ class Menu {
 
 public:
     Menu() {
+        // Não é bem uma categoria, somente uma mensagem de boas-vindas
+        this->inserir(new Categoria{"* =-=-=-=-=-=-=-=-=-=-= Bem-vindo(a)! =-=-=-=-=-=-=-=-=-=-= *"});
         this->inserir(new Opcao{"Sair", []() { exit(0); }});
     }
 
