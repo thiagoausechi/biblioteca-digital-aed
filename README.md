@@ -74,7 +74,7 @@ Todas as funções descritas acima deverão ser chamadas através de um menu de 
 Obs: não utilizar variáveis globais.
 ```
 
-> 📝 **Nota:** Os itens dos requisitos podem ser localizados no código por meio da busca por "Requisito x.x.x", utilizando a concatenação dos identificadores dos itens aninhados.
+> 📝 **Nota:** Os itens dos requisitos podem ser localizados no código por meio da busca por "Requisito x.x.x" (_ex.: Requisito 4.5.1.2_), utilizando a concatenação dos identificadores dos itens aninhados.
 
 ## 📁 Estrutura do Projeto
 
