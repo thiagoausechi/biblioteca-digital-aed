@@ -59,7 +59,7 @@ public:
     void inserir(ItemDoMenu *item) {
         // Autoincrementa o “ID” caso seja uma da classe Opção
         if (dynamic_cast<Opcao *>(item) != nullptr) {
-            const auto opcao = static_cast<Opcao *>(item);
+            const auto opcao = dynamic_cast<Opcao *>(item);
             opcao->id = this->_ultimo_id_opcao++;
 
             // Associa o ID da opção ao índice no vetor _itens_do_menu
@@ -83,7 +83,7 @@ public:
             if (opcao_selecionada >= 1 && opcao_selecionada < _ultimo_id_opcao)
                 try {
                     const auto indice_opcao = this->_mapa_indice_opcoes.at(opcao_selecionada);
-                    const auto opcao = static_cast<Opcao *>(this->_itens_do_menu[indice_opcao]);
+                    const auto opcao = dynamic_cast<Opcao *>(this->_itens_do_menu[indice_opcao]);
                     opcao->acao();
                 } catch (const std::exception &e) {
                     std::cout << RED << "Erro: " << e.what() << RESET << std::endl;
