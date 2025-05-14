@@ -48,6 +48,12 @@ struct Categoria final : ItemDoMenu {
     };
 };
 
+struct MensagemDeBoasVindas final : ItemDoMenu {
+    void exibir() const override {
+        std::cout << cabecalho("Bem-vindo(a)!") << std::endl;
+    }
+};
+
 // Requisito 8
 class Menu {
     int _ultimo_id_opcao = 0;
@@ -58,8 +64,7 @@ class Menu {
 
 public:
     Menu() {
-        // Não é bem uma categoria, somente uma mensagem de boas-vindas
-        this->inserir(new Categoria{"* =-=-=-=-=-=-=-=-=-=-= Bem-vindo(a)! =-=-=-=-=-=-=-=-=-=-= *"});
+        this->inserir(new MensagemDeBoasVindas());
         this->inserir(new Opcao{"Sair", []() { ; }});
     }
 
