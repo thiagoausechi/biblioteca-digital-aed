@@ -7,36 +7,74 @@
 
 #include "terminal_colors.h"
 
+struct ItemDoMenu {
+    virtual ~ItemDoMenu() = default;
+
+    virtual void exibir() const {
+        throw std::runtime_error("Método não implementado.");
+    };
+};
+
+struct Opcao final : ItemDoMenu {
+    std::string descricao;
+    std::function<void()> acao;
+    int id = -1;
+
+    explicit Opcao(const std::string &descricao, const std::function<void()> &acao)
+        : descricao(descricao)
+          , acao(acao) {
+    }
+
+    void exibir() const override {
+        std::cout << "[" << GREEN << id << RESET << "] " << descricao.c_str() << std::endl;
+    };
+};
+
+struct Categoria final : ItemDoMenu {
+    std::string nome;
+
+    explicit Categoria(const std::string &nome) : nome(nome) {
+    }
+
+    void exibir() const override {
+        std::cout << "\n" << BLUE << nome.c_str() << RESET << std::endl;
+    };
+};
+
 // Requisito 8
 class Menu {
-    std::vector<std::pair<std::string, std::function<void()>>> _opcoes_do_menu;
+    int _ultimo_id_opcao = 0;
+    std::vector<ItemDoMenu *> _itens_do_menu;
 
 public:
     Menu() {
-        this->adicionarOpcao("Sair", [] { ; });
+        this->inserir(new Opcao{"Sair", []() { exit(0); }});
     }
 
-    void adicionarOpcao(const std::string &descricao, const std::function<void()> &acao) {
-        if (descricao.empty())
-            throw std::invalid_argument("Descrição da opção não pode ser vazia.");
-        if (acao == nullptr)
-            throw std::invalid_argument("Ação da opção não pode ser nula.");
+    void inserir(ItemDoMenu *item) {
+        // Autoincrementa o “ID” caso seja uma da classe Opção
+        if (dynamic_cast<Opcao *>(item) != nullptr) {
+            const auto opcao = static_cast<Opcao *>(item);
+            opcao->id = this->_ultimo_id_opcao++;
+        }
 
-        _opcoes_do_menu.emplace_back(descricao, acao);
+        _itens_do_menu.emplace_back(item);
     }
 
     void exibir() const {
         int opcao_selecionada;
 
         do {
-            for (size_t i = 0; i < this->_opcoes_do_menu.size(); ++i)
-                std::cout << "[" << GREEN << i << RESET << "] " << this->_opcoes_do_menu[i].first.c_str() << std::endl;
+            for (const auto item: this->_itens_do_menu)
+                item->exibir();
+
             std::cout << "\nDigite o número da opção que você deseja executar: ";
             std::cin >> opcao_selecionada;
 
-            if (opcao_selecionada >= 1 && opcao_selecionada < this->_opcoes_do_menu.size())
+            if (opcao_selecionada >= 1 && opcao_selecionada < _ultimo_id_opcao)
                 try {
-                    this->_opcoes_do_menu[opcao_selecionada].second();
+                    const auto opcao = static_cast<Opcao *>(this->_itens_do_menu[opcao_selecionada]);
+                    opcao->acao();
                 } catch (const std::exception &e) {
                     std::cout << RED << "Erro: " << e.what() << RESET << std::endl;
                 }
