@@ -28,7 +28,7 @@ struct Opcao final : ItemDoMenu {
     }
 
     void exibir() const override {
-        std::cout << "[" << GREEN << id << RESET << "] " << descricao.c_str() << std::endl;
+        std::cout << "  [" << GREEN << id << RESET << "] " << descricao.c_str() << std::endl;
     }
 
     void executar() {
