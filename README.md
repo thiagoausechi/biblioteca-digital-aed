@@ -69,7 +69,7 @@ Escrever um programa para criar as seguintes estruturas que simularão arquivos 
 7. [ ] Escreva uma função para mostrar os dados dos livros e das pessoas que estejam com a devolução em atraso (data_prevista_devolução < data atual).
    1. [ ] O programa deverá exibir: código do livro, nome do livro, nome da editora, nome do autor, data prevista da devolução, quantidade de dias em atraso.
 
-Todas as funções descritas acima deverão ser chamadas através de um menu de opções que será chamado a partir da função main().
+8. [ ] Todas as funções descritas acima deverão ser chamadas através de um menu de opções que será chamado a partir da função main().
 
 Obs: não utilizar variáveis globais.
 ```
