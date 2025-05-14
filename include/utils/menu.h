@@ -40,11 +40,10 @@ struct Opcao final : ItemDoMenu {
 struct Categoria final : ItemDoMenu {
     std::string nome;
 
-    explicit Categoria(std::string nome) : nome(std::move(nome)) {
-    }
+    explicit Categoria(std::string nome) : nome(std::move(nome)) { ; }
 
     void exibir() const override {
-        std::cout << "\n" << BLUE << nome.c_str() << RESET << std::endl;
+        std::cout << "\n" << BOLD << BLUE << nome.c_str() << RESET << std::endl;
     };
 };
 
