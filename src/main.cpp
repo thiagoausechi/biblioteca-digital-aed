@@ -1,6 +1,7 @@
 #include <iostream>
 #include <clocale>
 
+#include "utils/menu.h"
 #include "utils/terminal_colors.h"
 
 using namespace std;
@@ -8,6 +9,8 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "Portuguese");
 
-    std::cout << BLUE << "Hello, World!" << std::endl;
+    const Menu menu;
+    menu.exibir();
+
     return 0;
 }
