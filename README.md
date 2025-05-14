@@ -78,6 +78,8 @@ Obs: não utilizar variáveis globais.
 
 ## 📁 Estrutura do Projeto
 
+### Estrutura de Diretórios
+
 ```bash
 📁 biblioteca-digital-aed/
 ├── 📁 include/        # Arquivos de cabeçalho (.h / .hpp)
@@ -85,6 +87,10 @@ Obs: não utilizar variáveis globais.
 ├── 📁 data/           # Arquivos/banco de dados
 └── 📄 CMakeLists.txt  # Configuração do CMake
 ```
+
+### Diagrama de Relacionamentos
+
+![Diagrama de Relacionamentos](https://github.com/user-attachments/assets/20f71829-bf52-4b1d-8cf8-526823504ec6)
 
 ## 💻 Ambiente de Desenvolvimento e Execução
 
