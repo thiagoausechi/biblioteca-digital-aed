@@ -44,6 +44,9 @@ struct Categoria final : ItemDoMenu {
 // Requisito 8
 class Menu {
     int _ultimo_id_opcao = 0;
+
+    // Nem sempre o ID da opção é o mesmo que o índice do vetor
+    std::unordered_map<int, int> _mapa_indice_opcoes;
     std::vector<ItemDoMenu *> _itens_do_menu;
 
 public:
@@ -56,6 +59,9 @@ public:
         if (dynamic_cast<Opcao *>(item) != nullptr) {
             const auto opcao = static_cast<Opcao *>(item);
             opcao->id = this->_ultimo_id_opcao++;
+
+            // Associa o ID da opção ao índice no vetor _itens_do_menu
+            this->_mapa_indice_opcoes[opcao->id] = this->_itens_do_menu.size();
         }
 
         _itens_do_menu.emplace_back(item);
@@ -73,7 +79,8 @@ public:
 
             if (opcao_selecionada >= 1 && opcao_selecionada < _ultimo_id_opcao)
                 try {
-                    const auto opcao = static_cast<Opcao *>(this->_itens_do_menu[opcao_selecionada]);
+                    const auto indice_opcao = this->_mapa_indice_opcoes.at(opcao_selecionada);
+                    const auto opcao = static_cast<Opcao *>(this->_itens_do_menu[indice_opcao]);
                     opcao->acao();
                 } catch (const std::exception &e) {
                     std::cout << RED << "Erro: " << e.what() << RESET << std::endl;
