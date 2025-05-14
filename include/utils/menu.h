@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "terminal_colors.h"
+#include "terminal_header.h"
 
 struct ItemDoMenu {
     virtual ~ItemDoMenu() = default;
@@ -28,7 +29,12 @@ struct Opcao final : ItemDoMenu {
 
     void exibir() const override {
         std::cout << "[" << GREEN << id << RESET << "] " << descricao.c_str() << std::endl;
-    };
+    }
+
+    void executar() {
+        std::cout << cabecalho(this->descricao) << std::endl;
+        this->acao();
+    }
 };
 
 struct Categoria final : ItemDoMenu {
@@ -85,7 +91,7 @@ public:
                 try {
                     const auto indice_opcao = this->_mapa_indice_opcoes.at(opcao_selecionada);
                     const auto opcao = dynamic_cast<Opcao *>(this->_itens_do_menu[indice_opcao]);
-                    opcao->acao();
+                    opcao->executar();
                 } catch (const std::exception &e) {
                     std::cout << RED << "Erro: " << e.what() << RESET << std::endl;
                 }
