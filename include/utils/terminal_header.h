@@ -1,3 +1,4 @@
+// Este cabeçalho está depreciado e será removido em futuras versões
 #ifndef TERMINAL_HEADER_H
 #define TERMINAL_HEADER_H
 
@@ -14,6 +15,7 @@ inline void append(std::string &source, const int n, const std::string &str_to_a
         source += str_to_append;
 }
 
+[[deprecated("Use a biblioteca FTXUI no lugar")]]
 inline std::string cabecalho(const std::string &titulo) {
     const auto tamanho_titulo = utf8_length(titulo);
     if (tamanho_titulo > LARGURA_MAX_CABECALHO - 2)

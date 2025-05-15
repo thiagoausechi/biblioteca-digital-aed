@@ -1,3 +1,4 @@
+// Este cabeçalho está depreciado e será removido em futuras versões
 #ifndef UTF8_STRING_LENGTH_H
 #define UTF8_STRING_LENGTH_H
 
@@ -11,6 +12,7 @@
  * mas em certos casos o ideal seria contabilizar apenas como 1 character.
  * Esta função resolve esse problema.
  */
+[[deprecated("Função se tornará obsoleta após a remoção de `terminal_header.h`")]]
 inline int utf8_length(const std::string &str) {
     int length = 0;
     for (const char i: str)
