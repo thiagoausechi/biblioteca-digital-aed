@@ -15,7 +15,7 @@ namespace menu {
 
         virtual void exibir() const {
             throw std::runtime_error("Método não implementado.");
-        };
+        }
     };
 
     struct Opcao final : ItemDoMenu {
@@ -45,7 +45,7 @@ namespace menu {
 
         void exibir() const override {
             std::cout << "\n" << BOLD << BLUE << nome.c_str() << RESET << std::endl;
-        };
+        }
     };
 
     struct MensagemDeBoasVindas final : ItemDoMenu {
@@ -65,7 +65,7 @@ namespace menu {
     public:
         Menu() {
             this->inserir(new MensagemDeBoasVindas());
-            this->inserir(new Opcao{"Sair", []() { ; }});
+            this->inserir(new Opcao{"Sair", [] { ; }});
         }
 
         void inserir(ItemDoMenu *item) {

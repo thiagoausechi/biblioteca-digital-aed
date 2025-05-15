@@ -48,7 +48,7 @@ public:
         }
 
         auto uf_formatado = uf;
-        std::ranges::transform(uf, uf_formatado.begin(), ::toupper);
+        std::ranges::transform(uf, uf_formatado.begin(), toupper);
 
         this->_uf = uf_formatado;
     }
