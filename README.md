@@ -20,11 +20,11 @@ Escrever um programa para criar as seguintes estruturas que simularão arquivos 
 ### Estruturas (arquivos/tabelas)
 
 ```txt
-1. [ ] Cidades:     código (PK), descrição, UF
+1. [x] Cidades:     código (PK), descrição, UF
 2. [ ] Pessoas:     codigo (PK), nome, CPF, endereço, codigo_cidade (FK)
 3. [ ] Editoras:    codigo (PK), nome, codigo_cidade (FK)
-4. [ ] Autores:     codigo (PK), nome
-5. [ ] Gêneros:     codigo (PK), descrição
+4. [x] Autores:     codigo (PK), nome
+5. [x] Gêneros:     codigo (PK), descrição
 6. [ ] Livros:      codigo (PK), nome, codigo_editora (FK), codigo_autor (FK), codigo_genero (FK), disponível_s_n
 7. [ ] Empréstimos: codigo (PK), codigo_pessoa (FK), codigo_livro (FK), data_empréstimo, data_prevista_devolução, data_efetiva_devolução
 ```
