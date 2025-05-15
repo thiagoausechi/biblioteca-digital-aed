@@ -14,8 +14,8 @@ inline void NAO_IMPLEMENTADO() {
 int main() {
     setlocale(LC_ALL, "Portuguese");
 
-    Renderizador renderizador;
-    renderizador.renderizar();
+    auto renderizador = std::make_shared<Renderizador>();
+    renderizador->renderizar();
 
     menu::Menu menu;
 

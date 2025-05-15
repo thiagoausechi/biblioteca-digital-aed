@@ -4,9 +4,9 @@
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
 
-Renderizador::Renderizador(): TELA_AVISO_SEM_REGISTRO(new TelaReserva()) { ; }
+Renderizador::Renderizador(): TELA_AVISO_SEM_REGISTRO(std::make_shared<TelaReserva>()) { ; }
 
-Tela *Renderizador::getTelaAtual() const {
+std::shared_ptr<Tela> Renderizador::getTelaAtual() {
     if (_pilha_telas.empty())
         return TELA_AVISO_SEM_REGISTRO;
     return _pilha_telas.top();
@@ -29,12 +29,10 @@ void Renderizador::retroceder() {
      *
      * TODO: Dialog de confirmação ao retroceder
      */
-    delete _pilha_telas.top();
     _pilha_telas.pop();
 }
 
-
-void Renderizador::renderizar() const {
+void Renderizador::renderizar() {
     auto engine_de_renderizacao = ScreenInteractive::Fullscreen();
 
     const auto cabecalho = color(Color::CyanLight, text("Biblioteca Digital") | bold | hcenter);
@@ -54,17 +52,15 @@ void Renderizador::renderizar() const {
     engine_de_renderizacao.Loop(layout_da_aplicacao);
 }
 
-void Renderizador::navegarPara(Tela *nova_tela) {
+void Renderizador::navegarPara(std::shared_ptr<Tela> nova_tela) {
     if (_pilha_telas.top() == nova_tela)
         return;
 
-    nova_tela->setRenderizador(*this);
+    nova_tela->setRenderizador(shared_from_this());
     _pilha_telas.push(nova_tela);
 }
 
 Renderizador::~Renderizador() {
-    while (!_pilha_telas.empty()) {
-        delete _pilha_telas.top();
+    while (!_pilha_telas.empty())
         _pilha_telas.pop();
-    }
 }
