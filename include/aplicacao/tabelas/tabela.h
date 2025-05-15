@@ -37,6 +37,8 @@ public:
   virtual TArquivo *inserir(TArquivo *arquivo) = 0;
 
   virtual std::optional<TArquivo *> buscar(int id_procurado) = 0;
+
+  [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
 
 #endif //TABELA_H
