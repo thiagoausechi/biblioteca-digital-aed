@@ -16,8 +16,6 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     auto renderizador = std::make_shared<Renderizador>();
-    renderizador->renderizar();
-
     auto menu = std::make_shared<menu::Menu>();
 
     /**
@@ -56,8 +54,8 @@ int main() {
     menu->inserir(new menu::Opcao{"Listar todos os empréstimos", &NAO_IMPLEMENTADO});
     menu->inserir(new menu::Opcao{"Listar devoluções em atraso", &NAO_IMPLEMENTADO});
 
-    // menu.exibir(); FIXME: Mover responsabilidade de exibição para a classe TelaMenu
-    // Temporariamente o menu não está sendo exibido
+    renderizador->navegarPara(std::make_shared<TelaMenu>(menu));
+    renderizador->renderizar();
 
     return 0;
 }
