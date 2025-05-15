@@ -2,6 +2,7 @@
 #define GENERO_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
+#include "utils/terminal_colors.h"
 
 class Genero final : public Arquivo {
     std::string _descricao{};
@@ -9,7 +10,9 @@ class Genero final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Gênero";
 
-    Genero(): Arquivo(NOME_CLASSE) { ; }
+    Genero(): Arquivo(NOME_CLASSE) {
+        this->setDescricao(RED "[SEM DESCRIÇÃO]" RESET);
+    }
 
     Genero(const int id, const std::string &descricao): Arquivo(NOME_CLASSE) {
         this->setId(id);
