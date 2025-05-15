@@ -1,6 +1,7 @@
 #include <iostream>
 #include <clocale>
 
+#include "apresentacao/tui/renderizador.h"
 #include "utils/menu.h"
 
 using namespace std;
@@ -12,6 +13,9 @@ inline void NAO_IMPLEMENTADO() {
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
+
+    Renderizador renderizador;
+    renderizador.renderizar();
 
     menu::Menu menu;
 
@@ -51,7 +55,8 @@ int main() {
     menu.inserir(new menu::Opcao{"Listar todos os empréstimos", &NAO_IMPLEMENTADO});
     menu.inserir(new menu::Opcao{"Listar devoluções em atraso", &NAO_IMPLEMENTADO});
 
-    menu.exibir();
+    // menu.exibir(); FIXME: Mover responsabilidade de exibição para a classe TelaMenu
+    // Temporariamente o menu não está sendo exibido
 
     return 0;
 }
