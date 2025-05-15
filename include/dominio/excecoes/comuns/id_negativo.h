@@ -1,5 +1,5 @@
-#ifndef ID_NEGATIVO_EXCEPTION_H
-#define ID_NEGATIVO_EXCEPTION_H
+#ifndef ID_NEGATIVO_H
+#define ID_NEGATIVO_H
 #include <exception>
 #include <string>
 #include <utility>
@@ -17,4 +17,4 @@ public:
     }
 };
 
-#endif //ID_NEGATIVO_EXCEPTION_H
+#endif //ID_NEGATIVO_H

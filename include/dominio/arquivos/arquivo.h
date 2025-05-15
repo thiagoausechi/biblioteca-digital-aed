@@ -1,7 +1,7 @@
 #ifndef ARQUIVO_H
 #define ARQUIVO_H
 
-#include "dominio/excecoes/comuns/id_negativo_exception.h"
+#include "dominio/excecoes/comuns/id_negativo.h"
 
 // Classe abstrata para arquivos (não pode ser instanciada)
 class abstract Arquivo {
