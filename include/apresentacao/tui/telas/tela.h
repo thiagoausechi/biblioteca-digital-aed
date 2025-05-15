@@ -13,8 +13,8 @@ public:
     Tela(): _renderizador(nullptr) { ; }
     explicit Tela(Renderizador *renderizador): _renderizador(renderizador) { ; }
 
-    void setRenderizador(Renderizador *renderizador) {
-        this->_renderizador = renderizador;
+    void setRenderizador(Renderizador &renderizador) {
+        this->_renderizador = &renderizador;
     }
 
     virtual ~Tela() = default;
