@@ -12,6 +12,10 @@ using namespace ftxui;
  */
 class TelaReserva final : public Tela {
 public:
+    explicit TelaReserva()
+        : Tela("Tela Não Encontrada") {
+    }
+
     Component getComponent() override {
         return Renderer([] {
             return color(Color::Red, text("Nenhuma tela registrada!"));
