@@ -7,11 +7,11 @@ class Genero final : public Arquivo {
     std::string _descricao{};
 
 public:
-    constexpr static auto NOME = "Gênero";
+    constexpr static auto NOME_CLASSE = "Gênero";
 
-    Genero(): Arquivo(NOME) { ; }
+    Genero(): Arquivo(NOME_CLASSE) { ; }
 
-    Genero(const int id, const std::string &descricao): Arquivo(NOME) {
+    Genero(const int id, const std::string &descricao): Arquivo(NOME_CLASSE) {
         this->setId(id);
         this->setDescricao(descricao);
     }
@@ -20,7 +20,7 @@ public:
 
     void setDescricao(const std::string &descricao) {
         if (descricao.empty())
-            throw PropriedadeVaziaException("Descrição", NOME);
+            throw PropriedadeVaziaException("Descrição", NOME_CLASSE);
         this->_descricao = descricao;
     }
 };
