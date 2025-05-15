@@ -20,25 +20,25 @@ concept TipoDerivadoDeArquivo = std::derived_from<T, Arquivo>;
  */
 template<TipoDerivadoDeArquivo TArquivo>
 class abstract Tabela {
-  int _ultimo_id = 0;
+    int _ultimo_id = 0;
 
 protected:
-  /**
-   * Requisito 4.1
-   * _ultimo_id++ representa um auto incremento
-   */
-  int _gerarId() {
-    return _ultimo_id++;
-  }
+    /**
+     * Requisito 4.1
+     * _ultimo_id++ representa um auto incremento
+     */
+    int _gerarId() {
+        return _ultimo_id++;
+    }
 
 public:
-  virtual ~Tabela() = default;
+    virtual ~Tabela() = default;
 
-  virtual TArquivo *inserir(TArquivo *arquivo) = 0;
+    virtual TArquivo *inserir(TArquivo *arquivo) = 0;
 
-  virtual std::optional<TArquivo *> buscar(int id_procurado) = 0;
+    virtual std::optional<TArquivo *> buscar(int id_procurado) = 0;
 
-  [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
+    [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
 
 #endif //TABELA_H
