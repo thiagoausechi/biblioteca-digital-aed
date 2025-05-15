@@ -22,6 +22,7 @@ template<TipoDerivadoDeArquivo TArquivo>
 class abstract Tabela {
   int _ultimo_id = 0;
 
+protected:
   /**
    * Requisito 4.1
    * _ultimo_id++ representa um auto incremento
