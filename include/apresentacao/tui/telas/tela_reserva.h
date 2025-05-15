@@ -1,9 +1,7 @@
 #ifndef TELA_RESERVA_H
 #define TELA_RESERVA_H
 #include <ftxui/dom/elements.hpp>
-
 #include <ftxui/component/component.hpp>
-
 #include "tela.h"
 
 using namespace ftxui;
