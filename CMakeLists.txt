@@ -12,3 +12,16 @@ file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/include/*.h")
 file(GLOB_RECURSE SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
+
+include(FetchContent)
+FetchContent_Declare(ftxui
+        GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+        GIT_TAG v6.1.9
+)
+FetchContent_MakeAvailable(ftxui)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        ftxui::component
+        ftxui::dom
+        ftxui::screen
+)
