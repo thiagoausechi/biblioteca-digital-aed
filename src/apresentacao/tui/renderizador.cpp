@@ -53,7 +53,8 @@ void Renderizador::renderizar() {
 }
 
 void Renderizador::navegarPara(std::shared_ptr<Tela> nova_tela) {
-    if (_pilha_telas.top() == nova_tela)
+    // Evitamos navegar para a mesma tela
+    if (!_pilha_telas.empty() && _pilha_telas.top() == nova_tela)
         return;
 
     nova_tela->setRenderizador(shared_from_this());
