@@ -13,7 +13,7 @@ inline void NAO_IMPLEMENTADO() {
 int main() {
     setlocale(LC_ALL, "Portuguese");
 
-    Menu menu;
+    menu::Menu menu;
 
     /**
      * Algumas inserções dependem que outros registros em tabelas
@@ -23,33 +23,33 @@ int main() {
      *
      * TODO: Implementar lógica para habilitar/desabilitar opções
      */
-    menu.inserir(new Categoria{"Inserir dados"});
+    menu.inserir(new menu::Categoria{"Inserir dados"});
 
     // Arquivos que não dependem de outros registros
-    menu.inserir(new Opcao{"Gêneros", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Autores", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Cidades", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Gêneros", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Autores", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Cidades", &NAO_IMPLEMENTADO});
 
     // Arquivos que dependem de outros registros
-    menu.inserir(new Opcao{"Pessoas", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Editoras", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Livros", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Pessoas", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Editoras", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Livros", &NAO_IMPLEMENTADO});
 
-    menu.inserir(new Categoria{"Consultar dados"});
-    menu.inserir(new Opcao{"Gêneros", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Autores", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Cidades", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Pessoas", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Editoras", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Livros", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Categoria{"Consultar dados"});
+    menu.inserir(new menu::Opcao{"Gêneros", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Autores", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Cidades", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Pessoas", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Editoras", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Livros", &NAO_IMPLEMENTADO});
 
-    menu.inserir(new Categoria{"Empréstimos"});
-    menu.inserir(new Opcao{"Realizar empréstimo", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Consultar empréstimo", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Devolver livro", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Categoria{"Empréstimos"});
+    menu.inserir(new menu::Opcao{"Realizar empréstimo", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Consultar empréstimo", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Devolver livro", &NAO_IMPLEMENTADO});
 
-    menu.inserir(new Opcao{"Listar todos os empréstimos", &NAO_IMPLEMENTADO});
-    menu.inserir(new Opcao{"Listar devoluções em atraso", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Listar todos os empréstimos", &NAO_IMPLEMENTADO});
+    menu.inserir(new menu::Opcao{"Listar devoluções em atraso", &NAO_IMPLEMENTADO});
 
     menu.exibir();
 
