@@ -7,7 +7,7 @@ using namespace std;
 
 // TODO: Limpar código temporário
 inline void NAO_IMPLEMENTADO() {
-    std::cout << RED << "Não implementado!" << RESET << std::endl;
+    throw std::runtime_error("Não implementado!");
 }
 
 int main() {
