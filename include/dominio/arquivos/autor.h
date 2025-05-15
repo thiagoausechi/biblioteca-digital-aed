@@ -2,7 +2,6 @@
 #define AUTOR_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
-#include "utils/terminal_colors.h"
 
 class Autor final : public Arquivo {
     std::string _nome{};
@@ -10,16 +9,18 @@ class Autor final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Autor";
 
-    Autor(): Arquivo(NOME_CLASSE) {
-        this->setNome(RED "[SEM NOME]" RESET);
-    }
+    Autor(): Arquivo(NOME_CLASSE) { ; }
 
     Autor(const int id, const std::string &nome): Arquivo(NOME_CLASSE) {
         this->setId(id);
         this->setNome(nome);
     }
 
-    [[nodiscard]] std::string getNome() const { return this->_nome; }
+    [[nodiscard]] std::string getNome() const {
+        if (this->_nome.empty())
+            return "[SEM NOME]";
+        return this->_nome;
+    }
 
     void setNome(const std::string &nome) {
         if (nome.empty())
