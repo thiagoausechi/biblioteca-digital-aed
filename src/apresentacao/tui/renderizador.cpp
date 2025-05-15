@@ -58,6 +58,7 @@ void Renderizador::navegarPara(Tela *nova_tela) {
     if (_pilha_telas.top() == nova_tela)
         return;
 
+    nova_tela->setRenderizador(*this);
     _pilha_telas.push(nova_tela);
 }
 

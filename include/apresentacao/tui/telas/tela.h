@@ -2,11 +2,24 @@
 #define TELA_H
 #include "ftxui/component/component_base.hpp"
 
-class abstract Tela {
+using namespace ftxui;
+
+class Renderizador;
+
+class Tela {
+    Renderizador *_renderizador;
+
 public:
+    Tela(): _renderizador(nullptr) { ; }
+    explicit Tela(Renderizador *renderizador): _renderizador(renderizador) { ; }
+
+    void setRenderizador(Renderizador *renderizador) {
+        this->_renderizador = renderizador;
+    }
+
     virtual ~Tela() = default;
 
-    virtual ftxui::Component *renderizar() = 0;
+    virtual Component getComponent() = 0;
 };
 
 #endif //TELA_H
