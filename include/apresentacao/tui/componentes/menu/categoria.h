@@ -28,7 +28,7 @@ public:
     }
 };
 
-inline Component Categoria(const std::string &descricao) {
+inline auto Categoria(const std::string &descricao) {
     return Make<CategoriaComponent>(descricao);
 }
 
