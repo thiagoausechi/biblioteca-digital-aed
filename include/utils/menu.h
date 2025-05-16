@@ -48,12 +48,6 @@ namespace menu {
         }
     };
 
-    struct MensagemDeBoasVindas final : ItemDoMenu {
-        void exibir() const override {
-            std::cout << cabecalho("Bem-vindo(a)!") << std::endl;
-        }
-    };
-
     // Requisito 8
     class Menu {
         int _ultimo_id_opcao = 0;
@@ -64,7 +58,6 @@ namespace menu {
 
     public:
         Menu() {
-            this->inserir(new MensagemDeBoasVindas());
             this->inserir(new Opcao{"Sair", [] { ; }});
         }
 
