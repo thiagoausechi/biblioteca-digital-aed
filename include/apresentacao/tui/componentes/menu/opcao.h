@@ -41,8 +41,11 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
 }
 
 /*
- * Este componente é espelhado (é inspirada) na
- * classe `MenuEntry` da biblioteca FTXUI.
+ * Este componente foi inspirado na classe `MenuEntry` da biblioteca FTXUI.
+ * A implementação segue uma lógica semelhante à utilizada no projeto original.
+ *
+ * Referência:
+ * https://github.com/ArthurSonzogni/FTXUI/blob/08b8a3b28f2663f66fca7bb4eea0783d12f76d1d/src/ftxui/component/menu.cpp#L614
  */
 class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
     int _id = -1;
