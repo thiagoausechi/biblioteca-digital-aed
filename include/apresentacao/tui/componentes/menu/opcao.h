@@ -94,6 +94,11 @@ public:
             throw IdNegativoException(NOME_CLASSE);
         this->_id = id;
     }
+
+    void habilitar() { this->_habilitado = true; }
+    void desabilitar() { this->_habilitado = false; }
+    void alternar_habilitado() { this->_habilitado = !this->_habilitado; }
+    void alternar_habilitado(const bool forcar_valor) { this->_habilitado = forcar_valor; }
 };
 
 inline auto Opcao(const std::string &descricao, std::function<void()> acao) {
