@@ -48,7 +48,6 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
  * https://github.com/ArthurSonzogni/FTXUI/blob/08b8a3b28f2663f66fca7bb4eea0783d12f76d1d/src/ftxui/component/menu.cpp#L614
  */
 class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
-    int _id = -1;
     bool _habilitado = true;
     bool _hovered = false;
 
@@ -106,14 +105,6 @@ public:
 
         this->_descricao = descricao;
         this->_acao = std::move(acao);
-    }
-
-    [[nodiscard]] int getId() const { return this->_id; }
-
-    void setId(const int id) {
-        if (id < 0)
-            throw IdNegativoException(NOME_CLASSE);
-        this->_id = id;
     }
 
     void habilitar() { this->_habilitado = true; }
