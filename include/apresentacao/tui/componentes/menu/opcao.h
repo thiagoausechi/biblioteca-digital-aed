@@ -76,7 +76,7 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
 
     bool OnEvent(Event evento) override {
         if (evento.is_mouse()) return _tratarEventoDoMouse(evento);
-        return false;
+        return _tratarEventoDoTeclado(evento);
     }
 
     bool _tratarEventoDoMouse(Event evento) {
@@ -87,6 +87,20 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         if (evento.mouse().button == Mouse::Left &&
             evento.mouse().motion == Mouse::Pressed) {
             TakeFocus();
+            return true;
+        }
+
+        return false;
+    }
+
+    bool _tratarEventoDoTeclado(Event evento) {
+        if (!_habilitado) return false;
+        if (!Focused()) return false;
+
+        // Usuário pressionou a tecla de espaço ou enter
+        if (evento == Event::Return ||
+            evento == Event::Character((" "))) {
+            this->_acao();
             return true;
         }
 
