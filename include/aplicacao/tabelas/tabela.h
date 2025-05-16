@@ -34,9 +34,9 @@ protected:
 public:
     virtual ~Tabela() = default;
 
-    virtual TArquivo *inserir(TArquivo *arquivo) = 0;
+    virtual std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> arquivo) = 0;
 
-    virtual std::optional<TArquivo *> buscar(int id_procurado) = 0;
+    virtual std::optional<std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
 
     [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
