@@ -19,7 +19,7 @@ public:
         this->setTitulo(titulo);
     }
 
-    std::string getTitulo() const { return this->_titulo; }
+    [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
 
     void setTitulo(const std::string &titulo) {
         if (titulo.empty())
