@@ -96,7 +96,7 @@ public:
     }
 };
 
-inline Component Opcao(const std::string &descricao, std::function<void()> acao) {
+inline auto Opcao(const std::string &descricao, std::function<void()> acao) {
     return Make<OpcaoComponent>(descricao, std::move(acao));
 }
 
