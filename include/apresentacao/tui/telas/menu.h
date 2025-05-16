@@ -11,7 +11,7 @@ class TelaMenu final : public Tela {
     std::shared_ptr<menu::Menu> _menu;
 
 public:
-    explicit TelaMenu(std::shared_ptr<menu::Menu> &menu) : Tela("Menu"), _menu(menu) { ; }
+    explicit TelaMenu(std::shared_ptr<menu::Menu> &menu) : Tela("Início"), _menu(menu) { ; }
 
     Component getComponent() override {
         // const auto& options = _menu->getOpcoes();
