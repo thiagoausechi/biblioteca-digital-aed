@@ -1,9 +1,10 @@
 #include <iostream>
 #include <clocale>
 
-#include "apresentacao/tui/telas/menu.h"
 #include "apresentacao/tui/renderizador.h"
-#include "utils/menu.h"
+#include "apresentacao/tui/componentes/menu/categoria.h"
+#include "apresentacao/tui/componentes/menu/opcao.h"
+#include "apresentacao/tui/telas/menu.h"
 
 using namespace std;
 
@@ -16,7 +17,6 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     auto renderizador = std::make_shared<Renderizador>();
-    auto menu = std::make_shared<menu::Menu>();
 
     /**
      * Algumas inserções dependem que outros registros em tabelas
@@ -26,35 +26,38 @@ int main() {
      *
      * TODO: Implementar lógica para habilitar/desabilitar opções
      */
-    menu->inserir(new menu::Categoria{"Inserir dados"});
+    auto tela_inicial = std::make_shared<TelaMenu>(Components{
+        Categoria("Inserir dados"),
 
-    // Arquivos que não dependem de outros registros
-    menu->inserir(new menu::Opcao{"Gêneros", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Autores", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Cidades", &NAO_IMPLEMENTADO});
+        // Arquivos que não dependem de outros registros
+        Opcao("Gêneros", &NAO_IMPLEMENTADO),
+        Opcao("Gêneros", &NAO_IMPLEMENTADO),
+        Opcao("Autores", &NAO_IMPLEMENTADO),
+        Opcao("Cidades", &NAO_IMPLEMENTADO),
 
-    // Arquivos que dependem de outros registros
-    menu->inserir(new menu::Opcao{"Pessoas", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Editoras", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Livros", &NAO_IMPLEMENTADO});
+        // Arquivos que dependem de outros registros
+        Opcao("Pessoas", &NAO_IMPLEMENTADO),
+        Opcao("Editoras", &NAO_IMPLEMENTADO),
+        Opcao("Livros", &NAO_IMPLEMENTADO),
 
-    menu->inserir(new menu::Categoria{"Consultar dados"});
-    menu->inserir(new menu::Opcao{"Gêneros", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Autores", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Cidades", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Pessoas", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Editoras", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Livros", &NAO_IMPLEMENTADO});
+        Categoria("Consultar dados"),
+        Opcao("Gêneros", &NAO_IMPLEMENTADO),
+        Opcao("Autores", &NAO_IMPLEMENTADO),
+        Opcao("Cidades", &NAO_IMPLEMENTADO),
+        Opcao("Pessoas", &NAO_IMPLEMENTADO),
+        Opcao("Editoras", &NAO_IMPLEMENTADO),
+        Opcao("Livros", &NAO_IMPLEMENTADO),
 
-    menu->inserir(new menu::Categoria{"Empréstimos"});
-    menu->inserir(new menu::Opcao{"Realizar empréstimo", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Consultar empréstimo", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Devolver livro", &NAO_IMPLEMENTADO});
+        Categoria("Empréstimos"),
+        Opcao("Realizar empréstimo", &NAO_IMPLEMENTADO),
+        Opcao("Consultar empréstimo", &NAO_IMPLEMENTADO),
+        Opcao("Devolver livro", &NAO_IMPLEMENTADO),
 
-    menu->inserir(new menu::Opcao{"Listar todos os empréstimos", &NAO_IMPLEMENTADO});
-    menu->inserir(new menu::Opcao{"Listar devoluções em atraso", &NAO_IMPLEMENTADO});
+        Opcao("Listar todos os empréstimos", &NAO_IMPLEMENTADO),
+        Opcao("Listar devoluções em atraso", &NAO_IMPLEMENTADO),
+    });
 
-    renderizador->navegarPara(std::make_shared<TelaMenu>(menu));
+    renderizador->navegarPara(tela_inicial);
     renderizador->renderizar();
 
     return 0;
