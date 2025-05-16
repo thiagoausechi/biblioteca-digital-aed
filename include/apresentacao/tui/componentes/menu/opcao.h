@@ -76,11 +76,14 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
     [[nodiscard]] bool Focusable() const override { return this->_habilitado; }
 
     bool OnEvent(Event evento) override {
-        if (!evento.is_mouse()) return false;
+        if (evento.is_mouse()) return _tratarEventoDoMouse(evento);
+        return false;
+    }
 
-        _hovered = _box.Contain(evento.mouse().x, evento.mouse().y);
+    bool _tratarEventoDoMouse(Event evento) {
+        this->_hovered = _box.Contain(evento.mouse().x, evento.mouse().y);
 
-        if (!_hovered) return false;
+        if (!this->_hovered) return false;
 
         if (evento.mouse().button == Mouse::Left &&
             evento.mouse().motion == Mouse::Pressed) {
