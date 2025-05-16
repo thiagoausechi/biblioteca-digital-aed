@@ -31,7 +31,6 @@ int main() {
 
         // Arquivos que não dependem de outros registros
         Opcao("Gêneros", &NAO_IMPLEMENTADO),
-        Opcao("Gêneros", &NAO_IMPLEMENTADO),
         Opcao("Autores", &NAO_IMPLEMENTADO),
         Opcao("Cidades", &NAO_IMPLEMENTADO),
 
