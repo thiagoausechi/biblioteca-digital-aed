@@ -13,14 +13,30 @@ using namespace ftxui;
  * Transforma o elemento conforme o estado da Opção.
  */
 inline Element TransformacaoPadrao(const EntryState &estado) {
-    std::string label = (estado.active ? "> " : "  ") + estado.label;
-    Element elemento = text(std::move(label));
-    if (estado.focused) {
-        elemento = elemento | inverted;
+    auto hovered = estado.state;
+    auto habilitado = estado.active;
+    auto em_foco = estado.focused;
+
+    auto prefixo = text(em_foco ? "[" : " ");
+    auto sufixo = text(em_foco ? "]" : "");
+    auto descricao = text(estado.label);
+
+    if (em_foco) {
+        prefixo |= bold | color(Color::YellowLight);
+        sufixo |= bold | color(Color::YellowLight);
     }
-    if (estado.active) {
-        elemento = elemento | bold;
-    }
+
+    auto elemento = hbox({
+        prefixo,
+        descricao,
+        sufixo,
+    });
+
+    if (!habilitado)
+        elemento |= dim;
+    else if (hovered)
+        elemento |= inverted;
+
     return elemento;
 }
 
@@ -43,11 +59,10 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         const bool esta_focado = Focused();
 
         const EntryState state{
-            label(), true, _hovered, esta_focado, Index()
+            label(), _hovered, _habilitado, esta_focado, Index()
         };
 
-        Element elemento = (transform ? transform : TransformacaoPadrao)
-                (state);
+        Element elemento = (transform ? transform : TransformacaoPadrao)(state);
 
         if (esta_focado)
             elemento |= focus;
