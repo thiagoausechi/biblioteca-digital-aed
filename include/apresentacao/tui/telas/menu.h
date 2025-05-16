@@ -24,7 +24,11 @@ public:
 
         return Renderer(menu_container, [this, menu_container] {
             return vbox({
-                menu_container->Render() | flex | frame | size(WIDTH, EQUAL, 100) | size(HEIGHT, EQUAL, 100)
+                menu_container->Render()
+                | vscroll_indicator
+                | frame
+                | size(WIDTH, EQUAL, 100)
+                | size(HEIGHT, EQUAL, 100)
             });
         });
     }
