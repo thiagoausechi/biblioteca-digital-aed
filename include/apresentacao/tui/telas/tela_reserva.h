@@ -20,7 +20,7 @@ public:
         return Renderer([] {
             return color(Color::Red, text("Nenhuma tela registrada!"));
         });
-    };
+    }
 };
 
 #endif //TELA_RESERVA_H
