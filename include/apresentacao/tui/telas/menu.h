@@ -28,7 +28,7 @@ public:
                 | vscroll_indicator
                 | frame
                 | size(WIDTH, EQUAL, 100)
-                | size(HEIGHT, EQUAL, 100)
+                | size(HEIGHT, EQUAL, 50)
             });
         });
     }
