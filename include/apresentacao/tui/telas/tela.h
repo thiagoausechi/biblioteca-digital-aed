@@ -1,5 +1,7 @@
 #ifndef TELA_H
 #define TELA_H
+#include <utility>
+
 #include "ftxui/component/component_base.hpp"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -10,7 +12,7 @@ class Renderizador;
 class Tela {
 protected:
     std::string _titulo{};
-    std::weak_ptr<Renderizador> _renderizador;
+    std::shared_ptr<Renderizador> _renderizador;
 
 public:
     constexpr static auto NOME_CLASSE = "Tela";
@@ -28,8 +30,8 @@ public:
     }
 
 
-    void setRenderizador(std::weak_ptr<Renderizador> renderizador) {
-        this->_renderizador = renderizador;
+    void setRenderizador(std::shared_ptr<Renderizador> renderizador) {
+        this->_renderizador = std::move(renderizador);
     }
 
     virtual ~Tela() = default;
