@@ -33,6 +33,7 @@ class LayoutAplicacaoComponent final : public ComponentBase {
         conteudo = tela_atual
                    | hcenter
                    | vcenter;
+        this->Add(tela_atual);
 
         rodape = Renderer([this] {
             return text(CREDITOS)
