@@ -23,6 +23,8 @@ public:
 
     [[nodiscard]] std::shared_ptr<Tela> getTelaAtual();
 
+    [[nodiscard]] const std::stack<std::shared_ptr<Tela>> &getPilhaDeTelas() const;
+
     void navegarPara(std::shared_ptr<Tela> nova_tela);
 
     void retroceder();

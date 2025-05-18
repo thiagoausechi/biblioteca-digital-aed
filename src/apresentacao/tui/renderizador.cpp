@@ -12,6 +12,10 @@ std::shared_ptr<Tela> Renderizador::getTelaAtual() {
     return _pilha_telas.top();
 }
 
+const std::stack<std::shared_ptr<Tela>> &Renderizador::getPilhaDeTelas() const {
+    return this->_pilha_telas;
+}
+
 void Renderizador::retroceder() {
     // Já estamos na tela inicial
     if (_pilha_telas.size() == 1)
