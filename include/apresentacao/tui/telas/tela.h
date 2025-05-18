@@ -11,24 +11,19 @@ class Renderizador;
 
 class Tela : public ComponentBase {
 protected:
-    std::string _titulo{};
+    const std::string _titulo;
     std::shared_ptr<Renderizador> _renderizador;
 
 public:
     constexpr static auto NOME_CLASSE = "Tela";
 
-    explicit Tela(const std::string &titulo) {
-        this->setTitulo(titulo);
+    explicit Tela(const std::string &titulo)
+        : _titulo(titulo) {
+        if (titulo.empty())
+            throw PropriedadeVaziaException("Título", NOME_CLASSE);
     }
 
     [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
-
-    void setTitulo(const std::string &titulo) {
-        if (titulo.empty())
-            throw PropriedadeVaziaException("Título", NOME_CLASSE);
-        this->_titulo = titulo;
-    }
-
 
     void setRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = std::move(renderizador);
