@@ -1,0 +1,64 @@
+#ifndef LAYOUT_APLICACAO_H
+#define LAYOUT_APLICACAO_H
+#include <ftxui/component/component.hpp>
+
+#include "utils/app_info.h"
+
+using namespace ftxui;
+
+class Renderizador;
+
+class LayoutAplicacaoComponent final : public ComponentBase {
+    std::shared_ptr<Renderizador> _renderizador;
+
+    Element OnRender() override {
+        // Componentes principais
+        Component cabecalho;
+        Component conteudo;
+        Component rodape;
+        Component app;
+
+        // Auxiliares
+        auto tela_atual = this->_renderizador->getTelaAtual();
+
+        // Definição/atribuição dos componentes principais
+        cabecalho = Renderer([this] {
+            return text(NOME_APP)
+                   | color(Color::CyanLight)
+                   | bold
+                   | hcenter;
+        });
+
+        conteudo = tela_atual->getComponent()
+                   | hcenter
+                   | vcenter;
+
+        rodape = Renderer([this] {
+            return text(CREDITOS)
+                   | dim
+                   | hcenter;
+        });
+
+        app = Container::Vertical({
+                  cabecalho,
+                  Renderer([] { return separator(); }),
+                  conteudo | flex,
+                  Renderer([] { return separator(); }),
+                  rodape
+              })
+              | border;
+
+        return app->Render();
+    }
+
+public:
+    explicit LayoutAplicacaoComponent(std::shared_ptr<Renderizador> renderizador)
+        : _renderizador(std::move(renderizador)) {
+    }
+};
+
+inline Component Aplicacao(std::shared_ptr<Renderizador> renderizador) {
+    return Make<LayoutAplicacaoComponent>(std::move(renderizador));
+}
+
+#endif //LAYOUT_APLICACAO_H

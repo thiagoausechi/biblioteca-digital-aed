@@ -2,6 +2,8 @@
 
 #include <ftxui/component/screen_interactive.hpp>
 #include "apresentacao/tui/renderizador.h"
+
+#include "apresentacao/tui/componentes/layout_aplicacao.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
 
 Renderizador::Renderizador(): TELA_AVISO_SEM_REGISTRO(std::make_shared<TelaReserva>()) { ; }
@@ -38,22 +40,7 @@ void Renderizador::retroceder() {
 
 void Renderizador::renderizar() {
     auto engine_de_renderizacao = ScreenInteractive::Fullscreen();
-
-    const auto cabecalho = color(Color::CyanLight, text("Biblioteca Digital") | bold | hcenter);
-    const auto tela_atual = Container::Vertical({getTelaAtual()->getComponent()}) | hcenter | vcenter;
-    const auto rodape = text("Por Lucas Facina & Thiago Ausechi") | dim | hcenter;
-
-    const auto layout_da_aplicacao = Renderer(tela_atual, [&] {
-        return vbox({
-            cabecalho,
-            separator(),
-            tela_atual->Render() | flex,
-            separator(),
-            rodape,
-        });
-    }) | border;
-
-    engine_de_renderizacao.Loop(layout_da_aplicacao);
+    engine_de_renderizacao.Loop(Aplicacao(shared_from_this()));
 }
 
 void Renderizador::navegarPara(std::shared_ptr<Tela> nova_tela) {
