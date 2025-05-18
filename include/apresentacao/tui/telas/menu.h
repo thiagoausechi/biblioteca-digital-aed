@@ -13,24 +13,23 @@ class TelaMenu final : public Tela {
     int _item_selecionado = 0;
     Components _menu;
 
+    Element OnRender() override {
+        auto menu_container = Container::Vertical(this->_menu, &this->_item_selecionado);
+        this->Add(menu_container);
+
+        return vbox({
+            menu_container->Render()
+            | vscroll_indicator
+            | frame
+            | size(WIDTH, EQUAL, 100)
+            | size(HEIGHT, EQUAL, 50)
+        });
+    }
+
 public:
     explicit TelaMenu(Components itens_do_menu)
         : Tela("Início")
           , _menu(std::move(itens_do_menu)) {
-    }
-
-    Component getComponent() override {
-        auto menu_container = Container::Vertical(this->_menu, &this->_item_selecionado);
-
-        return Renderer(menu_container, [this, menu_container] {
-            return vbox({
-                menu_container->Render()
-                | vscroll_indicator
-                | frame
-                | size(WIDTH, EQUAL, 100)
-                | size(HEIGHT, EQUAL, 50)
-            });
-        });
     }
 };
 

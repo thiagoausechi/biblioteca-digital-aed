@@ -9,7 +9,7 @@ using namespace ftxui;
 
 class Renderizador;
 
-class Tela {
+class Tela : public ComponentBase {
 protected:
     std::string _titulo{};
     std::shared_ptr<Renderizador> _renderizador;
@@ -33,10 +33,6 @@ public:
     void setRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = std::move(renderizador);
     }
-
-    virtual ~Tela() = default;
-
-    virtual Component getComponent() = 0;
 };
 
 #endif //TELA_H

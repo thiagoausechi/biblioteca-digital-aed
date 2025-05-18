@@ -29,7 +29,7 @@ class LayoutAplicacaoComponent final : public ComponentBase {
                    | hcenter;
         });
 
-        conteudo = tela_atual->getComponent()
+        conteudo = tela_atual
                    | hcenter
                    | vcenter;
 

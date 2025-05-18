@@ -11,15 +11,14 @@ using namespace ftxui;
  * estiver com a pilha de telas vazia.
  */
 class TelaReserva final : public Tela {
+    Element OnRender() override {
+        return text("Nenhuma tela registrada!")
+               | color(Color::Red);
+    }
+
 public:
     explicit TelaReserva()
         : Tela("Tela Não Encontrada") {
-    }
-
-    Component getComponent() override {
-        return Renderer([] {
-            return color(Color::Red, text("Nenhuma tela registrada!"));
-        });
     }
 };
 
