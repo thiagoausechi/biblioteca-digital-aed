@@ -2,6 +2,7 @@
 #define LAYOUT_APLICACAO_H
 #include <ftxui/component/component.hpp>
 
+#include "breadcrumb.h"
 #include "utils/app_info.h"
 
 using namespace ftxui;
@@ -20,6 +21,7 @@ class LayoutAplicacaoComponent final : public ComponentBase {
 
         // Auxiliares
         auto tela_atual = this->_renderizador->getTelaAtual();
+        const auto esta_na_tela_inicial = this->_renderizador->getPilhaDeTelas().size() < 2;
 
         // Definição/atribuição dos componentes principais
         cabecalho = Renderer([] {
@@ -35,11 +37,14 @@ class LayoutAplicacaoComponent final : public ComponentBase {
                    | vcenter;
         this->Add(tela_atual);
 
-        rodape = Renderer([] {
-            return text(CREDITOS)
-                   | dim
-                   | hcenter;
-        });
+        if (esta_na_tela_inicial)
+            rodape = Renderer([] {
+                return text(CREDITOS)
+                       | dim
+                       | hcenter;
+            });
+        else
+            rodape = Breadcrumb(this->_renderizador);
 
         app = Container::Vertical({
                   cabecalho,
