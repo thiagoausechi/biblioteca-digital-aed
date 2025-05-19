@@ -22,7 +22,7 @@ class LayoutAplicacaoComponent final : public ComponentBase {
         auto tela_atual = this->_renderizador->getTelaAtual();
 
         // Definição/atribuição dos componentes principais
-        cabecalho = Renderer([this] {
+        cabecalho = Renderer([] {
             return text(NOME_APP)
                    | color(Color::CyanLight)
                    | bold
@@ -35,7 +35,7 @@ class LayoutAplicacaoComponent final : public ComponentBase {
                    | vcenter;
         this->Add(tela_atual);
 
-        rodape = Renderer([this] {
+        rodape = Renderer([] {
             return text(CREDITOS)
                    | dim
                    | hcenter;
