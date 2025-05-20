@@ -8,6 +8,10 @@ class Utils {
         arquivo_local.write(reinterpret_cast<const char *>(&tamanho), sizeof(tamanho));
         arquivo_local.write(str.c_str(), tamanho);
     }
+
+    static void armazenar_int(std::ofstream &arquivo_local, int valor) {
+        arquivo_local.write(reinterpret_cast<const char *>(&valor), sizeof(valor));
+    }
 };
 
 #endif //UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
