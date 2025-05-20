@@ -14,7 +14,7 @@ class Renderizador : public std::enable_shared_from_this<Renderizador> {
     Components _itens_menu;
 
     int _indice_item_menu_selecionado;
-    int _indice_tela_selecionada;
+    int _indice_mapeado_tela_selecionada;
 
     /*
      * É necessário separar o que é "Categoria"
@@ -48,8 +48,8 @@ class Renderizador : public std::enable_shared_from_this<Renderizador> {
                 ->second; // first = indice_item_menu_selecionado
 
         // Não precisa atualizar se o índice já estiver selecionado
-        if (_indice_tela_selecionada != indice_mapeado) {
-            _indice_tela_selecionada = indice_mapeado;
+        if (_indice_mapeado_tela_selecionada != indice_mapeado) {
+            _indice_mapeado_tela_selecionada = indice_mapeado;
             return true;
         }
 
@@ -60,7 +60,7 @@ public:
     explicit Renderizador(Components itens_do_menu)
         : _itens_menu(std::move(itens_do_menu))
           , _indice_item_menu_selecionado(-1)
-          , _indice_tela_selecionada(-1) {
+          , _indice_mapeado_tela_selecionada(-1) {
         if (_itens_menu.empty())
             throw PropriedadeVaziaException("Itens do menu", "Renderizador");
 
@@ -133,7 +133,7 @@ public:
                     return false;
                 });
 
-        conteudo = Container::Tab(telas, &_indice_tela_selecionada)
+        conteudo = Container::Tab(telas, &_indice_mapeado_tela_selecionada)
                    | vscroll_indicator
                    | flex
                    | frame;
