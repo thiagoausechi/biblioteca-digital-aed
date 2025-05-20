@@ -18,15 +18,6 @@ public:
     virtual TResposta executar() = 0;
 };
 
-// Caso de uso sem um TResposta; Portanto o executar() não retorna nada
-template<typename TPedido>
-class CasoDeUso<void, TPedido> {
-public:
-    virtual ~CasoDeUso() = default;
-
-    virtual void executar(TPedido pedido) = 0;
-};
-
 // Caso de uso sem um TResposta e um TPedido; Portanto o executar() não recebe parâmetros e não retorna nada
 template<>
 class CasoDeUso<void, void> {
