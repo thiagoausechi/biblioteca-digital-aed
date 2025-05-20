@@ -14,6 +14,7 @@ class Renderizador : public std::enable_shared_from_this<Renderizador> {
     Components _itens_menu;
 
     int _indice_item_menu_selecionado;
+    int _indice_anterior_item_menu_selecionado;
     int _indice_mapeado_tela_selecionada;
 
     /*
@@ -36,30 +37,54 @@ class Renderizador : public std::enable_shared_from_this<Renderizador> {
      */
     std::unordered_map<int, int> _mapa_indices_opcoes{};
 
-    /*
-     * Esta função atualiza o índice da tela
-     * selecionada já utilizando um índice
-     * mapeado.
-     */
-    bool _atualizarIndiceTelaSelecionada() {
-        auto indice_mapeado =
+    bool _selecionarTela() {
+        // Não precisa atualizar se a opção já estiver selecionada
+        if (_indice_item_menu_selecionado == _indice_anterior_item_menu_selecionado)
+            return false;
+
+        this->_desmarcarOpcaoAnterior();
+        this->_marcarOpcaoSelecionada();
+        this->_atualizarIndiceTelaSelecionada();
+
+        return true;
+    }
+
+    void _desmarcarOpcaoAnterior() {
+        // Esta propriedade inicia com −2, porém não existe índice negativo
+        if (_indice_anterior_item_menu_selecionado < 0) return;
+
+        auto antiga_opcao_selecionada = dynamic_cast<OpcaoComponent *>(
+            _itens_menu.at(_indice_anterior_item_menu_selecionado)
+            .get()
+        );
+        if (antiga_opcao_selecionada == nullptr) return;
+
+        antiga_opcao_selecionada->desselecionar();
+    }
+
+    void _marcarOpcaoSelecionada() {
+        auto opcao_selecionada = dynamic_cast<OpcaoComponent *>(
+            _itens_menu.at(_indice_item_menu_selecionado)
+            .get()
+        );
+
+        opcao_selecionada->selecionar();
+        _indice_anterior_item_menu_selecionado = _indice_item_menu_selecionado;
+    }
+
+    void _atualizarIndiceTelaSelecionada() {
+        auto indice_mapeado_nova_tela_seleciona =
                 this->_mapa_indices_opcoes
                 .find(_indice_item_menu_selecionado)
                 ->second; // first = indice_item_menu_selecionado
-
-        // Não precisa atualizar se o índice já estiver selecionado
-        if (_indice_mapeado_tela_selecionada != indice_mapeado) {
-            _indice_mapeado_tela_selecionada = indice_mapeado;
-            return true;
-        }
-
-        return false;
+        _indice_mapeado_tela_selecionada = indice_mapeado_nova_tela_seleciona;
     }
 
 public:
     explicit Renderizador(Components itens_do_menu)
         : _itens_menu(std::move(itens_do_menu))
           , _indice_item_menu_selecionado(-1)
+          , _indice_anterior_item_menu_selecionado(-2)
           , _indice_mapeado_tela_selecionada(-1) {
         if (_itens_menu.empty())
             throw PropriedadeVaziaException("Itens do menu", "Renderizador");
@@ -79,7 +104,7 @@ public:
         if (_indice_item_menu_selecionado == -1)
             throw std::invalid_argument("É necessário ter pelo menos uma opção selecionável (página registrada).");
 
-        this->_atualizarIndiceTelaSelecionada();
+        this->_selecionarTela();
     }
 
     void renderizar() {
@@ -127,7 +152,7 @@ public:
                     if (!evento.is_mouse() &&
                         evento == Event::Return ||
                         evento == Event::Character(' ')) {
-                        return this->_atualizarIndiceTelaSelecionada();
+                        return this->_selecionarTela();
                     }
 
                     return false;
