@@ -2,13 +2,14 @@
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
+#include "apresentacao/tui/telas/inderir/genero.h"
 
 using namespace std;
 
 int main() {
     auto renderizador = std::make_shared<Renderizador>(Components{
         Categoria("Inserir dados"),
-        Opcao("Gêneros", Make<TelaReserva>()),
+        Opcao("Gêneros", Make<TelaInserirGenero>()),
         Opcao("Autores", Make<TelaReserva>()),
         Opcao("Cidades", Make<TelaReserva>()),
         Opcao("Pessoas", Make<TelaReserva>()),
