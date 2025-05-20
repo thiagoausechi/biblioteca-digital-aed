@@ -7,6 +7,10 @@
 
 using namespace ftxui;
 
+struct FormularioInsercaoGenero {
+    std::string descricao;
+};
+
 class TelaInserirGenero final : public Tela {
     Element OnRender() override {
         return text("Esta tela ainda não foi implementada!")
