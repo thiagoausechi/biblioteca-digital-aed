@@ -1,5 +1,3 @@
-
-
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
@@ -8,7 +6,6 @@
 using namespace std;
 
 int main() {
-
     auto renderizador = std::make_shared<Renderizador>(Components{
         Categoria("Inserir dados"),
         Opcao("Gêneros", Make<TelaReserva>()),
