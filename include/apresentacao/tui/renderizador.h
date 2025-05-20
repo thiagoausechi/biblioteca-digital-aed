@@ -124,7 +124,7 @@ public:
          * num único vetor, para que o Container::Tab
          * possa utilizar.
          */
-        for (auto item_menu: _itens_menu) {
+        for (const auto &item_menu: _itens_menu) {
             auto componente_opcao = dynamic_cast<OpcaoComponent *>(item_menu.get());
             if (componente_opcao != nullptr)
                 telas.emplace_back(componente_opcao->getTela());
