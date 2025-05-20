@@ -32,4 +32,18 @@ template<>
 inline void Utils::armazenar_propriedade(std::ofstream &arquivo_local, time_t valor) {
     arquivo_local.write(reinterpret_cast<const char *>(&valor), sizeof(valor));
 }
+
+// Especializações para carregar propriedades de diferentes tipos
+template<>
+inline void Utils::carregar_propriedade(std::ifstream &arquivo_local, std::string &propriedade) {
+    size_t tamanho_string_lida;
+    arquivo_local.read(reinterpret_cast<char *>(&tamanho_string_lida), sizeof(tamanho_string_lida));
+
+    if (arquivo_local.eof()) return;
+
+    std::string string_lida(tamanho_string_lida, '\0');
+    arquivo_local.read(&string_lida[0], tamanho_string_lida);
+    propriedade = string_lida;
+}
+
 #endif //UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
