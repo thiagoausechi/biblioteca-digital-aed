@@ -26,7 +26,7 @@ class TelaInicial final : public Tela {
             text("💡 Dicas de navegação:") | color(Color::YellowLight),
             text("   - Use as teclas de seta (← ↑ ↓ →) ou o mouse para navegar pelo menu."),
             text("   - Pressione Enter (↵) para selecionar uma opção."),
-            text("     Obs: Clicar com o mouse apenas destaca a opção, mas não a abre.") | dim,
+            text("      Obs: Clicar com o mouse apenas destaca a opção, mas não a abre.") | dim,
             text("   - Para sair do programa, pressione Ctrl + C (Windows) ou ⌃C (MacOS)."),
             text("   - O menu lateral pode ser redimensionado com o mouse."),
         });
