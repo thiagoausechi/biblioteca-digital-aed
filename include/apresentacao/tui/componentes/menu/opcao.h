@@ -61,7 +61,40 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         const bool esta_focado = Focused();
 
         const EntryState state{
-            label(), _hovered, _selecionado, esta_focado, Index()
+            /*
+             * Descrição passada como argumento para o construtor
+             * e já atribuida na classe base `MenuEntryOption`.
+             */
+            label(),
+
+            /*
+             * Indica quando o Mouse está em cima do elemento.
+             * Isso é diferente de `_selecionado` e `esta_focado`.
+             */
+            _hovered, //.state
+
+            /*
+             * É, de fato, a atual opção selecionada no Menu.
+             */
+            _selecionado, //.active
+
+            /*
+             * Usado como indicador de navegação. Ao pressionar Enter
+             * esta opção será a selecionada.
+             */
+            esta_focado, //.focused
+
+            /*
+             * Índice da opção no menu. Ele é influenciado
+             * por outros componentes que estão na mesma lista
+             * de "filhos" mesmo eles não sendo do tipo Opção.
+             *
+             * Exemplo:
+             * Opção -> Index(0)
+             * Categoria
+             * Opção -> Index(2)
+             */
+            Index()
         };
 
         Element elemento = (transform ? transform : TransformacaoPadrao)(state);
