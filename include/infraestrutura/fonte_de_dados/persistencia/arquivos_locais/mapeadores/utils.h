@@ -46,4 +46,11 @@ inline void Utils::carregar_propriedade(std::ifstream &arquivo_local, std::strin
     propriedade = string_lida;
 }
 
+template<>
+inline void Utils::carregar_propriedade(std::ifstream &arquivo_local, int &propriedade) {
+    int valor;
+    arquivo_local.read(reinterpret_cast<char *>(&valor), sizeof(valor));
+    propriedade = valor;
+}
+
 #endif //UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
