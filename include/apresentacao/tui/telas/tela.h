@@ -2,6 +2,7 @@
 #define TELA_H
 #include <utility>
 
+#include "aplicacao/tabelas/repositorio.h"
 #include "ftxui/component/component_base.hpp"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -24,6 +25,7 @@ class Tela : public ComponentBase {
 protected:
     const std::string _titulo;
     std::shared_ptr<Renderizador> _renderizador;
+    std::shared_ptr<Repositorio> _repositorio;
 
     virtual Element Conteudo() = 0;
 
@@ -40,6 +42,10 @@ public:
 
     void setRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = std::move(renderizador);
+    }
+
+    void injetarRepositorio(std::shared_ptr<Repositorio> repositorio) {
+        this->_repositorio = std::move(repositorio);
     }
 };
 
