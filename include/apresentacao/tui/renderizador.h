@@ -148,7 +148,7 @@ public:
                 Container::Vertical(this->_itens_menu, &this->_indice_item_menu_selecionado)
                 | vscroll_indicator
                 | frame
-                | CatchEvent([&](Event evento) {
+                | CatchEvent([&](const Event &evento) {
                     if (!evento.is_mouse() &&
                         evento == Event::Return ||
                         evento == Event::Character(' ')) {
