@@ -1,5 +1,4 @@
-#include <iostream>
-#include <clocale>
+
 
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
@@ -9,7 +8,6 @@
 using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "Portuguese");
 
     auto renderizador = std::make_shared<Renderizador>(Components{
         Categoria("Inserir dados"),
