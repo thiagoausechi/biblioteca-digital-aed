@@ -7,6 +7,7 @@
 class Repositorio {
 public:
     std::shared_ptr<Tabela<Autor>> autores = nullptr;
+    std::shared_ptr<Tabela<Cidade>> cidades = nullptr;
 };
 
 #endif //REPOSITORIOS_H
