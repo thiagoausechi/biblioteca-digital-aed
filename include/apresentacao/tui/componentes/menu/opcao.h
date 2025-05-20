@@ -18,24 +18,27 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
     auto selecionado = estado.active;
     auto em_foco = estado.focused;
 
+    auto indicador_selecao = text(selecionado ? ">" : " ");
     auto prefixo = text(em_foco ? "[" : " ");
     auto sufixo = text(em_foco ? "]" : "");
     auto descricao = text(estado.label);
 
     if (em_foco) {
-        prefixo |= bold | color(Color::YellowLight);
-        sufixo |= bold | color(Color::YellowLight);
+        prefixo |= color(Color::YellowLight);
+        sufixo |= color(Color::YellowLight);
     }
 
+    if (!selecionado)
+        descricao |= dim;
+
     auto elemento = hbox({
+        indicador_selecao,
         prefixo,
         descricao,
         sufixo,
     });
 
-    if (!selecionado)
-        elemento |= dim;
-    else if (hovered)
+    if (hovered)
         elemento |= inverted;
 
     return elemento;
