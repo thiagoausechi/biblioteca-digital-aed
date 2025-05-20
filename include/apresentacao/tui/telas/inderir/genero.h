@@ -12,7 +12,7 @@ struct FormularioInsercaoGenero {
 };
 
 class TelaInserirGenero final : public Tela {
-    Element OnRender() override {
+    Element Conteudo() override {
         return text("Esta tela ainda não foi implementada!")
                | color(Color::YellowLight);
     }
