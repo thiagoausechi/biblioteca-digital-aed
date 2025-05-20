@@ -105,7 +105,7 @@ public:
         this->_tela = std::move(tela);
     }
 
-    auto getTela() const { return this->_tela; }
+    [[nodiscard]] auto getTela() const { return this->_tela; }
 };
 
 inline auto Opcao(const std::string &descricao, std::shared_ptr<Tela> tela) {
