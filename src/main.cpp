@@ -1,4 +1,3 @@
-#include "aplicacao/tabelas/repositorio.h"
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
