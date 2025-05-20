@@ -5,6 +5,9 @@
 class Utils {
     template<typename T>
     static void armazenar_propriedade(std::ofstream &arquivo_local, T valor);
+
+    template<typename T>
+    static void carregar_propriedade(std::ifstream &arquivo_local, T &propriedade);
 };
 
 // Especializações para armazenar propriedades de diferentes tipos
