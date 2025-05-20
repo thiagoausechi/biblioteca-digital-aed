@@ -7,8 +7,6 @@
 using namespace std;
 
 int main() {
-    auto repositorio = std::make_shared<Repositorio>();
-
     auto renderizador = std::make_shared<Renderizador>(Components{
         Categoria("Inserir dados"),
         Opcao("Gêneros", Make<TelaReserva>()),
