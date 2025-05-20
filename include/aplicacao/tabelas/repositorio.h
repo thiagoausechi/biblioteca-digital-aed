@@ -5,11 +5,15 @@
 #include "dominio/arquivos/cidade.h"
 #include "dominio/arquivos/genero.h"
 
-class Repositorio {
+class abstract Repositorio {
 public:
-    std::shared_ptr<Tabela<Autor>> autores = nullptr;
-    std::shared_ptr<Tabela<Cidade>> cidades = nullptr;
-    std::shared_ptr<Tabela<Genero>> generos = nullptr;
+    virtual ~Repositorio() = default;
+
+    virtual std::shared_ptr<Tabela<Autor>> getAutores() = 0;
+
+    virtual std::shared_ptr<Tabela<Cidade>> getCidades() = 0;
+
+    virtual std::shared_ptr<Tabela<Genero>> getGeneros() = 0;
 };
 
 #endif //REPOSITORIOS_H
