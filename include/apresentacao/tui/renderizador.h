@@ -109,7 +109,7 @@ public:
 
     void renderizar() {
         auto engine_de_renderizacao = ScreenInteractive::Fullscreen();
-        int largura_menu = 30;
+        int largura_menu = 32;
 
         Component cabecalho;
         Component rodape;
