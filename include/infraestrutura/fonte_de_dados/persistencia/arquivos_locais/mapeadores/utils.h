@@ -7,6 +7,7 @@ class Utils {
     static void armazenar_propriedade(std::ofstream &arquivo_local, T valor);
 };
 
+// Especializações para armazenar propriedades de diferentes tipos
 template<>
 inline void Utils::armazenar_propriedade(std::ofstream &arquivo_local, std::string valor) {
     size_t tamanho = valor.size();
