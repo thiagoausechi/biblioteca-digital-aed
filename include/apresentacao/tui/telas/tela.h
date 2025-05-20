@@ -10,9 +10,22 @@ using namespace ftxui;
 class Renderizador;
 
 class Tela : public ComponentBase {
+    Element OnRender() final {
+        Element cabecalho = text(" > " + this->getTitulo());
+        Element conteudo = this->Conteudo();
+
+        return vbox({
+            cabecalho | bold,
+            separator() | color(Color::GrayDark),
+            conteudo
+        });
+    }
+
 protected:
     const std::string _titulo;
     std::shared_ptr<Renderizador> _renderizador;
+
+    virtual Element Conteudo() = 0;
 
 public:
     constexpr static auto NOME_CLASSE = "Tela";
