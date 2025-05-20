@@ -24,4 +24,8 @@ inline void Utils::armazenar_propriedade(std::ofstream &arquivo_local, bool valo
     arquivo_local.write(reinterpret_cast<const char *>(&valor), sizeof(valor));
 }
 
+template<>
+inline void Utils::armazenar_propriedade(std::ofstream &arquivo_local, time_t valor) {
+    arquivo_local.write(reinterpret_cast<const char *>(&valor), sizeof(valor));
+}
 #endif //UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
