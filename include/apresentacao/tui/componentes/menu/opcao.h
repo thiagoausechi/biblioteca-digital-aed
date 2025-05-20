@@ -2,6 +2,7 @@
 #define OPCAO_MENU_H
 #include <ftxui/component/component_base.hpp>
 
+#include "apresentacao/tui/telas/tela.h"
 #include "dominio/excecoes/comuns/id_negativo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 #include "ftxui/component/component.hpp"
@@ -48,11 +49,9 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
  * https://github.com/ArthurSonzogni/FTXUI/blob/08b8a3b28f2663f66fca7bb4eea0783d12f76d1d/src/ftxui/component/menu.cpp#L614
  */
 class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
-    bool _habilitado = true;
     bool _hovered = false;
 
-    std::string _descricao;
-    std::function<void()> _acao; // TODO: Refatorar para usar Controller (?) para a ação
+    std::shared_ptr<Tela> _tela;
 
     // Necessário para o reflect, do FTXUI, funcionar corretamente
     Box _box;
@@ -61,7 +60,7 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         const bool esta_focado = Focused();
 
         const EntryState state{
-            label(), _hovered, _habilitado, esta_focado, Index()
+            label(), _hovered, true, esta_focado, Index()
         };
 
         Element elemento = (transform ? transform : TransformacaoPadrao)(state);
@@ -72,11 +71,11 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         return elemento | reflect(_box);
     }
 
-    [[nodiscard]] bool Focusable() const override { return this->_habilitado; }
+    [[nodiscard]] bool Focusable() const override { return true; }
 
     bool OnEvent(Event evento) override {
         if (evento.is_mouse()) return _tratarEventoDoMouse(evento);
-        return _tratarEventoDoTeclado(evento);
+        return false;
     }
 
     bool _tratarEventoDoMouse(Event evento) {
@@ -93,42 +92,24 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         return false;
     }
 
-    bool _tratarEventoDoTeclado(Event evento) {
-        if (!_habilitado) return false;
-        if (!Focused()) return false;
-
-        // Usuário pressionou a tecla de espaço ou enter
-        if (evento == Event::Return ||
-            evento == Event::Character((" "))) {
-            this->_acao();
-            return true;
-        }
-
-        return false;
-    }
-
 public:
     constexpr static auto NOME_CLASSE = "Opção do Menu";
 
-    OpcaoComponent(const std::string &descricao, std::function<void()> acao)
+    OpcaoComponent(const std::string &descricao, std::shared_ptr<Tela> tela)
         : MenuEntryOption({.label = descricao}) {
         if (descricao.empty())
             throw PropriedadeVaziaException("Descrição", NOME_CLASSE);
-        if (acao == nullptr)
-            throw PropriedadeVaziaException("Ação", NOME_CLASSE);
+        if (tela == nullptr)
+            throw PropriedadeVaziaException("Tela", NOME_CLASSE);
 
-        this->_descricao = descricao;
-        this->_acao = std::move(acao);
+        this->_tela = std::move(tela);
     }
 
-    void habilitar() { this->_habilitado = true; }
-    void desabilitar() { this->_habilitado = false; }
-    void alternar_habilitado() { this->_habilitado = !this->_habilitado; }
-    void alternar_habilitado(const bool forcar_valor) { this->_habilitado = forcar_valor; }
+    auto getTela() const { return this->_tela; }
 };
 
-inline auto Opcao(const std::string &descricao, std::function<void()> acao) {
-    return Make<OpcaoComponent>(descricao, std::move(acao));
+inline auto Opcao(const std::string &descricao, std::shared_ptr<Tela> tela) {
+    return Make<OpcaoComponent>(descricao, std::move(tela));
 }
 
 #endif //OPCAO_MENU_H
