@@ -4,59 +4,41 @@
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
-#include "apresentacao/tui/telas/menu.h"
+#include "apresentacao/tui/telas/tela_reserva.h"
 
 using namespace std;
-
-// TODO: Limpar código temporário
-inline void NAO_IMPLEMENTADO() {
-    throw std::runtime_error("Não implementado!");
-}
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
 
-    auto renderizador = std::make_shared<Renderizador>();
-
-    /**
-     * Algumas inserções dependem que outros registros em tabelas
-     * diferentes já existam (ex.: uma pessoa deve ter uma cidade associada).
-     * Portanto algumas opções devem ficar desabilitadas até que haja
-     * ao menos 1 registro na(s) tabela(s) de dependência.
-     *
-     * TODO: Implementar lógica para habilitar/desabilitar opções
-     */
-    auto tela_inicial = std::make_shared<TelaMenu>(Components{
+    auto renderizador = std::make_shared<Renderizador>(Components{
         Categoria("Inserir dados"),
+        Opcao("Gêneros", Make<TelaReserva>()),
+        Opcao("Autores", Make<TelaReserva>()),
+        Opcao("Cidades", Make<TelaReserva>()),
+        Opcao("Pessoas", Make<TelaReserva>()),
+        Opcao("Editoras", Make<TelaReserva>()),
+        Opcao("Livros", Make<TelaReserva>()),
 
-        // Arquivos que não dependem de outros registros
-        Opcao("Gêneros", &NAO_IMPLEMENTADO),
-        Opcao("Autores", &NAO_IMPLEMENTADO),
-        Opcao("Cidades", &NAO_IMPLEMENTADO),
-
-        // Arquivos que dependem de outros registros
-        Opcao("Pessoas", &NAO_IMPLEMENTADO),
-        Opcao("Editoras", &NAO_IMPLEMENTADO),
-        Opcao("Livros", &NAO_IMPLEMENTADO),
-
+        Renderer([] { return separatorEmpty(); }),
         Categoria("Consultar dados"),
-        Opcao("Gêneros", &NAO_IMPLEMENTADO),
-        Opcao("Autores", &NAO_IMPLEMENTADO),
-        Opcao("Cidades", &NAO_IMPLEMENTADO),
-        Opcao("Pessoas", &NAO_IMPLEMENTADO),
-        Opcao("Editoras", &NAO_IMPLEMENTADO),
-        Opcao("Livros", &NAO_IMPLEMENTADO),
+        Opcao("Gêneros", Make<TelaReserva>()),
+        Opcao("Autores", Make<TelaReserva>()),
+        Opcao("Cidades", Make<TelaReserva>()),
+        Opcao("Pessoas", Make<TelaReserva>()),
+        Opcao("Editoras", Make<TelaReserva>()),
+        Opcao("Livros", Make<TelaReserva>()),
 
+        Renderer([] { return separatorEmpty(); }),
         Categoria("Empréstimos"),
-        Opcao("Realizar empréstimo", &NAO_IMPLEMENTADO),
-        Opcao("Consultar empréstimo", &NAO_IMPLEMENTADO),
-        Opcao("Devolver livro", &NAO_IMPLEMENTADO),
+        Opcao("Realizar empréstimo", Make<TelaReserva>()),
+        Opcao("Consultar empréstimo", Make<TelaReserva>()),
+        Opcao("Devolver livro", Make<TelaReserva>()),
 
-        Opcao("Listar todos os empréstimos", &NAO_IMPLEMENTADO),
-        Opcao("Listar devoluções em atraso", &NAO_IMPLEMENTADO),
+        Opcao("Listar todos os empréstimos", Make<TelaReserva>()),
+        Opcao("Listar devoluções em atraso", Make<TelaReserva>()),
     });
 
-    renderizador->navegarPara(tela_inicial);
     renderizador->renderizar();
 
     return 0;

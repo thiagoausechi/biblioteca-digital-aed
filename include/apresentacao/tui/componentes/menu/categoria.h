@@ -11,7 +11,6 @@ class CategoriaComponent final : public ComponentBase {
 
     Element OnRender() override {
         return vbox({
-            separatorEmpty(),
             text(this->_descricao) | bold | color(Color::GreenLight),
             separator()
         });

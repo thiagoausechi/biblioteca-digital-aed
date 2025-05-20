@@ -7,18 +7,18 @@
 using namespace ftxui;
 
 /*
- * Reserva ou "fallback" para quando o Renderizador
- * estiver com a pilha de telas vazia.
+ * Reserva ou "fallback" para quando alguma tela
+ * ainda não tiver sido implementada.
  */
 class TelaReserva final : public Tela {
     Element OnRender() override {
-        return text("Nenhuma tela registrada!")
+        return text("Esta tela ainda não foi implementada!")
                | color(Color::Red);
     }
 
 public:
     explicit TelaReserva()
-        : Tela("Tela Não Encontrada") {
+        : Tela("Tela Não Implementada") {
     }
 };
 
