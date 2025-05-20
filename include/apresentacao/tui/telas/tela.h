@@ -17,7 +17,7 @@ class Tela : public ComponentBase {
         return vbox({
             cabecalho | bold,
             separator() | color(Color::GrayDark),
-            conteudo
+            conteudo | vscroll_indicator | flex | frame
         });
     }
 

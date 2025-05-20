@@ -158,10 +158,7 @@ public:
                     return false;
                 });
 
-        conteudo = Container::Tab(telas, &_indice_mapeado_tela_selecionada)
-                   | vscroll_indicator
-                   | flex
-                   | frame;
+        conteudo = Container::Tab(telas, &_indice_mapeado_tela_selecionada);
 
         componentes_interativos = ResizableSplitLeft(menu_lateral, conteudo, &largura_menu);
 
