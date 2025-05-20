@@ -3,7 +3,7 @@
 #include "apresentacao/tui/componentes/menu/opcao.h"
 #include "apresentacao/tui/telas/inicio.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
-#include "apresentacao/tui/telas/inderir/genero.h"
+#include "apresentacao/tui/telas/inserir/genero.h"
 
 using namespace std;
 
