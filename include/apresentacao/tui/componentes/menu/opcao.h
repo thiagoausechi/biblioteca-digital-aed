@@ -15,7 +15,7 @@ using namespace ftxui;
  */
 inline Element TransformacaoPadrao(const EntryState &estado) {
     auto hovered = estado.state;
-    auto habilitado = estado.active;
+    auto selecionado = estado.active;
     auto em_foco = estado.focused;
 
     auto prefixo = text(em_foco ? "[" : " ");
@@ -33,7 +33,7 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
         sufixo,
     });
 
-    if (!habilitado)
+    if (!selecionado)
         elemento |= dim;
     else if (hovered)
         elemento |= inverted;
@@ -49,6 +49,7 @@ inline Element TransformacaoPadrao(const EntryState &estado) {
  * https://github.com/ArthurSonzogni/FTXUI/blob/08b8a3b28f2663f66fca7bb4eea0783d12f76d1d/src/ftxui/component/menu.cpp#L614
  */
 class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
+    bool _selecionado = false;
     bool _hovered = false;
 
     std::shared_ptr<Tela> _tela;
@@ -60,7 +61,7 @@ class OpcaoComponent final : public ComponentBase, public MenuEntryOption {
         const bool esta_focado = Focused();
 
         const EntryState state{
-            label(), _hovered, true, esta_focado, Index()
+            label(), _hovered, _selecionado, esta_focado, Index()
         };
 
         Element elemento = (transform ? transform : TransformacaoPadrao)(state);
@@ -106,6 +107,9 @@ public:
     }
 
     [[nodiscard]] auto getTela() const { return this->_tela; }
+
+    void selecionar() { this->_selecionado = true; }
+    void desselecionar() { this->_selecionado = false; }
 };
 
 inline auto Opcao(const std::string &descricao, std::shared_ptr<Tela> tela) {
