@@ -13,10 +13,10 @@ struct Pedido {
 };
 
 class InserirCidadeUC final : public CasoDeUso<void, const Pedido> {
-    std::shared_ptr<Tabela<Cidade> > _cidades{};
+    std::shared_ptr<Tabela<Cidade>> _cidades{};
 
 public:
-    explicit InserirCidadeUC(std::shared_ptr<Tabela<Cidade> > repositorio_cidades)
+    explicit InserirCidadeUC(std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
         : _cidades(std::move(repositorio_cidades)) {
     }
 

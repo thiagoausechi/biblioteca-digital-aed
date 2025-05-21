@@ -12,10 +12,10 @@ struct Pedido {
 };
 
 class InserirAutorUC final : public CasoDeUso<void, const Pedido> {
-    std::shared_ptr<Tabela<Autor> > _autores{};
+    std::shared_ptr<Tabela<Autor>> _autores{};
 
 public:
-    explicit InserirAutorUC(std::shared_ptr<Tabela<Autor> > repositorio_autores)
+    explicit InserirAutorUC(std::shared_ptr<Tabela<Autor>> repositorio_autores)
         : _autores(std::move(repositorio_autores)) {
     }
 

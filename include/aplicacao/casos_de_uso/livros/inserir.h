@@ -22,17 +22,17 @@ struct Pedido {
 
 // Requisito 3
 class InserirLivroUC final : public CasoDeUso<void, const Pedido> {
-    std::shared_ptr<Tabela<Livro> > _livros{};
-    std::shared_ptr<Tabela<Editora> > _editoras{};
-    std::shared_ptr<Tabela<Autor> > _autores{};
-    std::shared_ptr<Tabela<Genero> > _generos{};
+    std::shared_ptr<Tabela<Livro>> _livros{};
+    std::shared_ptr<Tabela<Editora>> _editoras{};
+    std::shared_ptr<Tabela<Autor>> _autores{};
+    std::shared_ptr<Tabela<Genero>> _generos{};
 
 public:
     explicit InserirLivroUC(
-        std::shared_ptr<Tabela<Livro> > repositorio_livros,
-        std::shared_ptr<Tabela<Editora> > repositorio_editoras,
-        std::shared_ptr<Tabela<Autor> > repositorio_autores,
-        std::shared_ptr<Tabela<Genero> > repositorio_generos)
+        std::shared_ptr<Tabela<Livro>> repositorio_livros,
+        std::shared_ptr<Tabela<Editora>> repositorio_editoras,
+        std::shared_ptr<Tabela<Autor>> repositorio_autores,
+        std::shared_ptr<Tabela<Genero>> repositorio_generos)
         : _livros(std::move(repositorio_livros))
           , _editoras(std::move(repositorio_editoras))
           , _autores(std::move(repositorio_autores))
