@@ -17,7 +17,7 @@ struct Resposta {
     std::string nome_editora;
     std::string nome_autor;
     std::string data_prevista_devolucao_formatada;
-    long dias_atraso;
+    int dias_atraso;
 };
 
 // Requisito 7
@@ -26,6 +26,12 @@ class ListarDevolucaoAtrasada final : public CasoDeUso<const std::vector<Respost
     std::shared_ptr<Tabela<Livro>> _livros{};
     std::shared_ptr<Tabela<Editora>> _editoras{};
     std::shared_ptr<Tabela<Autor>> _autores{};
+
+    static int _calcularDiasEmAtraso(time_t data_prevista_devolucao) {
+        time_t agora = time(nullptr);
+        auto segundos = static_cast<int>(difftime(agora, data_prevista_devolucao));
+        return segundos / (60 * 60 * 24);
+    }
 
 public:
     explicit ListarDevolucaoAtrasada(
@@ -55,7 +61,7 @@ public:
             auto nome_editora = this->_editoras->buscar(livro->getIdEditora()).value()->getNome();
             auto nome_autor = this->_autores->buscar(livro->getIdAutor()).value()->getNome();
             auto data_prevista_devolucao = formatar_data(emprestimo->getDataPrevistaDevolucao());
-            auto dias_atraso = agora - emprestimo->getDataPrevistaDevolucao();
+            auto dias_atraso = _calcularDiasEmAtraso(emprestimo->getDataPrevistaDevolucao());
 
             respostas.emplace_back(Resposta{
                 id_livro,
