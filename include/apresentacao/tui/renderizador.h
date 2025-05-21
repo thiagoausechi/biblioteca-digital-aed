@@ -103,7 +103,7 @@ public:
         if (_itens_menu.empty())
             throw PropriedadeVaziaException("Itens do menu", "Renderizador");
 
-        this->_atualizarIndiceTelaSelecionada();
+        this->_mapearIndices();
 
         // ReSharper disable once CppDFAConstantConditions -- Desabilita o aviso de "Condição constante"
         if (_indice_item_menu_selecionado == -1)
