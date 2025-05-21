@@ -60,6 +60,9 @@ public:
 
     [[nodiscard]] time_t getDataEfetivaDevolucao() const { return this->_data_efetiva_devolucao; }
 
+    // Requisito 5.2
+    [[nodiscard]] bool estaDevolvido() const { return this->_data_efetiva_devolucao != 0; }
+
     void devolver() {
         time_t agora;
         time(&agora);
