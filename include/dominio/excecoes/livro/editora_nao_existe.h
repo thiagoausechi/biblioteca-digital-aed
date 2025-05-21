@@ -10,7 +10,7 @@ public:
     explicit EditoraNaoExiste(int id_editora) : _id_editora(id_editora) { ; }
 
     [[nodiscard]] const char *what() const noexcept override {
-        return ("ID '" + std::to_string(this->_id_editora) + "' de editora não existe.").c_str();
+        return ("ID '" + std::to_string(this->_id_editora) + "' da editora não existe.").c_str();
     }
 };
 
