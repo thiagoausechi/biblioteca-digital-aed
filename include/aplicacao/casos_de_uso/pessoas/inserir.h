@@ -24,8 +24,8 @@ public:
     explicit InserirPessoaUC(
         std::shared_ptr<Tabela<Pessoa>> repositorio_pessoas,
         std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
-        : _pessoas(repositorio_pessoas)
-          , _cidades(repositorio_cidades) {
+        : _pessoas(std::move(repositorio_pessoas))
+          , _cidades(std::move(repositorio_cidades)) {
     }
 
     void executar(const Pedido pedido) override {

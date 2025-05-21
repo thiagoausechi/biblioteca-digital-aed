@@ -33,10 +33,10 @@ public:
         std::shared_ptr<Tabela<Editora> > repositorio_editoras,
         std::shared_ptr<Tabela<Autor> > repositorio_autores,
         std::shared_ptr<Tabela<Genero> > repositorio_generos)
-        : _livros(repositorio_livros)
-          , _editoras(repositorio_editoras)
-          , _autores(repositorio_autores)
-          , _generos(repositorio_generos) {
+        : _livros(std::move(repositorio_livros))
+          , _editoras(std::move(repositorio_editoras))
+          , _autores(std::move(repositorio_autores))
+          , _generos(std::move(repositorio_generos)) {
     }
 
     void executar(const Pedido pedido) override {
