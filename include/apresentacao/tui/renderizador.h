@@ -105,6 +105,7 @@ public:
 
         this->_atualizarIndiceTelaSelecionada();
 
+        // ReSharper disable once CppDFAConstantConditions -- Desabilita o aviso de "Condição constante"
         if (_indice_item_menu_selecionado == -1)
             throw std::invalid_argument("É necessário ter pelo menos uma opção selecionável (página registrada).");
 
