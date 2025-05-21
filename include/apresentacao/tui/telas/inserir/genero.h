@@ -14,8 +14,6 @@ struct FormularioInsercaoGenero {
 class TelaInserirGenero final : public Tela {
     FormularioInsercaoGenero _dados_formulario;
 
-    int DEBUG_click_count = 0;
-
     Element Conteudo() override {
         Component input_descricao;
         Component botao_inserir;
@@ -30,9 +28,7 @@ class TelaInserirGenero final : public Tela {
                       return !evento.is_mouse() && evento == Event::Return;
                   });
 
-        botao_inserir = Button("Contagem: " + std::to_string(DEBUG_click_count), [&] {
-            DEBUG_click_count++;
-        });
+        botao_inserir = Button("Inserir novo gênero", [&] { ; });
 
         formulario = Container::Vertical({
             input_descricao,
