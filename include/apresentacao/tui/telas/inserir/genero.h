@@ -28,7 +28,12 @@ class TelaInserirGenero final : public Tela {
                       return !evento.is_mouse() && evento == Event::Return;
                   });
 
-        botao_inserir = Button("Inserir novo gênero", [&] { ; });
+        botao_inserir
+                = Button(
+                    "Inserir novo gênero",
+                    [&] { ; },
+                    ButtonOption::Border()
+                );
 
         formulario = Container::Vertical({
             input_descricao,
@@ -38,7 +43,12 @@ class TelaInserirGenero final : public Tela {
         layout = Renderer(formulario, [&] {
             return vbox({
                 hbox(text("Descrição: "), input_descricao->Render()),
-                botao_inserir->Render()
+                filler(),
+                hbox({
+                    filler(),
+                    botao_inserir->Render() | color(Color::GreenLight),
+                    filler(),
+                })
             });
         });
         this->Add(layout);
