@@ -80,6 +80,20 @@ class Renderizador {
         _indice_mapeado_tela_selecionada = indice_mapeado_nova_tela_seleciona;
     }
 
+    void _mapearIndices() {
+        int ultimo_indice_de_opcao = 0;
+        for (int i = 0; i < _itens_menu.size(); i++) {
+            bool eh_opcao = dynamic_cast<OpcaoComponent *>(_itens_menu.at(i).get()) != nullptr;
+            if (!eh_opcao) continue;
+
+            bool primeiro_indice_definido = _indice_item_menu_selecionado != -1;
+            if (!primeiro_indice_definido) _indice_item_menu_selecionado = i;
+
+            // Armazena o índice da Opção com o índice da Tela
+            _mapa_indices_opcoes.emplace(i, ultimo_indice_de_opcao++);
+        }
+    }
+
 public:
     explicit Renderizador(Components itens_do_menu)
         : _itens_menu(std::move(itens_do_menu))
@@ -89,17 +103,7 @@ public:
         if (_itens_menu.empty())
             throw PropriedadeVaziaException("Itens do menu", "Renderizador");
 
-        int ultimo_indice_opcao = 0;
-        for (int i = 0; i < _itens_menu.size(); i++) {
-            bool eh_opcao = dynamic_cast<OpcaoComponent *>(_itens_menu.at(i).get()) != nullptr;
-            if (eh_opcao) {
-                bool primeiro_indice_definido = _indice_item_menu_selecionado != -1;
-                if (!primeiro_indice_definido) _indice_item_menu_selecionado = i;
-
-                // Armazena o índice da Opção com o índice da Tela
-                _mapa_indices_opcoes.emplace(i, ultimo_indice_opcao++);
-            }
-        }
+        this->_atualizarIndiceTelaSelecionada();
 
         if (_indice_item_menu_selecionado == -1)
             throw std::invalid_argument("É necessário ter pelo menos uma opção selecionável (página registrada).");
