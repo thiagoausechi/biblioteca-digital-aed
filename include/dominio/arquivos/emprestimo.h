@@ -18,8 +18,7 @@ public:
         this->setId(id);
         this->setIdPessoa(id_pessoa);
         this->setIdLivro(id_livro);
-        time_t agora;
-        time(&agora);
+        time_t agora = time(nullptr);
         this->setDataEmprestimo(agora);
 
         tm *data_prevista_devolucao = localtime(&agora);
@@ -64,8 +63,7 @@ public:
     [[nodiscard]] bool estaDevolvido() const { return this->_data_efetiva_devolucao != 0; }
 
     void devolver() {
-        time_t agora;
-        time(&agora);
+        time_t agora = time(nullptr);
         this->_data_efetiva_devolucao = agora;
     }
 };
