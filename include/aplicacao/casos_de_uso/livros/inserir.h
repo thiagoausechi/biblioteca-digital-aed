@@ -1,0 +1,66 @@
+#ifndef UC_GENERO_INSERIR_H
+#define UC_GENERO_INSERIR_H
+#include <memory>
+#include <string>
+
+#include "aplicacao/casos_de_uso/caso_de_uso.h"
+#include "aplicacao/tabelas/tabela.h"
+#include "dominio/arquivos/autor.h"
+#include "dominio/arquivos/editora.h"
+#include "dominio/arquivos/genero.h"
+#include "dominio/arquivos/livro.h"
+#include "dominio/excecoes/livro/autor_nao_existe.h"
+#include "dominio/excecoes/livro/editora_nao_existe.h"
+#include "dominio/excecoes/livro/genero_nao_existe.h"
+
+struct Pedido {
+    std::string nome;
+    int id_editora;
+    int id_autor;
+    int id_genero;
+};
+
+// Requisito 3
+class InserirLivroUC final : public CasoDeUso<void, const Pedido> {
+    std::shared_ptr<Tabela<Livro> > _livros{};
+    std::shared_ptr<Tabela<Editora> > _editoras{};
+    std::shared_ptr<Tabela<Autor> > _autores{};
+    std::shared_ptr<Tabela<Genero> > _generos{};
+
+public:
+    explicit InserirLivroUC(
+        std::shared_ptr<Tabela<Livro> > repositorio_livros,
+        std::shared_ptr<Tabela<Editora> > repositorio_editoras,
+        std::shared_ptr<Tabela<Autor> > repositorio_autores,
+        std::shared_ptr<Tabela<Genero> > repositorio_generos)
+        : _livros(repositorio_livros)
+          , _editoras(repositorio_editoras)
+          , _autores(repositorio_autores)
+          , _generos(repositorio_generos) {
+    }
+
+    void executar(const Pedido pedido) override {
+        // Requisito 3.1
+        if (!this->_editoras->buscar(pedido.id_editora).has_value())
+            throw EditoraNaoExiste(pedido.id_editora);
+
+        // Requisito 3.2
+        if (!this->_autores->buscar(pedido.id_autor).has_value())
+            throw AutorNaoExiste(pedido.id_autor);
+
+        // Requisito 3.3
+        if (!this->_generos->buscar(pedido.id_genero).has_value())
+            throw GeneroNaoExiste(pedido.id_genero);
+
+        auto novo_livro = std::make_shared<Livro>();
+        novo_livro->setNome(pedido.nome);
+        novo_livro->setIdEditora(pedido.id_editora);
+        novo_livro->setIdAutor(pedido.id_autor);
+        novo_livro->setIdGenero(pedido.id_genero);
+        novo_livro->devolver();
+
+        this->_livros->inserir(novo_livro);
+    }
+};
+
+#endif //UC_GENERO_INSERIR_H
