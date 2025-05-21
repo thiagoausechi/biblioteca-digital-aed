@@ -1,0 +1,12 @@
+#ifndef DATE_H
+#define DATE_H
+#include <string>
+
+inline std::string formatar_data(const time_t data) {
+    const tm *_data = localtime(&data);
+    char buffer[80];
+    strftime(buffer, 80, "%d/%m/%Y às %Hh%M", _data);
+    return buffer;
+}
+
+#endif //DATE_H
