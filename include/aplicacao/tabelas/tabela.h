@@ -20,7 +20,7 @@ concept TipoDerivadoDeArquivo = std::derived_from<T, Arquivo>;
  * relação de dependência entre as tabelas/arquivo.
  */
 template<TipoDerivadoDeArquivo TArquivo>
-class abstract Tabela {
+class Tabela {
     int _ultimo_id = 0;
 
 protected:

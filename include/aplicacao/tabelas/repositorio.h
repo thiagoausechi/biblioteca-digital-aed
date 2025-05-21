@@ -16,7 +16,7 @@
  * que devem ser implementados pelas classes
  * na de persistência na camada de Infraestrutura.
  */
-class abstract Repositorio {
+class Repositorio {
 public:
     virtual ~Repositorio() = default;
 

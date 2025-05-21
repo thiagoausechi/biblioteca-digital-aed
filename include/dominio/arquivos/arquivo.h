@@ -4,7 +4,7 @@
 #include "dominio/excecoes/comuns/id_negativo.h"
 
 // Classe abstrata para arquivos (não pode ser instanciada)
-class abstract Arquivo {
+class Arquivo {
     std::string _nome_arquivo;
     int _id = -1;
 

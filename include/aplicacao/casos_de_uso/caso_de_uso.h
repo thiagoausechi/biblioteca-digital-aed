@@ -2,7 +2,7 @@
 #define CASO_DE_USO_H
 
 template<typename TResposta = void, typename TPedido = void>
-class abstract CasoDeUso {
+class CasoDeUso {
 public:
     virtual ~CasoDeUso() = default;
 
