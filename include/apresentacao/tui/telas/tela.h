@@ -40,7 +40,7 @@ public:
 
     [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
 
-    void setRenderizador(std::shared_ptr<Renderizador> renderizador) {
+    void injetarRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = std::move(renderizador);
     }
 
