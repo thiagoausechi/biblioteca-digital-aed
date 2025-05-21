@@ -10,7 +10,7 @@
 
 using namespace ftxui;
 
-class Renderizador : public std::enable_shared_from_this<Renderizador> {
+class Renderizador {
     Components _itens_menu;
 
     int _indice_item_menu_selecionado;
