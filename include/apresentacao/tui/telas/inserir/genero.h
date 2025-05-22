@@ -13,14 +13,26 @@ struct FormularioInsercaoGenero {
 
 class TelaInserirGenero final : public Tela {
     FormularioInsercaoGenero _dados_formulario;
+    Component _input_descricao;
+    Component _botao_inserir;
+    Component _formulario;
+    Component _layout;
 
     Element Conteudo() override {
-        Component input_descricao;
-        Component botao_inserir;
-        Component formulario;
-        Component layout;
+        return vbox({
+            hbox(text("Descrição: "), _input_descricao->Render()),
+            filler(),
+            hbox({
+                _botao_inserir->Render() | color(Color::GreenLight),
+                filler(),
+            })
+        });
+    }
 
-        input_descricao
+public:
+    explicit TelaInserirGenero()
+        : Tela("Formulário para inserção de Gênero") {
+        _input_descricao
                 = Input(
                       &this->_dados_formulario.descricao,
                       "Descrição/nome do Gênero"
@@ -28,37 +40,19 @@ class TelaInserirGenero final : public Tela {
                       return !evento.is_mouse() && evento == Event::Return;
                   });
 
-        botao_inserir
+        _botao_inserir
                 = Button(
                     "Inserir novo gênero",
                     [&] { ; },
                     ButtonOption::Border()
                 );
 
-        formulario = Container::Vertical({
-            input_descricao,
-            botao_inserir
+        _formulario = Container::Vertical({
+            _input_descricao,
+            _botao_inserir
         });
 
-        layout = Renderer(formulario, [&] {
-            return vbox({
-                hbox(text("Descrição: "), input_descricao->Render()),
-                filler(),
-                hbox({
-                    filler(),
-                    botao_inserir->Render() | color(Color::GreenLight),
-                    filler(),
-                })
-            });
-        });
-        this->Add(layout);
-
-        return layout->Render();
-    }
-
-public:
-    explicit TelaInserirGenero()
-        : Tela("Formulário para inserção de Gênero") {
+        Add(_formulario);
     }
 };
 
