@@ -11,19 +11,21 @@ using namespace ftxui;
 class Renderizador;
 
 class Tela : public ComponentBase {
+    const std::string _titulo;
+    Element _cabecalho;
+    Element _conteudo;
+
     Element OnRender() final {
-        Element cabecalho = text(" > " + this->getTitulo());
-        Element conteudo = this->Conteudo();
+        _conteudo = this->Conteudo();
 
         return vbox({
-            cabecalho | bold,
+            _cabecalho | bold,
             separator() | color(Color::GrayDark),
-            conteudo | vscroll_indicator | flex | frame
+            _conteudo | vscroll_indicator | flex | frame
         });
     }
 
 protected:
-    const std::string _titulo;
     std::shared_ptr<Renderizador> _renderizador;
     std::shared_ptr<Repositorio> _repositorio;
 
@@ -36,6 +38,10 @@ public:
         : _titulo(titulo) {
         if (titulo.empty())
             throw PropriedadeVaziaException("Título", NOME_CLASSE);
+
+        // Conteúdo será substituído pela implementação da classe filha
+        _conteudo = text("[PLACEHOLDER]");
+        _cabecalho = text(" > " + this->getTitulo());
     }
 
     [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
