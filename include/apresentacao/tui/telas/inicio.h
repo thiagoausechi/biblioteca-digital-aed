@@ -20,23 +20,29 @@ Ideia para "Logo" do projeto:
  */
 
 class TelaInicial final : public Tela {
-    Element Conteudo() override {
-        Element layout = vbox({
-            separatorEmpty(),
-            text("💡 Dicas de navegação:") | color(Color::YellowLight),
-            text("   - Use as teclas de seta (← ↑ ↓ →) ou o mouse para navegar pelo menu."),
-            text("   - Pressione Enter (↵) para selecionar uma opção."),
-            text("      Obs: Clicar com o mouse apenas destaca a opção, mas não a abre.") | dim,
-            text("   - Para sair do programa, pressione Ctrl + C (Windows) ou ⌃C (MacOS)."),
-            text("   - O menu lateral pode ser redimensionado com o mouse."),
-        });
+    Element _dicas_navegacao;
+    Element _layout;
 
-        return layout;
+    Element Conteudo() override {
+        return _layout;
     }
 
 public:
     explicit TelaInicial()
         : Tela("Seja bem-vindo(a)!") {
+        _dicas_navegacao = vbox({
+            text("💡 Dicas de navegação:") | color(Color::YellowLight),
+            text("   - Use as teclas de seta (← ↑ ↓ →) ou o mouse para navegar pelo menu."),
+            text("   - Pressione Enter (↵) para selecionar uma opção."),
+            text("      Obs: Clicar com o mouse apenas destaca a opção, mas não a abre.") | dim,
+            text("   - Para sair do programa, pressione Ctrl + C (Windows) ou ⌃C (MacOS)."),
+            text("   - O menu lateral pode ser redimensionado com o mouse.")
+        });
+
+        _layout = vbox({
+            separatorEmpty(),
+            _dicas_navegacao
+        });
     }
 };
 
