@@ -47,11 +47,11 @@ public:
     [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
 
     void injetarRenderizador(std::shared_ptr<Renderizador> renderizador) {
-        this->_renderizador = std::move(renderizador);
+        this->_renderizador = renderizador;
     }
 
     void injetarRepositorio(std::shared_ptr<Repositorio> repositorio) {
-        this->_repositorio = std::move(repositorio);
+        this->_repositorio = repositorio;
     }
 };
 
