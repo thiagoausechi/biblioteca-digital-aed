@@ -95,13 +95,16 @@ class Renderizador {
     }
 
 public:
-    explicit Renderizador(Components itens_do_menu)
-        : _itens_menu(std::move(itens_do_menu))
-          , _indice_item_menu_selecionado(-1)
+    explicit Renderizador()
+        : _indice_item_menu_selecionado(-1)
           , _indice_anterior_item_menu_selecionado(-2)
           , _indice_mapeado_tela_selecionada(-1) {
-        if (_itens_menu.empty())
+    }
+
+    void carregarOpcoesDoMenu(const Components &itens_do_menu) {
+        if (itens_do_menu.empty())
             throw PropriedadeVaziaException("Itens do menu", "Renderizador");
+        this->_itens_menu = itens_do_menu;
 
         this->_mapearIndices();
 
@@ -114,6 +117,8 @@ public:
     }
 
     void renderizar() {
+        if (_itens_menu.empty())
+            return;
         auto engine_de_renderizacao = ScreenInteractive::Fullscreen();
         int largura_menu = 32;
 

@@ -9,11 +9,11 @@
 using namespace std;
 
 int main() {
-    std::shared_ptr<Renderizador> renderizador;
+    std::shared_ptr<Renderizador> renderizador = std::make_shared<Renderizador>();
     std::shared_ptr<Repositorio> repositorio = nullptr; // TODO: Implementar Repositório
     auto fabrica = std::make_shared<FabricaDeTelas>(repositorio, renderizador);
 
-    renderizador = std::make_shared<Renderizador>(Components{
+    renderizador->carregarOpcoesDoMenu(Components{
         Opcao("Início", fabrica->criar<TelaInicial>()),
         Renderer([] { return separatorEmpty(); }),
 
