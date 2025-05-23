@@ -13,6 +13,11 @@ struct Resposta {
     // Requisito 6.2
     int quantidade_emprestados;
     int quantidade_disponiveis;
+
+    Resposta()
+        : quantidade_emprestados(0)
+          , quantidade_disponiveis(0) {
+    }
 };
 
 // Requisito 6
@@ -25,11 +30,7 @@ public:
     }
 
     Resposta executar() override {
-        Resposta resposta = {
-            .livros_emprestados{},
-            .quantidade_emprestados = 0,
-            .quantidade_disponiveis = 0
-        };
+        Resposta resposta;
 
         for (auto livro: _livros->listarTudo()) {
             if (livro->estaEmprestado()) {
