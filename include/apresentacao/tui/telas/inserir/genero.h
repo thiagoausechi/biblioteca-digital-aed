@@ -4,12 +4,16 @@
 #include <ftxui/component/component.hpp>
 
 #include "aplicacao/casos_de_uso/generos/inserir.h"
+#include "apresentacao/tui/lib/formularios/campo_de_entrada.h"
 #include "apresentacao/tui/telas/tela.h"
 
 using namespace ftxui;
 
 struct FormularioInsercaoGenero {
-    std::string descricao;
+    Campo descricao = {
+        .nome = "Descrição",
+        .placeholder = "Descrição/nome do Gênero"
+    };
 };
 
 class TelaInserirGenero final : public Tela {
@@ -22,7 +26,7 @@ class TelaInserirGenero final : public Tela {
 
     Element Conteudo() override {
         return vbox({
-            hbox(text("Descrição: "), _input_descricao->Render()),
+            hbox(nome(_dados_formulario.descricao), _input_descricao->Render()),
             filler(),
             hbox({
                 _botao_inserir->Render() | color(Color::GreenLight),
@@ -38,7 +42,7 @@ class TelaInserirGenero final : public Tela {
     void _executar_InserirGeneroUC() {
         try {
             this->_caso_de_uso->executar({
-                .descricao = _dados_formulario.descricao
+                .descricao = _dados_formulario.descricao.valor
             });
 
             this->_renderizador->mostrarDialogo(
@@ -63,13 +67,7 @@ public:
             _repositorio->getGeneros()
         );
 
-        _input_descricao
-                = Input(
-                      &this->_dados_formulario.descricao,
-                      "Descrição/nome do Gênero"
-                  ) | CatchEvent([&](const Event &evento) {
-                      return !evento.is_mouse() && evento == Event::Return;
-                  });
+        _input_descricao = criarInput(_dados_formulario.descricao);
 
         _botao_inserir
                 = Button(
