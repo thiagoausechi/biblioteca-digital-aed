@@ -16,9 +16,20 @@ struct FormularioInsercaoAutor {
 };
 
 class TelaInserirAutor final : public Tela {
+    FormularioInsercaoAutor _dados_formulario;
+
+    Component _input_nome;
+    Component _botao_inserir;
+    Component _formulario;
+    Component _layout;
+
     Element Conteudo() override {
         return text("Esta tela ainda não foi implementada!")
                | color(Color::Red);
+    }
+
+    void _limpar_formulario() {
+        _dados_formulario = FormularioInsercaoAutor{};
     }
 
 public:
@@ -27,6 +38,21 @@ public:
     }
 
     void inicializar() override {
+        _input_nome = criarInput(_dados_formulario.nome);
+
+        _botao_inserir
+                = Button(
+                    "Inserir novo autor",
+                    [] { ; },
+                    ButtonOption::Border()
+                );
+
+        _formulario = Container::Vertical({
+            _input_nome,
+            _botao_inserir
+        });
+
+        Add(_formulario);
     }
 };
 
