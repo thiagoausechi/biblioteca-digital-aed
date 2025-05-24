@@ -46,6 +46,9 @@ class TelaInserirGenero final : public Tela {
 public:
     explicit TelaInserirGenero()
         : Tela("Formulário para inserção de Gênero") {
+    }
+
+    void inicializar() override {
         _caso_de_uso = std::make_shared<InserirGeneroUC>(
             _repositorio->getGeneros()
         );
