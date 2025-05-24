@@ -5,15 +5,15 @@
 #include <utility>
 
 class IdNegativoException final : public std::exception {
-    std::string _nome_arquivo;
+    std::string _mensagem;
 
 public:
-    explicit IdNegativoException(std::string nome_arquivo)
-        : _nome_arquivo(std::move(nome_arquivo)) {
+    explicit IdNegativoException(const std::string &nome_arquivo)
+        : _mensagem(std::format("ID de {} não pode ser negativo.", nome_arquivo)) {
     }
 
     [[nodiscard]] const char *what() const noexcept override {
-        return ("ID de " + _nome_arquivo + " não pode ser negativo.").c_str();
+        return _mensagem.c_str();
     }
 };
 
