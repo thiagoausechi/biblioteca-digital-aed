@@ -29,17 +29,25 @@ struct OpcoesDoDialog {
     };
 };
 
+inline Element TransformadorPadraoDialogo(
+    const Element &titulo,
+    const Element &conteudo,
+    Color cor_tema = Color::White
+) {
+    return vbox({
+               titulo | bold,
+               separator() | color(cor_tema),
+               conteudo,
+           })
+           | size(WIDTH, GREATER_THAN, 30)
+           | borderStyled(ROUNDED, cor_tema);
+}
+
 inline OpcoesDoDialog OpcoesDoDialog::Padrao(const std::string &titulo,
                                              const Element &conteudo) {
     OpcoesDoDialog estado;
     estado.transformar = [titulo, conteudo](const FnFechar &) -> Element {
-        return vbox({
-                   text(titulo) | bold | color(Color::CyanLight),
-                   separator(),
-                   conteudo,
-               })
-               | size(WIDTH, GREATER_THAN, 30)
-               | border;
+        return TransformadorPadraoDialogo(text(titulo) | color(Color::CyanLight), conteudo);
     };
 
     return estado;
@@ -52,13 +60,8 @@ inline OpcoesDoDialog OpcoesDoDialog::Erro(const std::string &mensagem) {
 inline OpcoesDoDialog OpcoesDoDialog::Erro(const Element &conteudo) {
     OpcoesDoDialog estado;
     estado.transformar = [conteudo](const FnFechar &) -> Element {
-        return vbox({
-                   text("Erro!") | bold | color(Color::Red),
-                   separator() | color(Color::Red),
-                   conteudo,
-               })
-               | size(WIDTH, GREATER_THAN, 30)
-               | borderStyled(ROUNDED, Color::Red);
+        Color cor_tema = Color::Red;
+        return TransformadorPadraoDialogo(text("Erro!") | color(cor_tema), conteudo, cor_tema);
     };
 
     return estado;
@@ -71,13 +74,8 @@ inline OpcoesDoDialog OpcoesDoDialog::Aviso(const std::string &mensagem) {
 inline OpcoesDoDialog OpcoesDoDialog::Aviso(const Element &conteudo) {
     OpcoesDoDialog estado;
     estado.transformar = [conteudo](const FnFechar &) -> Element {
-        return vbox({
-                   text("Atenção!") | bold | color(Color::YellowLight),
-                   separator() | color(Color::YellowLight),
-                   conteudo,
-               })
-               | size(WIDTH, GREATER_THAN, 30)
-               | borderStyled(ROUNDED, Color::YellowLight);
+        Color cor_tema = Color::YellowLight;
+        return TransformadorPadraoDialogo(text("Atenção!") | color(cor_tema), conteudo, cor_tema);
     };
 
     return estado;
@@ -90,13 +88,8 @@ inline OpcoesDoDialog OpcoesDoDialog::Sucesso(const std::string &mensagem) {
 inline OpcoesDoDialog OpcoesDoDialog::Sucesso(const Element &conteudo) {
     OpcoesDoDialog estado;
     estado.transformar = [conteudo](const FnFechar &) -> Element {
-        return vbox({
-                   text("Sucesso!") | bold | color(Color::Green),
-                   separator() | color(Color::Green),
-                   conteudo,
-               })
-               | size(WIDTH, GREATER_THAN, 30)
-               | borderStyled(ROUNDED, Color::Green);
+        Color cor_tema = Color::GreenLight;
+        return TransformadorPadraoDialogo(text("Sucesso!") | color(cor_tema), conteudo, cor_tema);
     };
 
     return estado;
