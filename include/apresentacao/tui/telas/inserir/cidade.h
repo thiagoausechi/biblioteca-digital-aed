@@ -31,8 +31,15 @@ class TelaInserirCidade final : public Tela {
     Component _layout;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | color(Color::Red);
+        return vbox({
+            hbox(nome(_dados_formulario.nome), _input_nome->Render()),
+            hbox(nome(_dados_formulario.uf), _input_uf->Render()),
+            filler(),
+            hbox({
+                _botao_inserir->Render() | color(Color::GreenLight),
+                filler(),
+            })
+        });
     }
 
     void _limpar_formulario() {
