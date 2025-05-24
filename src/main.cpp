@@ -4,6 +4,7 @@
 #include "apresentacao/tui/telas/fabrica.h"
 #include "apresentacao/tui/telas/inicio.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
+#include "apresentacao/tui/telas/inserir/autor.h"
 #include "apresentacao/tui/telas/inserir/genero.h"
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
 
@@ -21,7 +22,7 @@ int main() {
 
         Categoria("Inserir dados"),
         Opcao("Gêneros", fabrica->criar<TelaInserirGenero>()),
-        Opcao("Autores", fabrica->criar<TelaReserva>()),
+        Opcao("Autores", fabrica->criar<TelaInserirAutor>()),
         Opcao("Cidades", fabrica->criar<TelaReserva>()),
         Opcao("Pessoas", fabrica->criar<TelaReserva>()),
         Opcao("Editoras", fabrica->criar<TelaReserva>()),
