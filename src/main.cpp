@@ -5,12 +5,13 @@
 #include "apresentacao/tui/telas/inicio.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
 #include "apresentacao/tui/telas/inserir/genero.h"
+#include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
 
 using namespace std;
 
 int main() {
     std::shared_ptr<Renderizador> renderizador = std::make_shared<Renderizador>();
-    std::shared_ptr<Repositorio> repositorio = nullptr; // TODO: Implementar Repositório
+    std::shared_ptr<Repositorio> repositorio = std::make_shared<RepositorioEmMemoria>();
     auto fabrica = std::make_shared<FabricaDeTelas>(repositorio, renderizador);
 
     // Requisito 8
