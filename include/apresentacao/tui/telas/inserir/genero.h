@@ -17,8 +17,9 @@ struct FormularioInsercaoGenero {
 };
 
 class TelaInserirGenero final : public Tela {
-    std::shared_ptr<InserirGeneroUC> _caso_de_uso;
+    std::shared_ptr<InserirGenero::UseCase> _caso_de_uso;
     FormularioInsercaoGenero _dados_formulario;
+
     Component _input_descricao;
     Component _botao_inserir;
     Component _formulario;
@@ -63,7 +64,7 @@ public:
     }
 
     void inicializar() override {
-        _caso_de_uso = std::make_shared<InserirGeneroUC>(
+        _caso_de_uso = std::make_shared<InserirGenero::UseCase>(
             _repositorio->getGeneros()
         );
 
