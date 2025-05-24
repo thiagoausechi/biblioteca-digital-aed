@@ -7,24 +7,26 @@
 #include "aplicacao/tabelas/tabela.h"
 #include "dominio/arquivos/autor.h"
 
-struct Pedido {
-    std::string nome;
-};
+namespace InserirAutor {
+    struct Pedido {
+        std::string nome;
+    };
 
-class InserirAutorUC final : public CasoDeUso<void, const Pedido> {
-    std::shared_ptr<Tabela<Autor>> _autores{};
+    class UseCase final : public CasoDeUso<void, const Pedido> {
+        std::shared_ptr<Tabela<Autor>> _autores{};
 
-public:
-    explicit InserirAutorUC(std::shared_ptr<Tabela<Autor>> repositorio_autores)
-        : _autores(std::move(repositorio_autores)) {
-    }
+    public:
+        explicit UseCase(std::shared_ptr<Tabela<Autor>> repositorio_autores)
+            : _autores(std::move(repositorio_autores)) {
+        }
 
-    void executar(const Pedido pedido) override {
-        auto novo_autor = std::make_shared<Autor>();
-        novo_autor->setNome(pedido.nome);
+        void executar(const Pedido pedido) override {
+            auto novo_autor = std::make_shared<Autor>();
+            novo_autor->setNome(pedido.nome);
 
-        this->_autores->inserir(novo_autor);
-    }
-};
+            this->_autores->inserir(novo_autor);
+        }
+    };
+}
 
 #endif // APLICACAO_UC_AUTORES_INSERIR_H
