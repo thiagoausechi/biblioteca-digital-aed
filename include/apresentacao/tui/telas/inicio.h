@@ -30,6 +30,9 @@ class TelaInicial final : public Tela {
 public:
     explicit TelaInicial()
         : Tela("Seja bem-vindo(a)!") {
+    }
+
+    void inicializar() override {
         _dicas_navegacao = vbox({
             text("💡 Dicas de navegação:") | color(Color::YellowLight),
             text("   - Use as teclas de seta (← ↑ ↓ →) ou o mouse para navegar pelo menu."),
