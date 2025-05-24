@@ -31,11 +31,17 @@ class TelaInserirGenero final : public Tela {
         });
     }
 
+    void _limpar_formulario() {
+        _dados_formulario = FormularioInsercaoGenero{};
+    }
+
     void _executar_InserirGeneroUC() {
         try {
             this->_caso_de_uso->executar({
                 .descricao = _dados_formulario.descricao
             });
+
+            this->_limpar_formulario();
         } catch (const std::exception &e) {
             this->_renderizador->mostrarDialogo(
                 OpcoesDoDialog::Erro(e.what())
