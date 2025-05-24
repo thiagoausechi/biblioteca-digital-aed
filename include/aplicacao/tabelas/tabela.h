@@ -37,9 +37,9 @@ public:
 
     virtual const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> arquivo) = 0;
 
-    virtual const std::optional<std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
+    virtual const std::optional<const std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
 
-    virtual const std::vector<std::shared_ptr<TArquivo>> listarTudo() = 0;
+    virtual const std::vector<const std::shared_ptr<TArquivo>> listarTudo() = 0;
 
     [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
