@@ -7,27 +7,28 @@
 #include "aplicacao/tabelas/tabela.h"
 #include "dominio/arquivos/cidade.h"
 
-struct Pedido {
-    std::string nome;
-    std::string uf;
-};
+namespace InserirCidade {
+    struct Pedido {
+        std::string nome;
+        std::string uf;
+    };
 
-class InserirCidadeUC final : public CasoDeUso<void, const Pedido> {
-    std::shared_ptr<Tabela<Cidade>> _cidades{};
+    class UseCase final : public CasoDeUso<void, const Pedido> {
+        std::shared_ptr<Tabela<Cidade>> _cidades{};
 
-public:
-    explicit InserirCidadeUC(std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
-        : _cidades(std::move(repositorio_cidades)) {
-    }
+    public:
+        explicit UseCase(std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
+            : _cidades(std::move(repositorio_cidades)) {
+        }
 
-    void executar(const Pedido pedido) override {
-        auto nova_cidade = std::make_shared<Cidade>();
-        nova_cidade->setNome(pedido.nome);
-        nova_cidade->setUF(pedido.uf);
+        void executar(const Pedido pedido) override {
+            auto nova_cidade = std::make_shared<Cidade>();
+            nova_cidade->setNome(pedido.nome);
+            nova_cidade->setUF(pedido.uf);
 
-        this->_cidades->inserir(nova_cidade);
-    }
-};
-
+            this->_cidades->inserir(nova_cidade);
+        }
+    };
+}
 
 #endif // APLICACAO_UC_CIDADES_INSERIR_H
