@@ -22,4 +22,20 @@ struct OpcoesDoDialog {
     };
 };
 
+inline OpcoesDoDialog OpcoesDoDialog::Padrao(const std::string &titulo,
+                                             const Element &conteudo) {
+    OpcoesDoDialog estado;
+    estado.transformar = [titulo, conteudo](const FnFechar &) -> Element {
+        return vbox({
+                   text(titulo) | bold | color(Color::CyanLight),
+                   separator(),
+                   conteudo,
+               })
+               | size(WIDTH, GREATER_THAN, 30)
+               | border;
+    };
+
+    return estado;
+}
+
 #endif //COMPONENTES_DIALOGOS_OPCOES_H
