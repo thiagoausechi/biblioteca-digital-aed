@@ -12,12 +12,12 @@ concept TipoDerivadoDeArquivo = std::derived_from<T, Arquivo>;
  * Tabela aqui representa uma ‘interface’
  * para "Repositório" ou "DAO" (Data Access Object)
  *
- * Em um 'CRUD' (Create, Read, Update, Delete) haveriam
- * ainda métodos de atualização e remoção. Aqui não se
- * fazem necessários, visto que a atualização pode ocorrer
- * utilizando o próprio ponteiro do arquivo, enquanto
- * a remoção dificultaria a implementação devido à
- * relação de dependência entre as tabelas/arquivo.
+ * Em um 'CRUD' (Create, Read, Update, Delete) haveria
+ * ainda o metodo de remoção. Aqui não se
+ * fazem necessários, visto que a remoção
+ * dificultaria a implementação devido à
+ * relação de dependência entre as tabelas/arquivo,
+ * além de não ser um requisito do sistema.
  */
 template<TipoDerivadoDeArquivo TArquivo>
 class Tabela {
