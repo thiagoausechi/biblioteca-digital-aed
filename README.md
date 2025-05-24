@@ -21,29 +21,29 @@ Escrever um programa para criar as seguintes estruturas que simularão arquivos 
 
 ```txt
 1. [x] Cidades:     código (PK), descrição, UF
-2. [ ] Pessoas:     codigo (PK), nome, CPF, endereço, codigo_cidade (FK)
-3. [ ] Editoras:    codigo (PK), nome, codigo_cidade (FK)
+2. [x] Pessoas:     codigo (PK), nome, CPF, endereço, codigo_cidade (FK)
+3. [x] Editoras:    codigo (PK), nome, codigo_cidade (FK)
 4. [x] Autores:     codigo (PK), nome
 5. [x] Gêneros:     codigo (PK), descrição
-6. [ ] Livros:      codigo (PK), nome, codigo_editora (FK), codigo_autor (FK), codigo_genero (FK), disponível_s_n
-7. [ ] Empréstimos: codigo (PK), codigo_pessoa (FK), codigo_livro (FK), data_empréstimo, data_prevista_devolução, data_efetiva_devolução
+6. [x] Livros:      codigo (PK), nome, codigo_editora (FK), codigo_autor (FK), codigo_genero (FK), disponível_s_n
+7. [x] Empréstimos: codigo (PK), codigo_pessoa (FK), codigo_livro (FK), data_empréstimo, data_prevista_devolução, data_efetiva_devolução
 ```
 
 ### Requisitos
 
 ```txt
-1. [ ] Escreva funções específicas para a leitura dos dados das estruturas.
-2. [ ] Escreva uma função para permitir a inclusão de novos registros na tabela de pessoas.
-   1. [ ] Quando o usuário digitar o CPF, o programa deverá realizar a validação do CPF.
-   2. [ ] Quando o usuário digitar o código da cidade, o programa deverá buscar este código na tabela de cidades e exibir a descrição e UF da cidade.
+1. [x] Escreva funções específicas para a leitura dos dados das estruturas.
+2. [x] Escreva uma função para permitir a inclusão de novos registros na tabela de pessoas.
+   1. [x] Quando o usuário digitar o CPF, o programa deverá realizar a validação do CPF.
+   2. [1/2] Quando o usuário digitar o código da cidade, o programa deverá buscar este código na tabela de cidades e exibir a descrição e UF da cidade.
 
-3. [ ] Escreva uma função para permitir a inclusão de novos registros na tabela de livros.
-   1. [ ] Quando o usuário digitar o código da editora, o programa deverá buscar este código na tabela de editoras e exibir o nome da editora.
-   2. [ ] Quando o usuário digitar o código do autor, o programa deverá buscar este código na tabela de autores e exibir o nome do autor.
-   3. [ ] Quando o usuário digitar o código do gênero, o programa deverá buscar este código na tabela de gêneros e exibir a descrição.
+3. [x] Escreva uma função para permitir a inclusão de novos registros na tabela de livros.
+   1. [1/2] Quando o usuário digitar o código da editora, o programa deverá buscar este código na tabela de editoras e exibir o nome da editora.
+   2. [1/2] Quando o usuário digitar o código do autor, o programa deverá buscar este código na tabela de autores e exibir o nome do autor.
+   3. [1/2] Quando o usuário digitar o código do gênero, o programa deverá buscar este código na tabela de gêneros e exibir a descrição.
 
 4. [ ] Escreva uma função para permitir que uma pessoa realize o empréstimo de um livro, cujas informações serão gravadas na tabela Empréstimos.
-   1. [ ] O código do empréstimo (PK) deverá ser gerado automaticamente e sequencialmente a partir do último registro cadastrado.
+   1. [x] O código do empréstimo (PK) deverá ser gerado automaticamente e sequencialmente a partir do último registro cadastrado.
    2. [ ] O usuário deverá informar o código da pessoa que está emprestando o livro e o programa deverá buscar este código na tabela de pessoas e exibi o nome da pessoa e o nome da sua cidade.
    3. [ ] O usuário deverá informar o código do livro a ser emprestado e o programa deverá buscar este código na tabela de livros e exibir o nome do livro.
    4. [ ] O programa deverá exibir o nome da editora e o nome do autor do livro.
@@ -59,17 +59,17 @@ Escrever um programa para criar as seguintes estruturas que simularão arquivos 
       1. [ ] O nome da pessoa e o nome do livro.
       2. [ ] O nome da editora e o nome do autor do livro.
       3. [ ] A data do empréstimo e a data da efetiva devolução (que deverá ser a data do dia atual).
-   2. [ ] Se a data da efetiva devolução estiver em branco, então o livro ainda não foi devolvido e poderá ser devolvido neste momento.
+   2. [x] Se a data da efetiva devolução estiver em branco, então o livro ainda não foi devolvido e poderá ser devolvido neste momento.
       1. [ ] Para confirmar a devolução, o programa deverá atualizar a data da efetiva devolução com a data atual e atualizar o atributo da tabela de Livros disponivel_s_n = "S".
 
-6. [ ] Escreva uma função para mostrar todos os livros que estejam emprestados, verificando a tabela de Livros: disponível_s_n = "N".
-   1. [ ] O programa deverá exibir: código do livro, nome do livro.
-   2. [ ] Ao final dessa função, mostrar a quantidade de livros emprestados e a quantidade de livros disponíveis para empréstimo.
+6. [x] Escreva uma função para mostrar todos os livros que estejam emprestados, verificando a tabela de Livros: disponível_s_n = "N".
+   1. [1/2] O programa deverá exibir: código do livro, nome do livro.
+   2. [1/2] Ao final dessa função, mostrar a quantidade de livros emprestados e a quantidade de livros disponíveis para empréstimo.
 
-7. [ ] Escreva uma função para mostrar os dados dos livros e das pessoas que estejam com a devolução em atraso (data_prevista_devolução < data atual).
-   1. [ ] O programa deverá exibir: código do livro, nome do livro, nome da editora, nome do autor, data prevista da devolução, quantidade de dias em atraso.
+7. [x] Escreva uma função para mostrar os dados dos livros e das pessoas que estejam com a devolução em atraso (data_prevista_devolução < data atual).
+   1. [1/2] O programa deverá exibir: código do livro, nome do livro, nome da editora, nome do autor, data prevista da devolução, quantidade de dias em atraso.
 
-8. [ ] Todas as funções descritas acima deverão ser chamadas através de um menu de opções que será chamado a partir da função main().
+8. [x] Todas as funções descritas acima deverão ser chamadas através de um menu de opções que será chamado a partir da função main().
 
 Obs: não utilizar variáveis globais.
 ```
