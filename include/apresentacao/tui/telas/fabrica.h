@@ -28,6 +28,7 @@ public:
         auto nova_tela = std::make_shared<TipoDerivadoDeTela>(std::forward<Args>(args)...);
         nova_tela->injetarRenderizador(_renderizador);
         nova_tela->injetarRepositorio(_repositorio);
+        nova_tela->inicializar();
         return nova_tela;
     }
 };
