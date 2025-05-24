@@ -4,17 +4,15 @@
 #include <string>
 
 class PropriedadeVaziaException final : public std::exception {
-    std::string _nome_propriedade;
-    std::string _nome_arquivo;
+    std::string _mensagem;
 
 public:
-    explicit PropriedadeVaziaException(std::string propriedade, std::string nome_arquivo)
-        : _nome_propriedade(std::move(propriedade))
-          , _nome_arquivo(std::move(nome_arquivo)) {
+    explicit PropriedadeVaziaException(const std::string &propriedade, const std::string &nome_arquivo)
+        : _mensagem(std::format("Propriedade '{}' de '{}' não pode ser vazia.", propriedade, nome_arquivo)) {
     }
 
     [[nodiscard]] const char *what() const noexcept override {
-        return ("Propriedade '" + _nome_propriedade + "' de " + _nome_arquivo + " não pode ser vazia.").c_str();
+        return _mensagem.c_str();
     }
 };
 
