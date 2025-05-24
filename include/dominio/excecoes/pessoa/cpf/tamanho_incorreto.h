@@ -2,7 +2,7 @@
 #define DOMINIO_EXCECOES_PESSOA_CPF_TAMANHO_INCORRETO_H
 #include <exception>
 
-class CPFTamanhoIncorreto final : public std::exception {
+class TamanhoCpfIncorretoException final : public std::exception {
 public:
     [[nodiscard]] const char *what() const noexcept override {
         return "O tamanho do CPF está incorreto.";

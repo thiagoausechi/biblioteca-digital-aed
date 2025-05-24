@@ -65,7 +65,7 @@ public:
             }
 
         if (cpfLimpo.size() != 11)
-            throw CPFTamanhoIncorreto();
+            throw TamanhoCpfIncorretoException();
 
         // Algoritmo de Validação do CPF (https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
         // Requisito 2.1
