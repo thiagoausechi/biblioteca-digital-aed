@@ -1,5 +1,5 @@
-#ifndef AUTOR_H
-#define AUTOR_H
+#ifndef DOMINIO_ARQUIVOS_AUTOR_H
+#define DOMINIO_ARQUIVOS_AUTOR_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -30,4 +30,4 @@ public:
     }
 };
 
-#endif //AUTOR_H
+#endif //DOMINIO_ARQUIVOS_AUTOR_H

@@ -1,5 +1,5 @@
-#ifndef CIDADE_H
-#define CIDADE_H
+#ifndef DOMINIO_ARQUIVOS_CIDADE_H
+#define DOMINIO_ARQUIVOS_CIDADE_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/excedeu_maximo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
@@ -51,4 +51,4 @@ public:
     }
 };
 
-#endif //CIDADE_H
+#endif //DOMINIO_ARQUIVOS_CIDADE_H

@@ -1,5 +1,5 @@
-#ifndef LIVRO_H
-#define LIVRO_H
+#ifndef DOMINIO_ARQUIVOS_LIVRO_H
+#define DOMINIO_ARQUIVOS_LIVRO_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -75,4 +75,4 @@ public:
     void devolver() { this->_emprestado = false; }
 };
 
-#endif //LIVRO_H
+#endif //DOMINIO_ARQUIVOS_LIVRO_H

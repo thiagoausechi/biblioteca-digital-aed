@@ -1,5 +1,5 @@
-#ifndef BUSCA_BINARIA_H
-#define BUSCA_BINARIA_H
+#ifndef UTILS_BUSCA_BINARIA_H
+#define UTILS_BUSCA_BINARIA_H
 #include <vector>
 
 /*
@@ -34,4 +34,4 @@ static int encontrarIndicePorId(std::vector<std::shared_ptr<T>> arquivos_sequenc
     return -1;
 }
 
-#endif //BUSCA_BINARIA_H
+#endif //UTILS_BUSCA_BINARIA_H

@@ -1,5 +1,5 @@
-#ifndef ID_NEGATIVO_H
-#define ID_NEGATIVO_H
+#ifndef DOMINIO_EXCECOES_COMUNS_ID_NEGATIVO_H
+#define DOMINIO_EXCECOES_COMUNS_ID_NEGATIVO_H
 #include <exception>
 #include <string>
 #include <utility>
@@ -17,4 +17,4 @@ public:
     }
 };
 
-#endif //ID_NEGATIVO_H
+#endif //DOMINIO_EXCECOES_COMUNS_ID_NEGATIVO_H

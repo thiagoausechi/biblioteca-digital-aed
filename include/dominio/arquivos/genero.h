@@ -1,5 +1,5 @@
-#ifndef GENERO_H
-#define GENERO_H
+#ifndef DOMINIO_ARQUIVOS_GENERO_H
+#define DOMINIO_ARQUIVOS_GENERO_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -29,4 +29,4 @@ public:
     }
 };
 
-#endif //GENERO_H
+#endif //DOMINIO_ARQUIVOS_GENERO_H

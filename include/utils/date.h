@@ -1,5 +1,5 @@
-#ifndef DATE_H
-#define DATE_H
+#ifndef UTILS_DATE_H
+#define UTILS_DATE_H
 #include <string>
 
 inline std::string formatar_data(const time_t data) {
@@ -9,4 +9,4 @@ inline std::string formatar_data(const time_t data) {
     return buffer;
 }
 
-#endif //DATE_H
+#endif //UTILS_DATE_H

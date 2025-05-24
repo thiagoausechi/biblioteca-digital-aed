@@ -1,5 +1,5 @@
-#ifndef PESSOA_H
-#define PESSOA_H
+#ifndef DOMINIO_ARQUIVOS_PESSOA_H
+#define DOMINIO_ARQUIVOS_PESSOA_H
 #include <vector>
 
 #include "arquivo.h"
@@ -129,4 +129,4 @@ public:
     }
 };
 
-#endif //PESSOA_H
+#endif //DOMINIO_ARQUIVOS_PESSOA_H

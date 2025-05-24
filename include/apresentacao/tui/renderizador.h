@@ -1,5 +1,5 @@
-#ifndef RENDERIZADOR_H
-#define RENDERIZADOR_H
+#ifndef APRESENTACAO_RENDERIZADOR_H
+#define APRESENTACAO_RENDERIZADOR_H
 #include <memory>
 #include <ftxui/component/component.hpp>
 
@@ -222,4 +222,4 @@ public:
     ~Renderizador() = default;
 };
 
-#endif //RENDERIZADOR_H
+#endif //APRESENTACAO_RENDERIZADOR_H

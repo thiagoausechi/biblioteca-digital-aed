@@ -1,5 +1,5 @@
-#ifndef CASO_DE_USO_H
-#define CASO_DE_USO_H
+#ifndef APLICACAO_CASO_DE_USO_BASE_H
+#define APLICACAO_CASO_DE_USO_BASE_H
 
 template<typename TResposta = void, typename TPedido = void>
 class CasoDeUso {
@@ -27,4 +27,4 @@ public:
     virtual void executar() = 0;
 };
 
-#endif //CASO_DE_USO_H
+#endif //APLICACAO_CASO_DE_USO_BASE_H

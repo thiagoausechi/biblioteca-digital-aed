@@ -1,5 +1,5 @@
-#ifndef REPOSITORIO_EM_MEMORIA_H
-#define REPOSITORIO_EM_MEMORIA_H
+#ifndef INFRA_PERSISTENCIA_TABELAS_REPOSITORIO_EM_MEMORIA_H
+#define INFRA_PERSISTENCIA_TABELAS_REPOSITORIO_EM_MEMORIA_H
 #include "aplicacao/tabelas/repositorio.h"
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/tabela.h"
 
@@ -37,4 +37,4 @@ public:
 
     std::shared_ptr<Tabela<Pessoa>> getPessoas() override { return _pessoas; }
 };
-#endif //REPOSITORIO_EM_MEMORIA_H
+#endif //INFRA_PERSISTENCIA_TABELAS_REPOSITORIO_EM_MEMORIA_H

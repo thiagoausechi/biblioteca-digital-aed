@@ -1,5 +1,5 @@
-#ifndef ERRO_VALIDACAO_H
-#define ERRO_VALIDACAO_H
+#ifndef DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H
+#define DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H
 #include <exception>
 #include <string>
 
@@ -9,4 +9,4 @@ public:
         return ("Padrão de CPF incorreto").c_str();
     }
 };
-#endif //ERRO_VALIDACAO_H
+#endif //DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H

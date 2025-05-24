@@ -1,5 +1,5 @@
-#ifndef OPCAO_MENU_H
-#define OPCAO_MENU_H
+#ifndef APRESENTACAO_COMPONENTES_MENU_OPCAO_H
+#define APRESENTACAO_COMPONENTES_MENU_OPCAO_H
 #include <ftxui/component/component_base.hpp>
 
 #include "apresentacao/tui/telas/tela.h"
@@ -152,4 +152,4 @@ inline auto Opcao(const std::string &descricao, std::shared_ptr<Tela> tela) {
     return Make<OpcaoComponent>(descricao, std::move(tela));
 }
 
-#endif //OPCAO_MENU_H
+#endif //APRESENTACAO_COMPONENTES_MENU_OPCAO_H

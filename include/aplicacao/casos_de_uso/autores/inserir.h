@@ -1,5 +1,5 @@
-#ifndef UC_AUTORES_INSERIR_H
-#define UC_AUTORES_INSERIR_H
+#ifndef APLICACAO_UC_AUTORES_INSERIR_H
+#define APLICACAO_UC_AUTORES_INSERIR_H
 #include <memory>
 #include <string>
 
@@ -27,4 +27,4 @@ public:
     }
 };
 
-#endif // UC_AUTORES_INSERIR_H
+#endif // APLICACAO_UC_AUTORES_INSERIR_H

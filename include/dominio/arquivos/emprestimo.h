@@ -1,5 +1,5 @@
-#ifndef EMPRESTIMO_H
-#define EMPRESTIMO_H
+#ifndef DOMINIO_ARQUIVOS_EMPRESTIMO_H
+#define DOMINIO_ARQUIVOS_EMPRESTIMO_H
 #include "arquivo.h"
 
 class Emprestimo final : public Arquivo {
@@ -68,4 +68,4 @@ public:
     }
 };
 
-#endif //EMPRESTIMO_H
+#endif //DOMINIO_ARQUIVOS_EMPRESTIMO_H

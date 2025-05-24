@@ -1,7 +1,7 @@
-#ifndef APP_INFO_H
-#define APP_INFO_H
+#ifndef UTILS_APP_INFO_H
+#define UTILS_APP_INFO_H
 
 #define NOME_APP "Biblioteca Digital"
 #define CREDITOS "Por Lucas Facina & Thiago Ausechi"
 
-#endif //APP_INFO_H
+#endif //UTILS_APP_INFO_H

@@ -1,5 +1,5 @@
-#ifndef EXCEDEU_MAXIMO_H
-#define EXCEDEU_MAXIMO_H
+#ifndef DOMINIO_EXCECOES_COMUNS_EXCEDEU_MAXIMO_H
+#define DOMINIO_EXCECOES_COMUNS_EXCEDEU_MAXIMO_H
 #include <exception>
 #include <string>
 #include <utility>
@@ -35,4 +35,4 @@ public:
         ).c_str();
     }
 };
-#endif //EXCEDEU_MAXIMO_H
+#endif //DOMINIO_EXCECOES_COMUNS_EXCEDEU_MAXIMO_H

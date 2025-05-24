@@ -1,5 +1,5 @@
-#ifndef CATEGORIA_MENU_H
-#define CATEGORIA_MENU_H
+#ifndef APRESENTACAO_COMPONENTES_MENU_CATEGORIA_H
+#define APRESENTACAO_COMPONENTES_MENU_CATEGORIA_H
 #include <ftxui/component/component_base.hpp>
 
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
@@ -31,4 +31,4 @@ inline auto Categoria(const std::string &descricao) {
     return Make<CategoriaComponent>(descricao);
 }
 
-#endif //CATEGORIA_MENU_H
+#endif //APRESENTACAO_COMPONENTES_MENU_CATEGORIA_H

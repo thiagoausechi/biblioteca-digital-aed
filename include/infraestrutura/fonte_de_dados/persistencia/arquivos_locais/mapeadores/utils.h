@@ -1,5 +1,5 @@
-#ifndef UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
-#define UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
+#ifndef INFRA_PERSISTENCIA_UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
+#define INFRA_PERSISTENCIA_UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
 #include <fstream>
 
 class Utils {
@@ -67,4 +67,4 @@ inline void Utils::carregar_propriedade(std::ifstream &arquivo_local, time_t &pr
     propriedade = valor;
 }
 
-#endif //UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H
+#endif //INFRA_PERSISTENCIA_UTILS_MAPEADORES_ARQUIVOS_LOCAIS_H

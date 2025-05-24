@@ -1,5 +1,5 @@
-#ifndef REPOSITORIOS_H
-#define REPOSITORIOS_H
+#ifndef APLICACAO_TABELAS_REPOSITORIO_BASE_H
+#define APLICACAO_TABELAS_REPOSITORIO_BASE_H
 #include "tabela.h"
 #include "dominio/arquivos/autor.h"
 #include "dominio/arquivos/cidade.h"
@@ -39,4 +39,4 @@ public:
     virtual std::shared_ptr<Tabela<Pessoa>> getPessoas() = 0;
 };
 
-#endif //REPOSITORIOS_H
+#endif //APLICACAO_TABELAS_REPOSITORIO_BASE_H

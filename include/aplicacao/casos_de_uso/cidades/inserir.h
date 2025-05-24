@@ -1,5 +1,5 @@
-#ifndef UC_CIDADE_INSERIR_H
-#define UC_CIDADE_INSERIR_H
+#ifndef APLICACAO_UC_CIDADES_INSERIR_H
+#define APLICACAO_UC_CIDADES_INSERIR_H
 #include <memory>
 #include <string>
 
@@ -30,4 +30,4 @@ public:
 };
 
 
-#endif // UC_CIDADE_INSERIR_H
+#endif // APLICACAO_UC_CIDADES_INSERIR_H

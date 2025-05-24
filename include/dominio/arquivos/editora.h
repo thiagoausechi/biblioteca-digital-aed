@@ -1,5 +1,5 @@
-#ifndef EDITORA_H
-#define EDITORA_H
+#ifndef DOMINIO_ARQUIVOS_EDITORA_H
+#define DOMINIO_ARQUIVOS_EDITORA_H
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 
@@ -41,4 +41,4 @@ public:
     }
 };
 
-#endif //EDITORA_H
+#endif //DOMINIO_ARQUIVOS_EDITORA_H

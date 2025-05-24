@@ -1,5 +1,5 @@
-#ifndef TABELA_H
-#define TABELA_H
+#ifndef APLICACAO_TABELAS_TABELA_BASE_H
+#define APLICACAO_TABELAS_TABELA_BASE_H
 #include <concepts>
 #include <vector>
 
@@ -46,4 +46,4 @@ public:
     [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
 
-#endif //TABELA_H
+#endif //APLICACAO_TABELAS_TABELA_BASE_H

@@ -1,5 +1,5 @@
-#ifndef TELA_H
-#define TELA_H
+#ifndef APRESENTACAO_TELAS_TELA_BASE_H
+#define APRESENTACAO_TELAS_TELA_BASE_H
 #include <utility>
 
 #include "aplicacao/tabelas/repositorio.h"
@@ -55,4 +55,4 @@ public:
     }
 };
 
-#endif //TELA_H
+#endif //APRESENTACAO_TELAS_TELA_BASE_H

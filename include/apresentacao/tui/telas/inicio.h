@@ -1,5 +1,5 @@
-#ifndef TELA_INICIAL_H
-#define TELA_INICIAL_H
+#ifndef APRESENTACAO_TELAS_TELA_INICIAL_H
+#define APRESENTACAO_TELAS_TELA_INICIAL_H
 #include "tela.h"
 
 /*
@@ -46,4 +46,4 @@ public:
     }
 };
 
-#endif //TELA_INICIAL_H
+#endif //APRESENTACAO_TELAS_TELA_INICIAL_H

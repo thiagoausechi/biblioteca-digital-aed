@@ -1,5 +1,5 @@
-#ifndef COMPONENTES_DIALOGOS_OPCOES_H
-#define COMPONENTES_DIALOGOS_OPCOES_H
+#ifndef APRESENTACAO_COMPONENTES_DIALOGOS_OPCOES_H
+#define APRESENTACAO_COMPONENTES_DIALOGOS_OPCOES_H
 #include <functional>
 #include <string>
 
@@ -101,4 +101,4 @@ inline OpcoesDoDialog OpcoesDoDialog::Sucesso(const Element &conteudo) {
     return estado;
 }
 
-#endif //COMPONENTES_DIALOGOS_OPCOES_H
+#endif //APRESENTACAO_COMPONENTES_DIALOGOS_OPCOES_H

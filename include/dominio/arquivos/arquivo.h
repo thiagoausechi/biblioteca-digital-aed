@@ -1,5 +1,5 @@
-#ifndef ARQUIVO_H
-#define ARQUIVO_H
+#ifndef DOMINIO_ARQUIVO_BASE_H
+#define DOMINIO_ARQUIVO_BASE_H
 
 #include "dominio/excecoes/comuns/id_negativo.h"
 
@@ -24,4 +24,4 @@ public:
     }
 };
 
-#endif //ARQUIVO_H
+#endif //DOMINIO_ARQUIVO_BASE_H

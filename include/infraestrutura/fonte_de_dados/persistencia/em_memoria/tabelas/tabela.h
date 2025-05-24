@@ -1,5 +1,5 @@
-#ifndef TABELAEM_MEMORIA_H
-#define TABELAEM_MEMORIA_H
+#ifndef INFRA_PERSISTENCIA_TABELAS_TABELA_EM_MEMORIA_H
+#define INFRA_PERSISTENCIA_TABELAS_TABELA_EM_MEMORIA_H
 #include "aplicacao/tabelas/tabela.h"
 #include "utils/busca_binaria.h"
 
@@ -58,4 +58,4 @@ public:
     }
 };
 
-#endif //TABELAEM_MEMORIA_H
+#endif //INFRA_PERSISTENCIA_TABELAS_TABELA_EM_MEMORIA_H

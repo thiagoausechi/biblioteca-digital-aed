@@ -1,5 +1,5 @@
-#ifndef UC_LISTAR_EMPRESTADOS_H
-#define UC_LISTAR_EMPRESTADOS_H
+#ifndef APLICACAO_UC_LIVROS_LISTAR_EMPRESTADOS_H
+#define APLICACAO_UC_LIVROS_LISTAR_EMPRESTADOS_H
 #include <vector>
 
 #include "aplicacao/casos_de_uso/caso_de_uso.h"
@@ -45,4 +45,4 @@ public:
     }
 };
 
-#endif //UC_LISTAR_EMPRESTADOS_H
+#endif //APLICACAO_UC_LIVROS_LISTAR_EMPRESTADOS_H
