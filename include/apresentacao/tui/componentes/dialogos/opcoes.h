@@ -12,6 +12,7 @@ using FnTransformar = std::function<Element(const FnFechar &)>;
 
 struct OpcoesDoDialog {
     // @formatter:off
+    static OpcoesDoDialog Padrao(const std::string &titulo, const std::string &mensagem);
     static OpcoesDoDialog Padrao(const std::string &titulo, const Element &conteudo);
     static OpcoesDoDialog Erro(const std::string &mensagem);
     static OpcoesDoDialog Erro(const Element &conteudo);
@@ -43,8 +44,11 @@ inline Element TransformadorPadraoDialogo(
            | borderStyled(ROUNDED, cor_tema);
 }
 
-inline OpcoesDoDialog OpcoesDoDialog::Padrao(const std::string &titulo,
-                                             const Element &conteudo) {
+inline OpcoesDoDialog OpcoesDoDialog::Padrao(const std::string &titulo, const std::string &mensagem) {
+    return Padrao(titulo, text(mensagem));
+}
+
+inline OpcoesDoDialog OpcoesDoDialog::Padrao(const std::string &titulo, const Element &conteudo) {
     OpcoesDoDialog estado;
     estado.transformar = [titulo, conteudo](const FnFechar &) -> Element {
         return TransformadorPadraoDialogo(text(titulo) | color(Color::CyanLight), conteudo);
