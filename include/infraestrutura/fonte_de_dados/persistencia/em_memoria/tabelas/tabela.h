@@ -19,13 +19,13 @@ class TabelaEmMemoria final : public Tabela<TArquivo> {
     std::vector<std::shared_ptr<TArquivo>> _arquivos;
 
 public:
-    const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> novo_arquivo) override {
+    std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> novo_arquivo) override {
         novo_arquivo->setId(this->_gerarId());
         _arquivos.push_back(novo_arquivo);
         return novo_arquivo;
     }
 
-    const std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo_atualizado) override {
+    std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo_atualizado) override {
         int indice = encontrarIndicePorId(_arquivos, arquivo_atualizado->getId());
         if (indice == -1)
             return nullptr;
@@ -34,7 +34,7 @@ public:
         return arquivo_atualizado;
     }
 
-    const std::optional<const std::shared_ptr<TArquivo>> buscar(int id_procurado) override {
+    std::optional<std::shared_ptr<TArquivo>> buscar(int id_procurado) override {
         int indice = encontrarIndicePorId(_arquivos, id_procurado);
         if (indice == -1)
             return std::nullopt;
@@ -47,8 +47,8 @@ public:
      * não caiamos no erro de modificar o vetor
      * original de arquivos diretamente.
      */
-    const std::vector<const std::shared_ptr<TArquivo>> listarTudo() override {
-        std::vector<const std::shared_ptr<TArquivo>> copia_somente_leitura;
+    std::vector<std::shared_ptr<TArquivo>> listarTudo() override {
+        std::vector<std::shared_ptr<TArquivo>> copia_somente_leitura;
         copia_somente_leitura.reserve(_arquivos.size());
 
         for (const auto &ptr: _arquivos)
