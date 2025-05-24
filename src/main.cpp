@@ -13,6 +13,7 @@ int main() {
     std::shared_ptr<Repositorio> repositorio = nullptr; // TODO: Implementar Repositório
     auto fabrica = std::make_shared<FabricaDeTelas>(repositorio, renderizador);
 
+    // Requisito 8
     renderizador->carregarOpcoesDoMenu(Components{
         Opcao("Início", fabrica->criar<TelaInicial>()),
         Renderer([] { return separatorEmpty(); }),
