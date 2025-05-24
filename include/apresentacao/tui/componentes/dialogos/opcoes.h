@@ -39,6 +39,8 @@ inline Element TransformadorPadraoDialogo(
                titulo | bold,
                separator() | color(cor_tema),
                conteudo,
+               separator() | color(cor_tema),
+               text("Pressione [ESC] para sair") | dim
            })
            | size(WIDTH, GREATER_THAN, 30)
            | borderStyled(ROUNDED, cor_tema);
