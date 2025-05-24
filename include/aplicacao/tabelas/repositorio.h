@@ -18,7 +18,7 @@
  * Nesse cenário, a classe Repositorio
  * é uma interface que define os métodos
  * que devem ser implementados pelas classes
- * na de persistência na camada de Infraestrutura.
+ * de persistência na camada de Infraestrutura.
  */
 class Repositorio {
 public:
