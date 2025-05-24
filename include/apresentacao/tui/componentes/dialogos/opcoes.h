@@ -18,6 +18,8 @@ struct OpcoesDoDialog {
     static OpcoesDoDialog Erro(const Element &conteudo);
     static OpcoesDoDialog Aviso(const std::string &mensagem);
     static OpcoesDoDialog Aviso(const Element &conteudo);
+    static OpcoesDoDialog Sucesso(const std::string &mensagem);
+    static OpcoesDoDialog Sucesso(const Element &conteudo);
     // @formatter:on
 
     bool mostrar_dialogo = false; // Reservado para controle do Renderizador
@@ -77,6 +79,25 @@ inline OpcoesDoDialog OpcoesDoDialog::Aviso(const Element &conteudo) {
                })
                | size(WIDTH, GREATER_THAN, 30)
                | borderStyled(ROUNDED, Color::YellowLight);
+    };
+
+    return estado;
+}
+
+inline OpcoesDoDialog OpcoesDoDialog::Sucesso(const std::string &mensagem) {
+    return Sucesso(text(mensagem));
+}
+
+inline OpcoesDoDialog OpcoesDoDialog::Sucesso(const Element &conteudo) {
+    OpcoesDoDialog estado;
+    estado.transformar = [conteudo](const FnFechar &) -> Element {
+        return vbox({
+                   text("Sucesso!") | bold | color(Color::Green),
+                   separator() | color(Color::Green),
+                   conteudo,
+               })
+               | size(WIDTH, GREATER_THAN, 30)
+               | borderStyled(ROUNDED, Color::Green);
     };
 
     return estado;
