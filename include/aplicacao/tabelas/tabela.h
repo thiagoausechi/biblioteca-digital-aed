@@ -37,6 +37,8 @@ public:
 
     virtual const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> arquivo) = 0;
 
+    virtual const std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo) = 0;
+
     virtual const std::optional<const std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
 
     virtual const std::vector<const std::shared_ptr<TArquivo>> listarTudo() = 0;
