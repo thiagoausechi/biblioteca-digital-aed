@@ -4,7 +4,7 @@
 
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
-#include "dominio/excecoes/pessoa/cpf/erro_validacao.h"
+#include "dominio/excecoes/pessoa/cpf/cpf_invalido.h"
 #include "dominio/excecoes/pessoa/cpf/tamanho_incorreto.h"
 
 class Pessoa final : public Arquivo {
