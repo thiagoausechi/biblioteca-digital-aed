@@ -6,7 +6,7 @@
 #include "aplicacao/tabelas/tabela.h"
 #include "dominio/arquivos/pessoa.h"
 #include "dominio/arquivos/cidade.h"
-#include "dominio/excecoes/pessoa/cidade_nao_existe.h"
+#include "dominio/excecoes/comuns/arquivo_nao_existe.h"
 
 struct Pedido {
     std::string nome;
@@ -31,7 +31,7 @@ public:
     void executar(const Pedido pedido) override {
         // Requisito 2.2
         if (!this->_cidades->buscar(pedido.id_cidade).has_value())
-            throw CidadeNaoExiste(pedido.id_cidade);
+            throw ArquivoNaoExisteException(pedido.id_cidade, "cidade");
 
         auto nova_pessoa = std::make_shared<Pessoa>();
         nova_pessoa->setNome(pedido.nome);

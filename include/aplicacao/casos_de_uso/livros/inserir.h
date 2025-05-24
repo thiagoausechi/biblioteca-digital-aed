@@ -9,9 +9,7 @@
 #include "dominio/arquivos/editora.h"
 #include "dominio/arquivos/genero.h"
 #include "dominio/arquivos/livro.h"
-#include "dominio/excecoes/livro/autor_nao_existe.h"
-#include "dominio/excecoes/livro/editora_nao_existe.h"
-#include "dominio/excecoes/livro/genero_nao_existe.h"
+#include "dominio/excecoes/comuns/arquivo_nao_existe.h"
 
 struct Pedido {
     std::string nome;
@@ -42,15 +40,15 @@ public:
     void executar(const Pedido pedido) override {
         // Requisito 3.1
         if (!this->_editoras->buscar(pedido.id_editora).has_value())
-            throw EditoraNaoExiste(pedido.id_editora);
+            throw ArquivoNaoExisteException(pedido.id_editora, "editora");
 
         // Requisito 3.2
         if (!this->_autores->buscar(pedido.id_autor).has_value())
-            throw AutorNaoExiste(pedido.id_autor);
+            throw ArquivoNaoExisteException(pedido.id_autor, "autor");
 
         // Requisito 3.3
         if (!this->_generos->buscar(pedido.id_genero).has_value())
-            throw GeneroNaoExiste(pedido.id_genero);
+            throw ArquivoNaoExisteException(pedido.id_genero, "gênero");
 
         auto novo_livro = std::make_shared<Livro>();
         novo_livro->setNome(pedido.nome);
