@@ -3,6 +3,17 @@
 #include "aplicacao/tabelas/tabela.h"
 #include "utils/busca_binaria.h"
 
+/*
+ * Implementação concreta de uma tabela em memória.
+ * Esta implementação é útil para testes e desenvolvimento,
+ * pois não persiste os dados em disco e, portanto,
+ * é extremamente rápida, porém volátil.
+ *
+ * Em produção, deve-se utilizar uma implementação
+ * que persista os dados em disco, como um banco de dados
+ * relacional ou um banco de dados NoSQL, ou simplesmente
+ * um arquivo local de texto/binário.
+ */
 template<TipoDerivadoDeArquivo TArquivo>
 class TabelaEmMemoria final : public Tabela<TArquivo> {
     std::vector<std::shared_ptr<TArquivo>> _arquivos;
