@@ -6,7 +6,7 @@
 class CPFTamanhoIncorreto final : public std::exception {
 public:
     [[nodiscard]] const char *what() const noexcept override {
-        return ("O tamanho do CPF está incorreto").c_str();
+        return std::string("O tamanho do CPF está incorreto").c_str();
     }
 };
 

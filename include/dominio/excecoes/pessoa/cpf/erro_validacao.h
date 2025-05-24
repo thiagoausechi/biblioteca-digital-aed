@@ -6,7 +6,7 @@
 class CPFErroValidacao final : public std::exception {
 public:
     [[nodiscard]] const char *what() const noexcept override {
-        return ("Padrão de CPF incorreto").c_str();
+        return std::string("Padrão de CPF incorreto").c_str();
     }
 };
 #endif //DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H
