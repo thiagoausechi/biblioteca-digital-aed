@@ -41,7 +41,6 @@ public:
         if (id_livro < 0)
             throw IdNegativoException("livro");
 
-        // TODO: Verificar se o id do livro existe
         this->_id_livro = id_livro;
     }
 
