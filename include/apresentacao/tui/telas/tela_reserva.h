@@ -20,6 +20,9 @@ public:
     explicit TelaReserva()
         : Tela("Tela Não Implementada") {
     }
+
+    void inicializar() override {
+    }
 };
 
 #endif //APRESENTACAO_TELAS_TELA_RESERVA_H
