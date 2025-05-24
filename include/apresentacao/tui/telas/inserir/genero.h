@@ -3,6 +3,7 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
+#include "aplicacao/casos_de_uso/generos/inserir.h"
 #include "apresentacao/tui/telas/tela.h"
 
 using namespace ftxui;
@@ -12,6 +13,7 @@ struct FormularioInsercaoGenero {
 };
 
 class TelaInserirGenero final : public Tela {
+    std::shared_ptr<InserirGeneroUC> _caso_de_uso;
     FormularioInsercaoGenero _dados_formulario;
     Component _input_descricao;
     Component _botao_inserir;
@@ -29,9 +31,25 @@ class TelaInserirGenero final : public Tela {
         });
     }
 
+    void _executar_InserirGeneroUC() {
+        try {
+            this->_caso_de_uso->executar({
+                .descricao = _dados_formulario.descricao
+            });
+        } catch (const std::exception &e) {
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Erro(e.what())
+            );
+        }
+    }
+
 public:
     explicit TelaInserirGenero()
         : Tela("Formulário para inserção de Gênero") {
+        _caso_de_uso = std::make_shared<InserirGeneroUC>(
+            _repositorio->getGeneros()
+        );
+
         _input_descricao
                 = Input(
                       &this->_dados_formulario.descricao,
@@ -43,7 +61,7 @@ public:
         _botao_inserir
                 = Button(
                     "Inserir novo gênero",
-                    [&] { ; },
+                    [this] { this->_executar_InserirGeneroUC(); },
                     ButtonOption::Border()
                 );
 
