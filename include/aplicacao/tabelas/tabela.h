@@ -35,13 +35,13 @@ protected:
 public:
     virtual ~Tabela() = default;
 
-    virtual const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> novo_arquivo) = 0;
+    virtual std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> novo_arquivo) = 0;
 
-    virtual const std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo_atualizado) = 0;
+    virtual std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo_atualizado) = 0;
 
-    virtual const std::optional<const std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
+    virtual std::optional<std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
 
-    virtual const std::vector<const std::shared_ptr<TArquivo>> listarTudo() = 0;
+    virtual std::vector<std::shared_ptr<TArquivo>> listarTudo() = 0;
 
     [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
