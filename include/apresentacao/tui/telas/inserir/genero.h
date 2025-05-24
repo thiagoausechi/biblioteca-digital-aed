@@ -17,6 +17,9 @@ struct FormularioInsercaoGenero {
 };
 
 class TelaInserirGenero final : public Tela {
+    constexpr static auto BOTAO_INSERIR = "Inserir gênero";
+    constexpr static auto MSG_SUCESSO = "Gênero de livro inserido com sucesso!";
+
     std::shared_ptr<InserirGenero::UseCase> _caso_de_uso;
     FormularioInsercaoGenero _dados_formulario;
 
@@ -47,7 +50,7 @@ class TelaInserirGenero final : public Tela {
             });
 
             this->_renderizador->mostrarDialogo(
-                OpcoesDoDialog::Sucesso("Gênero inserido com sucesso!")
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
             );
 
             this->_limpar_formulario();
@@ -72,7 +75,7 @@ public:
 
         _botao_inserir
                 = Button(
-                    "Inserir novo gênero",
+                    BOTAO_INSERIR,
                     [this] { this->_executar_InserirGeneroUC(); },
                     ButtonOption::Border()
                 );
