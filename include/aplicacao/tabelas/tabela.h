@@ -35,9 +35,9 @@ protected:
 public:
     virtual ~Tabela() = default;
 
-    virtual const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> arquivo) = 0;
+    virtual const std::shared_ptr<TArquivo> inserir(std::shared_ptr<TArquivo> novo_arquivo) = 0;
 
-    virtual const std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo) = 0;
+    virtual const std::shared_ptr<TArquivo> atualizar(std::shared_ptr<TArquivo> arquivo_atualizado) = 0;
 
     virtual const std::optional<const std::shared_ptr<TArquivo>> buscar(int id_procurado) = 0;
 
