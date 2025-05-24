@@ -1,7 +1,6 @@
 #ifndef DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H
 #define DOMINIO_EXCECOES_PESSOA_CPF_ERRO_VALIDACAO_H
 #include <exception>
-#include <string>
 
 class CPFErroValidacao final : public std::exception {
 public:
