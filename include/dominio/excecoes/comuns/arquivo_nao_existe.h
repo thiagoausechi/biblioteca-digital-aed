@@ -5,17 +5,15 @@
 #include <string>
 
 class ArquivoNaoExisteException final : public std::exception {
-    int _id_arquivo;
-    std::string _nome_arquivo;
+    std::string _mensagem;
 
 public:
     explicit ArquivoNaoExisteException(int id_arquivo, const std::string &nome_arquivo)
-        : _id_arquivo(id_arquivo),
-          _nome_arquivo(nome_arquivo) {
+        : _mensagem(std::format("Registro de ID '{}' de {} não encontrado", id_arquivo, nome_arquivo)) {
     }
 
     [[nodiscard]] const char *what() const noexcept override {
-        return std::format("Registro de ID '{}' de {} não encontrado", _id_arquivo, _nome_arquivo).c_str();
+        return _mensagem.c_str();
     }
 };
 
