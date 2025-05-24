@@ -201,8 +201,10 @@ public:
              * o usuário possa fechar o diálogo pressionando
              * a tecla ESC.
              */
-            if (e == Event::Escape)
-                return this->fecharDialogo() || true;
+            if (e == Event::Escape) {
+                this->fecharDialogo();
+                return  true;
+            }
 
             return false;
         });
