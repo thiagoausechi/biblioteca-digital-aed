@@ -16,6 +16,8 @@ struct OpcoesDoDialog {
                                  const Element &conteudo);
     static OpcoesDoDialog Erro(const std::string &mensagem);
     static OpcoesDoDialog Erro(const Element &conteudo);
+    static OpcoesDoDialog Aviso(const std::string &mensagem);
+    static OpcoesDoDialog Aviso(const Element &conteudo);
     // @formatter:on
 
     bool mostrar_dialogo = false; // Reservado para controle do Renderizador
@@ -56,6 +58,25 @@ inline OpcoesDoDialog OpcoesDoDialog::Erro(const Element &conteudo) {
                })
                | size(WIDTH, GREATER_THAN, 30)
                | borderStyled(ROUNDED, Color::Red);
+    };
+
+    return estado;
+}
+
+inline OpcoesDoDialog OpcoesDoDialog::Aviso(const std::string &mensagem) {
+    return Aviso(text(mensagem));
+}
+
+inline OpcoesDoDialog OpcoesDoDialog::Aviso(const Element &conteudo) {
+    OpcoesDoDialog estado;
+    estado.transformar = [conteudo](const FnFechar &) -> Element {
+        return vbox({
+                   text("Atenção!") | bold | color(Color::YellowLight),
+                   separator() | color(Color::YellowLight),
+                   conteudo,
+               })
+               | size(WIDTH, GREATER_THAN, 30)
+               | borderStyled(ROUNDED, Color::YellowLight);
     };
 
     return estado;
