@@ -41,6 +41,10 @@ class TelaInserirGenero final : public Tela {
                 .descricao = _dados_formulario.descricao
             });
 
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Sucesso("Gênero inserido com sucesso!")
+            );
+
             this->_limpar_formulario();
         } catch (const std::exception &e) {
             this->_renderizador->mostrarDialogo(
