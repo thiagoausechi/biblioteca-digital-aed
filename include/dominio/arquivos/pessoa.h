@@ -101,7 +101,7 @@ public:
         }
 
         if (!ehValido)
-            throw CPFErroValidacao();
+            throw CpfInvalidoException();
 
         this->_cpf = cpfLimpo;
     }
