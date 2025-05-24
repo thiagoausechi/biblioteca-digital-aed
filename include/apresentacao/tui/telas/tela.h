@@ -46,6 +46,17 @@ public:
 
     [[nodiscard]] std::string getTitulo() const { return this->_titulo; }
 
+    /*
+     * Utilizado chamado após todas as dependências,
+     * como o renderizador e repositório, terem sido
+     * devidamente injetadas, garantindo que não sejam
+     * nulas.
+     *
+     * Ideal para iniciar propriedades como Casos de Uso
+     * utilizados naquela tela.
+     */
+    virtual void inicializar() = 0;
+
     void injetarRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = renderizador;
     }
