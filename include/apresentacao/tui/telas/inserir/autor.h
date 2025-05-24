@@ -17,6 +17,9 @@ struct FormularioInsercaoAutor {
 };
 
 class TelaInserirAutor final : public Tela {
+    constexpr static auto BOTAO_INSERIR = "Inserir autor(a)";
+    constexpr static auto MSG_SUCESSO = "Autor(a) inserido(a) com sucesso!";
+
     std::shared_ptr<InserirAutor::UseCase> _caso_de_uso;
     FormularioInsercaoAutor _dados_formulario;
 
@@ -47,7 +50,7 @@ class TelaInserirAutor final : public Tela {
             });
 
             this->_renderizador->mostrarDialogo(
-                OpcoesDoDialog::Sucesso("Autor inserido com sucesso!")
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
             );
 
             this->_limpar_formulario();
@@ -72,7 +75,7 @@ public:
 
         _botao_inserir
                 = Button(
-                    "Inserir novo autor",
+                    BOTAO_INSERIR,
                     [this] { this->_executar_InserirAutorUC(); },
                     ButtonOption::Border()
                 );
