@@ -3,7 +3,11 @@
 #include "tabela.h"
 #include "dominio/arquivos/autor.h"
 #include "dominio/arquivos/cidade.h"
+#include "dominio/arquivos/editora.h"
+#include "dominio/arquivos/emprestimo.h"
 #include "dominio/arquivos/genero.h"
+#include "dominio/arquivos/livro.h"
+#include "dominio/arquivos/pessoa.h"
 
 /*
  * C++ não tem bem uma maneira nativa de
@@ -24,7 +28,15 @@ public:
 
     virtual std::shared_ptr<Tabela<Cidade>> getCidades() = 0;
 
+    virtual std::shared_ptr<Tabela<Editora>> getEditoras() = 0;
+
+    virtual std::shared_ptr<Tabela<Emprestimo>> getEmprestimos() = 0;
+
     virtual std::shared_ptr<Tabela<Genero>> getGeneros() = 0;
+
+    virtual std::shared_ptr<Tabela<Livro>> getLivros() = 0;
+
+    virtual std::shared_ptr<Tabela<Pessoa>> getPessoas() = 0;
 };
 
 #endif //REPOSITORIOS_H
