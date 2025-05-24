@@ -130,6 +130,7 @@ public:
         Components telas;
         Component conteudo;
         Component componentes_interativos;
+        Component dialogo;
         Component layout_aplicacao;
 
         /*
@@ -183,6 +184,27 @@ public:
                        separator(),
                        rodape->Render()
                    }) | border;
+        });
+
+        dialogo = Renderer([&] {
+                return this->_estado_dialogo.transformar(
+                    [this] { this->fecharDialogo(); }
+                );
+            }
+        );
+
+        layout_aplicacao |= Modal(dialogo, &this->_estado_dialogo.mostrar_dialogo);
+        layout_aplicacao |= CatchEvent([this](const Event &e) {
+            /*
+             * Mesmo que o diálogo não tenha botão de fechar,
+             * usamos esta abordagem por segurança para que
+             * o usuário possa fechar o diálogo pressionando
+             * a tecla ESC.
+             */
+            if (e == Event::Escape)
+                return this->fecharDialogo() || true;
+
+            return false;
         });
 
         engine_de_renderizacao.Loop(layout_aplicacao);
