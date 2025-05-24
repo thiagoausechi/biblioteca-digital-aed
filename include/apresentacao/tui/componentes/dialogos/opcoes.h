@@ -12,8 +12,7 @@ using FnTransformar = std::function<Element(const FnFechar &)>;
 
 struct OpcoesDoDialog {
     // @formatter:off
-    static OpcoesDoDialog Padrao(const std::string &titulo,
-                                 const Element &conteudo);
+    static OpcoesDoDialog Padrao(const std::string &titulo, const Element &conteudo);
     static OpcoesDoDialog Erro(const std::string &mensagem);
     static OpcoesDoDialog Erro(const Element &conteudo);
     static OpcoesDoDialog Aviso(const std::string &mensagem);
