@@ -3,6 +3,7 @@
 #include <memory>
 #include <ftxui/component/component.hpp>
 
+#include "componentes/dialogos/opcoes.h"
 #include "componentes/menu/categoria.h"
 #include "componentes/menu/opcao.h"
 #include "ftxui/component/screen_interactive.hpp"
@@ -12,6 +13,7 @@ using namespace ftxui;
 
 class Renderizador {
     Components _itens_menu;
+    OpcoesDoDialog _estado_dialogo;
 
     int _indice_item_menu_selecionado;
     int _indice_anterior_item_menu_selecionado;
@@ -185,6 +187,13 @@ public:
 
         engine_de_renderizacao.Loop(layout_aplicacao);
     }
+
+    void mostrarDialogo(const OpcoesDoDialog &opcao) {
+        this->_estado_dialogo = opcao;
+        this->_estado_dialogo.mostrar_dialogo = true;
+    }
+
+    void fecharDialogo() { this->_estado_dialogo.mostrar_dialogo = false; }
 
     ~Renderizador() = default;
 };
