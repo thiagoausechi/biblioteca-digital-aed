@@ -2,7 +2,6 @@
 #define DOMINIO_EXCECOES_COMUNS_EXCEDEU_MAXIMO_H
 #include <exception>
 #include <string>
-#include <utility>
 
 class ExcedeuMaximoException final : public std::exception {
     std::string _mensagem;

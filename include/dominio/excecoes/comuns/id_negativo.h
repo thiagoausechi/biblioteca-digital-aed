@@ -2,7 +2,6 @@
 #define DOMINIO_EXCECOES_COMUNS_ID_NEGATIVO_H
 #include <exception>
 #include <string>
-#include <utility>
 
 class IdNegativoException final : public std::exception {
     std::string _mensagem;
