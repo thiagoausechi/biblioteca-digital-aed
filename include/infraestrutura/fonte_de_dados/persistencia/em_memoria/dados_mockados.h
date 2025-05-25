@@ -10,6 +10,16 @@
 #include "aplicacao/casos_de_uso/pessoas/inserir.h"
 #include "aplicacao/tabelas/repositorio.h"
 
+/*
+ * Esta classe é responsável por inserir dados mockados (falsos ou simulados) no repositório,
+ * visando facilitar o desenvolvimento, testes e demonstrações da aplicação.
+ *
+ * Dados mockados são criados para simular o comportamento de dados reais, permitindo que
+ * funcionalidades do sistema sejam testadas mesmo na ausência de uma base de dados real ou
+ * de integrações completas. Essa prática ajuda a garantir que o sistema funcione conforme
+ * esperado em diferentes cenários, de forma rápida e controlada, sem depender de dados externos
+ * ou ambientes de produção.
+ */
 class MockEmMemoria {
     static void inserirCidades(const std::shared_ptr<Repositorio> &repositorio) {
         const auto inserir = std::make_shared<InserirCidade::UseCase>(repositorio->getCidades());
