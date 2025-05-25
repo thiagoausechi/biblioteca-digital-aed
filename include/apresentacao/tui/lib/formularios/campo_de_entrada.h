@@ -19,7 +19,15 @@ struct Campo {
     std::function<void()> ao_enviar = [] {};
     std::function<bool(const Event &evento)> escutar_evento = nullptr;
 
-    [[nodiscard]] int valor_numerico() const { return std::stoi(valor); }
+    [[nodiscard]] int valor_numerico() const {
+        if (valor.empty())
+            throw std::invalid_argument(std::format("Campo de {} não pode ser vazio.", nome));
+        try {
+            return std::stoi(valor);
+        } catch (...) {
+            throw std::invalid_argument(std::format("Campo de {} contém valor inválido.", nome));
+        }
+    }
 };
 
 static Component criarInput(Campo &campo) {
