@@ -43,6 +43,8 @@ public:
 
     virtual std::vector<std::shared_ptr<TArquivo>> listarTudo() = 0;
 
+    virtual bool vazia() = 0;
+
     [[nodiscard]] int getUltimoId() const { return this->_ultimo_id; }
 };
 
