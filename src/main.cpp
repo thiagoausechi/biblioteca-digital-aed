@@ -1,12 +1,15 @@
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
+
 #include "apresentacao/tui/telas/fabrica.h"
 #include "apresentacao/tui/telas/inicio.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
+#include "apresentacao/tui/telas/inserir/genero.h"
 #include "apresentacao/tui/telas/inserir/autor.h"
 #include "apresentacao/tui/telas/inserir/cidade.h"
-#include "apresentacao/tui/telas/inserir/genero.h"
+#include "apresentacao/tui/telas/inserir/pessoa.h"
+
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
 
 using namespace std;
@@ -25,7 +28,7 @@ int main() {
         Opcao("Gêneros", fabrica->criar<TelaInserirGenero>()),
         Opcao("Autores", fabrica->criar<TelaInserirAutor>()),
         Opcao("Cidades", fabrica->criar<TelaInserirCidade>()),
-        Opcao("Pessoas", fabrica->criar<TelaReserva>()),
+        Opcao("Pessoas", fabrica->criar<TelaInserirPessoa>()),
         Opcao("Editoras", fabrica->criar<TelaReserva>()),
         Opcao("Livros", fabrica->criar<TelaReserva>()),
 
