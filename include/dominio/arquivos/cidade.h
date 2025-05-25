@@ -49,6 +49,14 @@ public:
 
         this->_uf = uf_formatado;
     }
+
+    [[nodiscard]] std::string to_string() const {
+        return std::format(
+            "{} / {}",
+            this->getNome(),
+            this->getUF()
+        );
+    }
 };
 
 #endif //DOMINIO_ARQUIVOS_CIDADE_H
