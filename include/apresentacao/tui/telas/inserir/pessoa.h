@@ -34,6 +34,7 @@ struct FormularioInsercaoPessoa {
 };
 
 class TelaInserirPessoa final : public Tela {
+    constexpr static auto AVISO_SEM_CIDADE = "Ao menos uma cidade deve ser cadastrada para inserir uma pessoa.";
     constexpr static auto BOTAO_INSERIR = "Inserir pessoa";
     constexpr static auto MSG_SUCESSO = "Pessoa inserida com sucesso!";
 
@@ -60,12 +61,20 @@ class TelaInserirPessoa final : public Tela {
                 _input_id_cidade->Render(),
                 text('(' + _cidade_formatada + ')') | dim
             ),
+            text(this->_deve_mostrar_aviso()
+                     ? AVISO_SEM_CIDADE
+                     : ""
+            ) | color(Color::Red),
             filler(),
             hbox({
                 _botao_inserir->Render() | color(Color::GreenLight),
                 filler(),
             })
         });
+    }
+
+    bool _deve_mostrar_aviso() {
+        return this->_repositorio->getCidades()->vazia();
     }
 
     void _limpar_formulario() {
