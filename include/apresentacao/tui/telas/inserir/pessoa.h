@@ -33,16 +33,54 @@ struct FormularioInsercaoPessoa {
 };
 
 class TelaInserirPessoa final : public Tela {
+    constexpr static auto BOTAO_INSERIR = "Inserir pessoa";
+
+    FormularioInsercaoPessoa _dados_formulario;
+
+    Component _input_nome;
+    Component _input_cpf;
+    Component _input_endereco;
+    Component _input_id_cidade;
+    Component _botao_inserir;
+    Component _formulario;
+    Component _layout;
+
     Element Conteudo() override {
         return text("Esta tela ainda não foi implementada!")
                | color(Color::Red);
+    }
+
+    void _limpar_formulario() {
+        _dados_formulario = FormularioInsercaoPessoa{};
     }
 
 public:
     explicit TelaInserirPessoa()
         : Tela("Formulário para inserção de Pessoa") {}
 
-    void inicializar() override {}
+    void inicializar() override {
+        _input_nome = criarInput(_dados_formulario.nome);
+        _input_cpf = criarInput(_dados_formulario.cpf);
+        _input_endereco = criarInput(_dados_formulario.endereco);
+        _input_id_cidade = criarInput(_dados_formulario.id_cidade);
+
+        _botao_inserir
+                = Button(
+                    BOTAO_INSERIR,
+                    [] { ; },
+                    ButtonOption::Border()
+                );
+
+        _formulario = Container::Vertical({
+            _input_nome,
+            _input_cpf,
+            _input_endereco,
+            _input_id_cidade,
+            _botao_inserir
+        });
+
+        Add(_formulario);
+    }
 };
 
 #endif //APRESENTACAO_TELAS_INSERIR_PESSOA_H
