@@ -3,6 +3,7 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
+#include "aplicacao/casos_de_uso/pessoas/inserir.h"
 #include "apresentacao/tui/lib/formularios/campo_de_entrada.h"
 #include "apresentacao/tui/telas/tela.h"
 
@@ -34,8 +35,10 @@ struct FormularioInsercaoPessoa {
 
 class TelaInserirPessoa final : public Tela {
     constexpr static auto BOTAO_INSERIR = "Inserir pessoa";
+    constexpr static auto MSG_SUCESSO = "Pessoa inserida com sucesso!";
 
     FormularioInsercaoPessoa _dados_formulario;
+    std::shared_ptr<InserirPessoa::UseCase> _caso_de_uso;
 
     Component _input_nome;
     Component _input_cpf;
@@ -63,11 +66,37 @@ class TelaInserirPessoa final : public Tela {
         _dados_formulario = FormularioInsercaoPessoa{};
     }
 
+    void _executar_InserirPessoaUC() {
+        try {
+            this->_caso_de_uso->executar({
+                .nome = _dados_formulario.nome.valor,
+                .cpf = _dados_formulario.cpf.valor,
+                .endereco = _dados_formulario.endereco.valor,
+                .id_cidade = _dados_formulario.id_cidade.valor_numerico(),
+            });
+
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
+            );
+
+            this->_limpar_formulario();
+        } catch (const std::exception &e) {
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Erro(e.what())
+            );
+        }
+    }
+
 public:
     explicit TelaInserirPessoa()
         : Tela("Formulário para inserção de Pessoa") {}
 
     void inicializar() override {
+        _caso_de_uso = std::make_shared<InserirPessoa::UseCase>(
+            _repositorio->getPessoas(),
+            _repositorio->getCidades()
+        );
+
         _input_nome = criarInput(_dados_formulario.nome);
         _input_cpf = criarInput(_dados_formulario.cpf);
         _input_endereco = criarInput(_dados_formulario.endereco);
@@ -76,7 +105,7 @@ public:
         _botao_inserir
                 = Button(
                     BOTAO_INSERIR,
-                    [] { ; },
+                    [this] { this->_executar_InserirPessoaUC(); },
                     ButtonOption::Border()
                 );
 
