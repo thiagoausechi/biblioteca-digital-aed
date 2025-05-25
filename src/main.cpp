@@ -9,6 +9,7 @@
 #include "apresentacao/tui/telas/inserir/autor.h"
 #include "apresentacao/tui/telas/inserir/cidade.h"
 #include "apresentacao/tui/telas/inserir/pessoa.h"
+#include "infraestrutura/fonte_de_dados/persistencia/em_memoria/dados_mockados.h"
 
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
 
@@ -18,6 +19,8 @@ int main() {
     std::shared_ptr<Renderizador> renderizador = std::make_shared<Renderizador>();
     std::shared_ptr<Repositorio> repositorio = std::make_shared<RepositorioEmMemoria>();
     auto fabrica = std::make_shared<FabricaDeTelas>(repositorio, renderizador);
+
+    MockEmMemoria::inserirDadosMockados(repositorio);
 
     // Requisito 8
     renderizador->carregarOpcoesDoMenu(Components{
