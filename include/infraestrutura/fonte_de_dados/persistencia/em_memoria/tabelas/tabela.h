@@ -56,6 +56,10 @@ public:
 
         return copia_somente_leitura;
     }
+
+    bool vazia() override {
+        return _arquivos.empty();
+    }
 };
 
 #endif //INFRA_PERSISTENCIA_TABELAS_TABELA_EM_MEMORIA_H
