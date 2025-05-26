@@ -205,7 +205,7 @@ public:
              */
             if (e == Event::Escape) {
                 this->fecharDialogo();
-                return  true;
+                return true;
             }
 
             return false;
