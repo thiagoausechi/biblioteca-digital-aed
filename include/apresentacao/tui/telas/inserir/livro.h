@@ -138,14 +138,16 @@ class TelaInserirLivro final : public Tela {
     }
 
     void _atualizar_nome_genero() {
-        auto genero =
-                _repositorio
-                ->getGeneros()
-                ->buscar(_dados_formulario.id_genero.valor_numerico());
-        if (genero.has_value())
-            _nome_genero = genero->get()->getDescricao();
-        else
-            _nome_genero = "";
+        try {
+            auto genero =
+                    _repositorio
+                    ->getGeneros()
+                    ->buscar(_dados_formulario.id_genero.valor_numerico());
+            if (genero.has_value())
+                _nome_genero = genero->get()->getDescricao();
+            else
+                _nome_genero = "";
+        } catch (...) {}
     }
 
     void _executar_InserirLivroUC() {
