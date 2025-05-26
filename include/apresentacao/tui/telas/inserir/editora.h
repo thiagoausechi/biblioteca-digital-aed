@@ -35,8 +35,27 @@ class TelaInserirEditora final : public Tela {
     std::string _cidade_formatada;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | color(Color::Red);
+        return vbox({
+            hbox(nome(_dados_formulario.nome), _input_nome->Render()),
+            hbox(
+                nome(_dados_formulario.id_cidade),
+                _input_id_cidade->Render(),
+                text('(' + _cidade_formatada + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso()
+                     ? AVISO_SEM_CIDADE
+                     : ""
+            ) | color(Color::Red),
+            filler(),
+            hbox({
+                _botao_inserir->Render() | color(Color::GreenLight),
+                filler(),
+            })
+        });
+    }
+
+    bool _deve_mostrar_aviso() {
+        return this->_repositorio->getCidades()->vazia();
     }
 
     void _limpar_formulario() {
