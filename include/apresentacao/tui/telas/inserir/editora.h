@@ -68,14 +68,16 @@ class TelaInserirEditora final : public Tela {
     }
 
     void _formatar_cidade() {
-        auto cidade =
-                _repositorio
-                ->getCidades()
-                ->buscar(_dados_formulario.id_cidade.valor_numerico());
-        if (cidade.has_value())
-            _cidade_formatada = cidade->get()->to_string();
-        else
-            _cidade_formatada = "";
+        try {
+            auto cidade =
+                    _repositorio
+                    ->getCidades()
+                    ->buscar(_dados_formulario.id_cidade.valor_numerico());
+            if (cidade.has_value())
+                _cidade_formatada = cidade->get()->to_string();
+            else
+                _cidade_formatada = "";
+        } catch (...) {}
     }
 
     void _executar_InserirEditoraUC() {
