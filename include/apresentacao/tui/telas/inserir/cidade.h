@@ -32,7 +32,6 @@ class TelaInserirCidade final : public Tela {
     Component _input_uf;
     Component _botao_inserir;
     Component _formulario;
-    Component _layout;
 
     Element Conteudo() override {
         return vbox({

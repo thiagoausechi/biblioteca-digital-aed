@@ -35,7 +35,6 @@ class TelaInserirEditora final : public Tela {
     Component _input_id_cidade;
     Component _botao_inserir;
     Component _formulario;
-    Component _layout;
 
     std::string _cidade_formatada;
 

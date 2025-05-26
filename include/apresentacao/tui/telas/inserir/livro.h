@@ -51,7 +51,6 @@ class TelaInserirLivro final : public Tela {
     Component _input_id_genero;
     Component _botao_inserir;
     Component _formulario;
-    Component _layout;
 
     std::string _nome_editora;
     std::string _nome_autor;

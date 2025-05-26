@@ -26,7 +26,6 @@ class TelaInserirGenero final : public Tela {
     Component _input_descricao;
     Component _botao_inserir;
     Component _formulario;
-    Component _layout;
 
     Element Conteudo() override {
         return vbox({
@@ -63,8 +62,7 @@ class TelaInserirGenero final : public Tela {
 
 public:
     explicit TelaInserirGenero()
-        : Tela("Formulário para inserção de Gênero") {
-    }
+        : Tela("Formulário para inserção de Gênero") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<InserirGenero::UseCase>(
