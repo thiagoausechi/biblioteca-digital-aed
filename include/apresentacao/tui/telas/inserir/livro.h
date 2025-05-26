@@ -112,14 +112,16 @@ class TelaInserirLivro final : public Tela {
     }
 
     void _atualizar_nome_editora() {
-        auto editora =
-                _repositorio
-                ->getEditoras()
-                ->buscar(_dados_formulario.id_editora.valor_numerico());
-        if (editora.has_value())
-            _nome_editora = editora->get()->getNome();
-        else
-            _nome_editora = "";
+        try {
+            auto editora =
+                    _repositorio
+                    ->getEditoras()
+                    ->buscar(_dados_formulario.id_editora.valor_numerico());
+            if (editora.has_value())
+                _nome_editora = editora->get()->getNome();
+            else
+                _nome_editora = "";
+        } catch (...) {}
     }
 
     void _atualizar_nome_autor() {
