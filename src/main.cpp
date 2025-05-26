@@ -10,6 +10,7 @@
 #include "apresentacao/tui/telas/inserir/cidade.h"
 #include "apresentacao/tui/telas/inserir/pessoa.h"
 #include "apresentacao/tui/telas/inserir/editora.h"
+#include "apresentacao/tui/telas/inserir/livro.h"
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/dados_mockados.h"
 
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
@@ -34,7 +35,7 @@ int main() {
         Opcao("Cidades", fabrica->criar<TelaInserirCidade>()),
         Opcao("Pessoas", fabrica->criar<TelaInserirPessoa>()),
         Opcao("Editoras", fabrica->criar<TelaInserirEditora>()),
-        Opcao("Livros", fabrica->criar<TelaReserva>()),
+        Opcao("Livros", fabrica->criar<TelaInserirLivro>()),
 
         Renderer([] { return separatorEmpty(); }),
         Categoria("Consultar dados"),
