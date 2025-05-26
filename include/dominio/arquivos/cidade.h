@@ -11,7 +11,7 @@ class Cidade final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Cidade";
 
-    Cidade(): Arquivo(NOME_CLASSE) { ; }
+    Cidade(): Arquivo(NOME_CLASSE) {}
 
     Cidade(const int id, const std::string &nome, const std::string &uf): Arquivo(NOME_CLASSE) {
         this->setId(id);

@@ -16,7 +16,7 @@ class Pessoa final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Pessoa";
 
-    Pessoa(): Arquivo(NOME_CLASSE) { ; }
+    Pessoa(): Arquivo(NOME_CLASSE) {}
 
     Pessoa(const int id,
            const std::string &nome,

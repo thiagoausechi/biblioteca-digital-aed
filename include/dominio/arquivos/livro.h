@@ -13,7 +13,7 @@ class Livro final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Livro";
 
-    Livro(): Arquivo(NOME_CLASSE) { ; }
+    Livro(): Arquivo(NOME_CLASSE) {}
 
     Livro(const int id,
           const std::string &nome,

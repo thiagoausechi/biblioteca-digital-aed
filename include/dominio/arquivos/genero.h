@@ -9,7 +9,7 @@ class Genero final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Gênero";
 
-    Genero(): Arquivo(NOME_CLASSE) { ; }
+    Genero(): Arquivo(NOME_CLASSE) {}
 
     Genero(const int id, const std::string &descricao): Arquivo(NOME_CLASSE) {
         this->setId(id);

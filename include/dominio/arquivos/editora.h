@@ -10,7 +10,7 @@ class Editora final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Editora";
 
-    Editora(): Arquivo(NOME_CLASSE) { ; }
+    Editora(): Arquivo(NOME_CLASSE) {}
 
     Editora(const int id, const std::string &nome, const int id_cidade): Arquivo(NOME_CLASSE) {
         this->setId(id);

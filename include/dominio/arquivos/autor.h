@@ -9,7 +9,7 @@ class Autor final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Autor";
 
-    Autor(): Arquivo(NOME_CLASSE) { ; }
+    Autor(): Arquivo(NOME_CLASSE) {}
 
     Autor(const int id, const std::string &nome): Arquivo(NOME_CLASSE) {
         this->setId(id);

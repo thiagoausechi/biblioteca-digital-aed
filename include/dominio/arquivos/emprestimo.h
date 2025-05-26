@@ -12,7 +12,7 @@ class Emprestimo final : public Arquivo {
 public:
     constexpr static auto NOME_CLASSE = "Empréstimo";
 
-    Emprestimo(): Arquivo(NOME_CLASSE) { ; }
+    Emprestimo(): Arquivo(NOME_CLASSE) {}
 
     Emprestimo(const int id, const int id_pessoa, const int id_livro): Arquivo(NOME_CLASSE) {
         this->setId(id);
