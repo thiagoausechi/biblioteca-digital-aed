@@ -12,7 +12,7 @@ using namespace ftxui;
 struct FormularioInsercaoAutor {
     Campo nome = {
         .nome = "Nome",
-        .placeholder = "Nome do Autor"
+        .placeholder = "Nome do(a) Autor(a)",
     };
 };
 
@@ -63,8 +63,7 @@ class TelaInserirAutor final : public Tela {
 
 public:
     explicit TelaInserirAutor()
-        : Tela("Formulário para inserção de Autor") {
-    }
+        : Tela("Formulário para inserção de Autores") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<InserirAutor::UseCase>(
