@@ -62,6 +62,7 @@ class Renderizador {
         if (antiga_opcao_selecionada == nullptr) return;
 
         antiga_opcao_selecionada->desselecionar();
+        antiga_opcao_selecionada->getTela()->ao_sair();
     }
 
     void _marcarOpcaoSelecionada() {
@@ -71,6 +72,7 @@ class Renderizador {
         );
 
         opcao_selecionada->selecionar();
+        opcao_selecionada->getTela()->ao_entrar();
         _indice_anterior_item_menu_selecionado = _indice_item_menu_selecionado;
     }
 

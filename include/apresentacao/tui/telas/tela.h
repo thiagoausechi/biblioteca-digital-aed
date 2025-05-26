@@ -57,6 +57,19 @@ public:
      */
     virtual void inicializar() = 0;
 
+    /*
+     * Chamado quando o usuário selecionar
+     * essa tela no menu.
+     */
+    virtual void ao_entrar() {}
+
+    /*
+     * Chamado quando o usuário selecionar
+     * outra tela no menu enquanto essa
+     * era a tela atual.
+     */
+    virtual void ao_sair() {}
+
     void injetarRenderizador(std::shared_ptr<Renderizador> renderizador) {
         this->_renderizador = renderizador;
     }
