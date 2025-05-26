@@ -121,7 +121,9 @@ class TelaInserirLivro final : public Tela {
                 _nome_editora = editora->get()->getNome();
             else
                 _nome_editora = "";
-        } catch (...) {}
+        } catch (...) {
+            _nome_editora = "";
+        }
     }
 
     void _atualizar_nome_autor() {
@@ -134,7 +136,9 @@ class TelaInserirLivro final : public Tela {
                 _nome_autor = autor->get()->getNome();
             else
                 _nome_autor = "";
-        } catch (...) {}
+        } catch (...) {
+            _nome_autor = "";
+        }
     }
 
     void _atualizar_nome_genero() {
@@ -147,7 +151,9 @@ class TelaInserirLivro final : public Tela {
                 _nome_genero = genero->get()->getDescricao();
             else
                 _nome_genero = "";
-        } catch (...) {}
+        } catch (...) {
+            _nome_genero = "";
+        }
     }
 
     void _executar_InserirLivroUC() {

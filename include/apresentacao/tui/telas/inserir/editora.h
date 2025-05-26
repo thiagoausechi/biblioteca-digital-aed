@@ -77,7 +77,9 @@ class TelaInserirEditora final : public Tela {
                 _cidade_formatada = cidade->get()->to_string();
             else
                 _cidade_formatada = "";
-        } catch (...) {}
+        } catch (...) {
+            _cidade_formatada = "";
+        }
     }
 
     void _executar_InserirEditoraUC() {
