@@ -99,7 +99,7 @@ class TelaInserirEditora final : public Tela {
 
 public:
     explicit TelaInserirEditora()
-        : Tela("Formulário para inserção de Editora`") {}
+        : Tela("Formulário para inserção de Editora") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<InserirEditora::UseCase>(
