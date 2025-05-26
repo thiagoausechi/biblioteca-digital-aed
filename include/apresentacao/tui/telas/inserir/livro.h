@@ -54,9 +54,54 @@ class TelaInserirLivro final : public Tela {
     std::string _nome_genero;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | color(Color::Red);
+        return vbox({
+            hbox(nome(_dados_formulario.nome), _input_nome->Render()),
+
+            // Campo de entrada para o ID da Editor
+            hbox(
+                nome(_dados_formulario.id_editora),
+                _input_id_editora->Render(),
+                text('(' + _nome_editora + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso_editora()
+                     ? AVISO_SEM_EDITORA
+                     : ""
+            ) | color(Color::Red),
+
+            // Campo de entrada para o ID do(a) Autor(a)
+            hbox(
+                nome(_dados_formulario.id_autor),
+                _input_id_autor->Render(),
+                text('(' + _nome_autor + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso_autor()
+                     ? AVISO_SEM_AUTOR
+                     : ""
+            ) | color(Color::Red),
+
+            // Campo de entrada para o ID do gênero
+            hbox(
+                nome(_dados_formulario.id_genero),
+                _input_id_genero->Render(),
+                text('(' + _nome_genero + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso_genero()
+                     ? AVISO_SEM_GENERO
+                     : ""
+            ) | color(Color::Red),
+
+            // Rodapé da tela
+            filler(),
+            hbox({
+                _botao_inserir->Render() | color(Color::GreenLight),
+                filler(),
+            })
+        });
     }
+
+    bool _deve_mostrar_aviso_editora() { return this->_repositorio->getEditoras()->vazia(); }
+    bool _deve_mostrar_aviso_autor() { return this->_repositorio->getAutores()->vazia(); }
+    bool _deve_mostrar_aviso_genero() { return this->_repositorio->getGeneros()->vazia(); }
 
     void _limpar_formulario() {
         _dados_formulario = FormularioInsercaoLivro{};
