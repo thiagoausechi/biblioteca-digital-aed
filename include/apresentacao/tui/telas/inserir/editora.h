@@ -3,6 +3,8 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
+#include "aplicacao/casos_de_uso/editoras/inserir.h"
+#include "apresentacao/tui/componentes/dialogos/opcoes.h"
 #include "apresentacao/tui/lib/formularios/campo_de_entrada.h"
 #include "apresentacao/tui/telas/tela.h"
 
@@ -24,7 +26,10 @@ struct FormularioInsercaoEditora {
 class TelaInserirEditora final : public Tela {
     constexpr static auto AVISO_SEM_CIDADE = "Ao menos uma cidade deve ser cadastrada para inserir uma editora.";
     constexpr static auto BOTAO_INSERIR = "Inserir editora";
+    constexpr static auto MSG_SUCESSO = "Editora inserida com sucesso!";
+
     FormularioInsercaoEditora _dados_formulario;
+    std::shared_ptr<InserirEditora::UseCase> _caso_de_uso;
 
     Component _input_nome;
     Component _input_id_cidade;
@@ -73,11 +78,35 @@ class TelaInserirEditora final : public Tela {
             _cidade_formatada = "";
     }
 
+    void _executar_InserirEditoraUC() {
+        try {
+            this->_caso_de_uso->executar({
+                .nome = _dados_formulario.nome.valor,
+                .id_cidade = _dados_formulario.id_cidade.valor_numerico(),
+            });
+
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
+            );
+
+            this->_limpar_formulario();
+        } catch (const std::exception &e) {
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Erro(e.what())
+            );
+        }
+    }
+
 public:
     explicit TelaInserirEditora()
         : Tela("Formulário para inserção de Editora`") {}
 
     void inicializar() override {
+        _caso_de_uso = std::make_shared<InserirEditora::UseCase>(
+            _repositorio->getEditoras(),
+            _repositorio->getCidades()
+        );
+
         _cidade_formatada = "";
         _dados_formulario.id_cidade.ao_enviar = [this] { this->_formatar_cidade(); };
 
@@ -87,7 +116,7 @@ public:
         _botao_inserir
                 = Button(
                     BOTAO_INSERIR,
-                    [] {},
+                    [this] { this->_executar_InserirEditoraUC(); },
                     ButtonOption::Border()
                 );
 
