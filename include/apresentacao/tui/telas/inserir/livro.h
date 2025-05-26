@@ -3,6 +3,8 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
+#include "aplicacao/casos_de_uso/livros/inserir.h"
+#include "apresentacao/tui/componentes/dialogos/opcoes.h"
 #include "apresentacao/tui/lib/formularios/campo_de_entrada.h"
 #include "apresentacao/tui/telas/tela.h"
 
@@ -38,8 +40,10 @@ class TelaInserirLivro final : public Tela {
     constexpr static auto AVISO_SEM_AUTOR = "Ao menos um(a) autor(a) deve ser cadastrado(a) para inserir um livro.";
     constexpr static auto AVISO_SEM_GENERO = "Ao menos um gênero deve ser cadastrado para inserir um livro.";
     constexpr static auto BOTAO_INSERIR = "Inserir livro";
+    constexpr static auto MSG_SUCESSO = "Livro inserido com sucesso!";
 
     FormularioInsercaoLivro _dados_formulario;
+    std::shared_ptr<InserirLivro::UseCase> _caso_de_uso;
 
     Component _input_nome;
     Component _input_id_editora;
@@ -140,11 +144,39 @@ class TelaInserirLivro final : public Tela {
             _nome_genero = "";
     }
 
+    void _executar_InserirLivroUC() {
+        try {
+            this->_caso_de_uso->executar({
+                .nome = _dados_formulario.nome.valor,
+                .id_editora = _dados_formulario.id_editora.valor_numerico(),
+                .id_autor = _dados_formulario.id_autor.valor_numerico(),
+                .id_genero = _dados_formulario.id_genero.valor_numerico(),
+            });
+
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
+            );
+
+            this->_limpar_formulario();
+        } catch (const std::exception &e) {
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Erro(e.what())
+            );
+        }
+    }
+
 public:
     explicit TelaInserirLivro()
         : Tela("Formulário para inserção de Livro") {}
 
     void inicializar() override {
+        _caso_de_uso = std::make_shared<InserirLivro::UseCase>(
+            _repositorio->getLivros(),
+            _repositorio->getEditoras(),
+            _repositorio->getAutores(),
+            _repositorio->getGeneros()
+        );
+
         _nome_editora = "";
         _nome_autor = "";
         _nome_genero = "";
@@ -160,7 +192,7 @@ public:
         _botao_inserir
                 = Button(
                     BOTAO_INSERIR,
-                    [] {},
+                    [this] { this->_executar_InserirLivroUC(); },
                     ButtonOption::Border()
                 );
 
