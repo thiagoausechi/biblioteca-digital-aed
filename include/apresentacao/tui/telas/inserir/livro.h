@@ -125,14 +125,16 @@ class TelaInserirLivro final : public Tela {
     }
 
     void _atualizar_nome_autor() {
-        auto autor =
-                _repositorio
-                ->getAutores()
-                ->buscar(_dados_formulario.id_autor.valor_numerico());
-        if (autor.has_value())
-            _nome_autor = autor->get()->getNome();
-        else
-            _nome_autor = "";
+        try {
+            auto autor =
+                    _repositorio
+                    ->getAutores()
+                    ->buscar(_dados_formulario.id_autor.valor_numerico());
+            if (autor.has_value())
+                _nome_autor = autor->get()->getNome();
+            else
+                _nome_autor = "";
+        } catch (...) {}
     }
 
     void _atualizar_nome_genero() {
