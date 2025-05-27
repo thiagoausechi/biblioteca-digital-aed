@@ -6,6 +6,7 @@
 
 #include "apresentacao/tui/telas/tela.h"
 #include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/celula.h"
 
 using namespace ftxui;
 
@@ -32,16 +33,20 @@ class TelaConsultarCidades final : public Tela {
         std::ostringstream id_formatado;
 
         // Cabeçalho da Tabela
-        linhas.emplace_back(Elements{text(" ID "), text(" UF "), text(" Cidade")});
+        linhas.emplace_back(Elements{
+            celula(text("ID")),
+            celula(text("UF")),
+            celula(text("Cidade"))
+        });
 
         // Dados da Tabela
         for (const auto &cidade: cidades->listarTudo()) {
             id_formatado << std::setfill('0') << std::setw(2) << cidade->getId();
 
             linhas.emplace_back(Elements{
-                text(id_formatado.str()) | center,
-                text(" " + cidade->getUF()),
-                text(" " + cidade->getNome())
+                celula(text(id_formatado.str()) | center),
+                celula(cidade->getUF()),
+                celula(cidade->getNome())
             });
 
             id_formatado.str("");
