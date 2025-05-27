@@ -13,10 +13,11 @@ class TelaConsultarCidades final : public Tela {
     std::shared_ptr<TabelaComponent> _tabela;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | dim
-               | vcenter
-               | hcenter;
+        return hbox({
+            separatorEmpty(),
+            _tabela->Render() | flex,
+            separatorEmpty(),
+        });
     }
 
     void _carregarTabela() const {
