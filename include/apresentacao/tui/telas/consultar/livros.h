@@ -14,10 +14,17 @@ class TelaConsultarLivros final : public Tela {
     bool _ao_menos_um_livro_emprestado{};
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | dim
-               | vcenter
-               | hcenter;
+        return hbox({
+            separatorEmpty(),
+            vbox({
+                _tabela->Render() | flex,
+                text(this->_ao_menos_um_livro_emprestado
+                         ? "* Livro indisponível"
+                         : ""
+                ) | color(Color::Red),
+            }) | flex,
+            separatorEmpty(),
+        });
     }
 
     void _carregarTabela() {
