@@ -20,11 +20,9 @@ class TelaReserva final : public Tela {
 
 public:
     explicit TelaReserva()
-        : Tela("Tela Não Implementada") {
-    }
+        : Tela("Tela Não Implementada") {}
 
-    void inicializar() override {
-    }
+    void inicializar() override {}
 };
 
 #endif //APRESENTACAO_TELAS_TELA_RESERVA_H
