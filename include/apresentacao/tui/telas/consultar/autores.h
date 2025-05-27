@@ -14,9 +14,9 @@ class TelaConsultarAutores final : public Tela {
 
     Element Conteudo() override {
         return hbox({
-            filler(),
+            separatorEmpty(),
             _tabela->Render() | flex,
-            filler()
+            separatorEmpty(),
         });
     }
 
