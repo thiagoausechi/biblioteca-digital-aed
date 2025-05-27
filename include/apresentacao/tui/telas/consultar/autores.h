@@ -6,6 +6,7 @@
 
 #include "apresentacao/tui/telas/tela.h"
 #include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/celula.h"
 
 using namespace ftxui;
 
@@ -32,15 +33,18 @@ class TelaConsultarAutores final : public Tela {
         std::ostringstream id_formatado;
 
         // Cabeçalho da Tabela
-        linhas.emplace_back(Elements{text(" ID "), text(" Nome")});
+        linhas.emplace_back(Elements{
+            celula(text("ID")),
+            celula(text("Nome"))
+        });
 
         // Dados da Tabela
         for (const auto &autor: autores->listarTudo()) {
             id_formatado << std::setfill('0') << std::setw(2) << autor->getId();
 
             linhas.emplace_back(Elements{
-                text(id_formatado.str()) | center,
-                text(" " + autor->getNome())
+                celula(text(id_formatado.str()) | center),
+                celula(autor->getNome())
             });
 
             id_formatado.str("");
