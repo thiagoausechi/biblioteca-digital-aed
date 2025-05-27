@@ -3,7 +3,6 @@
 #include <ftxui/component/component_base.hpp>
 
 #include "apresentacao/tui/telas/tela.h"
-#include "dominio/excecoes/comuns/id_negativo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
 #include "ftxui/component/component.hpp"
 #include "ftxui/component/event.hpp"
