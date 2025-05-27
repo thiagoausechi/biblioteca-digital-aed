@@ -113,11 +113,9 @@ public:
 
         this->_mapearIndices();
 
-        // ReSharper disable once CppDFAConstantConditions -- Desabilita o aviso de "Condição constante"
         if (_indice_item_menu_selecionado == -1)
             throw std::invalid_argument("É necessário ter pelo menos uma opção selecionável (página registrada).");
 
-        // ReSharper disable once CppDFAUnreachableCode -- Desabilita o aviso de "Código inacessível"
         this->_selecionarTela();
     }
 
