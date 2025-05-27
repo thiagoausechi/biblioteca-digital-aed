@@ -66,6 +66,7 @@ class TelaConsultarPessoas final : public Tela {
 
         // Estilização de colunas específicas
         this->_tabela->_tabela_base->SelectColumn(2).Decorate(flex);
+        this->_tabela->_tabela_base->SelectColumn(-1).DecorateCells(align_right);
     }
 
 public:
