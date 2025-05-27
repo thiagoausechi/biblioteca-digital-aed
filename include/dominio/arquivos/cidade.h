@@ -1,5 +1,6 @@
 #ifndef DOMINIO_ARQUIVOS_CIDADE_H
 #define DOMINIO_ARQUIVOS_CIDADE_H
+#include <algorithm>
 #include "arquivo.h"
 #include "dominio/excecoes/comuns/excedeu_maximo.h"
 #include "dominio/excecoes/comuns/propriedade_vazia.h"
@@ -45,7 +46,7 @@ public:
             throw ExcedeuMaximoException("UF", NOME_CLASSE, 2, "caracteres");
 
         auto uf_formatado = uf;
-        std::ranges::transform(uf, uf_formatado.begin(), toupper);
+        std::transform(uf.begin(), uf.end(), uf_formatado.begin(), toupper);
 
         this->_uf = uf_formatado;
     }
