@@ -6,6 +6,7 @@
 
 #include "apresentacao/tui/telas/tela.h"
 #include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/celula.h"
 
 using namespace ftxui;
 
@@ -32,15 +33,18 @@ class TelaConsultarGeneros final : public Tela {
         std::ostringstream id_formatado;
 
         // Cabeçalho da Tabela
-        linhas.emplace_back(Elements{text(" ID "), text(" Descrição")});
+        linhas.emplace_back(Elements{
+            celula(text("ID")),
+            celula(text("Descrição"))
+        });
 
         // Dados da Tabela
         for (const auto &genero: generos->listarTudo()) {
             id_formatado << std::setfill('0') << std::setw(2) << genero->getId();
 
             linhas.emplace_back(Elements{
-                text(id_formatado.str()) | center,
-                text(" " + genero->getDescricao())
+                celula(text(id_formatado.str()) | center),
+                celula(genero->getDescricao())
             });
 
             id_formatado.str("");
