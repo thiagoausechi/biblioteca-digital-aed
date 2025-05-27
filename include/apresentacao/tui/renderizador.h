@@ -1,3 +1,4 @@
+// ReSharper disable CppJoinDeclarationAndAssignment
 #ifndef APRESENTACAO_RENDERIZADOR_H
 #define APRESENTACAO_RENDERIZADOR_H
 #include <memory>
