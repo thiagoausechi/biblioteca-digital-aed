@@ -1,23 +1,27 @@
 #include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/componentes/menu/categoria.h"
 #include "apresentacao/tui/componentes/menu/opcao.h"
-
 #include "apresentacao/tui/telas/fabrica.h"
 #include "apresentacao/tui/telas/inicio.h"
 #include "apresentacao/tui/telas/tela_reserva.h"
-#include "apresentacao/tui/telas/consultar/autores.h"
-#include "apresentacao/tui/telas/consultar/cidades.h"
-#include "apresentacao/tui/telas/consultar/editoras.h"
-#include "apresentacao/tui/telas/consultar/generos.h"
-#include "apresentacao/tui/telas/consultar/pessoas.h"
+
+// Telas de Inserção
 #include "apresentacao/tui/telas/inserir/genero.h"
 #include "apresentacao/tui/telas/inserir/autor.h"
 #include "apresentacao/tui/telas/inserir/cidade.h"
 #include "apresentacao/tui/telas/inserir/pessoa.h"
 #include "apresentacao/tui/telas/inserir/editora.h"
 #include "apresentacao/tui/telas/inserir/livro.h"
-#include "infraestrutura/fonte_de_dados/persistencia/em_memoria/dados_mockados.h"
 
+// Telas de Consulta
+#include "apresentacao/tui/telas/consultar/generos.h"
+#include "apresentacao/tui/telas/consultar/autores.h"
+#include "apresentacao/tui/telas/consultar/cidades.h"
+#include "apresentacao/tui/telas/consultar/pessoas.h"
+#include "apresentacao/tui/telas/consultar/editoras.h"
+#include "apresentacao/tui/telas/consultar/livros.h"
+
+#include "infraestrutura/fonte_de_dados/persistencia/em_memoria/dados_mockados.h"
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
 
 using namespace std;
@@ -49,7 +53,7 @@ int main() {
         Opcao("Cidades", fabrica->criar<TelaConsultarCidades>()),
         Opcao("Pessoas", fabrica->criar<TelaConsultarPessoas>()),
         Opcao("Editoras", fabrica->criar<TelaConsultarEditoras>()),
-        Opcao("Livros", fabrica->criar<TelaReserva>()),
+        Opcao("Livros", fabrica->criar<TelaConsultarLivros>()),
 
         Renderer([] { return separatorEmpty(); }),
         Categoria("Empréstimos"),
