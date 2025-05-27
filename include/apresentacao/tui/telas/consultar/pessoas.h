@@ -6,6 +6,7 @@
 
 #include "apresentacao/tui/telas/tela.h"
 #include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/celula.h"
 #include "utils/mascarar_cpf.h"
 
 using namespace ftxui;
@@ -34,11 +35,11 @@ class TelaConsultarPessoas final : public Tela {
 
         // Cabeçalho da Tabela
         linhas.emplace_back(Elements{
-            text(" ID "),
-            text(" CPF"),
-            text(" Nome"),
-            text(" Endereço"),
-            text(" Cidade"),
+            celula(text("ID")),
+            celula(text("CPF")),
+            celula(text("Nome")),
+            celula(text("Endereço")),
+            celula(text("Cidade")),
         });
 
         // Dados da Tabela
@@ -51,11 +52,11 @@ class TelaConsultarPessoas final : public Tela {
                     .value();
 
             linhas.emplace_back(Elements{
-                text(id_formatado.str()) | center,
-                text(" " + mascararCPF(pessoa->getCPF()) + " "),
-                text(" " + pessoa->getNome() + " "),
-                text(" " + pessoa->getEndereco() + " "),
-                text(" " + cidade->to_string() + " "),
+                celula(text(id_formatado.str()) | center),
+                celula(mascararCPF(pessoa->getCPF())),
+                celula(pessoa->getNome()),
+                celula(pessoa->getEndereco()),
+                celula(cidade->to_string()),
             });
 
             id_formatado.str("");
