@@ -35,7 +35,7 @@ class TelaConsultarAutores final : public Tela {
         linhas.emplace_back(Elements{text(" ID "), text(" Nome")});
 
         // Dados da Tabela
-        for (const auto &autor: this->_repositorio->getAutores()->listarTudo()) {
+        for (const auto &autor: autores->listarTudo()) {
             id_formatado << std::setfill('0') << std::setw(2) << autor->getId();
 
             linhas.emplace_back(Elements{

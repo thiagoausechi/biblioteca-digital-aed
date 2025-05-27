@@ -35,7 +35,7 @@ class TelaConsultarGeneros final : public Tela {
         linhas.emplace_back(Elements{text(" ID "), text(" Descrição")});
 
         // Dados da Tabela
-        for (const auto &genero: this->_repositorio->getGeneros()->listarTudo()) {
+        for (const auto &genero: generos->listarTudo()) {
             id_formatado << std::setfill('0') << std::setw(2) << genero->getId();
 
             linhas.emplace_back(Elements{
