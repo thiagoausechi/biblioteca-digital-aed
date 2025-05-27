@@ -6,6 +6,7 @@
 
 #include "apresentacao/tui/telas/tela.h"
 #include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/celula.h"
 
 using namespace ftxui;
 
@@ -40,11 +41,11 @@ class TelaConsultarLivros final : public Tela {
 
         // Cabeçalho da Tabela
         linhas.emplace_back(Elements{
-            text("ID"),
-            text("Nome"),
-            text("Gênero"),
-            text("Autor"),
-            text("Editora"),
+            celula(text("ID")),
+            celula(text("Nome")),
+            celula(text("Gênero")),
+            celula(text("Autor")),
+            celula(text("Editora")),
         });
 
         // Dados da Tabela
@@ -66,11 +67,11 @@ class TelaConsultarLivros final : public Tela {
                     ->buscar(livro->getIdEditora())
                     .value();
 
-            auto id = text(id_formatado.str());
-            auto nome = text(livro->getNome());
-            auto nome_genero = text(genero->getDescricao());
-            auto nome_autor = text(autor->getNome());
-            auto nome_editora = text(editora->getNome());
+            auto id = celula(text(id_formatado.str()));
+            auto nome = celula(livro->getNome());
+            auto nome_genero = celula(genero->getDescricao());
+            auto nome_autor = celula(autor->getNome());
+            auto nome_editora = celula(editora->getNome());
 
             if (livro->estaEmprestado()) {
                 this->_ao_menos_um_livro_emprestado = true;
