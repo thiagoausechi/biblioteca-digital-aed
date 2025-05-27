@@ -7,6 +7,7 @@
 #include "apresentacao/tui/telas/tela_reserva.h"
 #include "apresentacao/tui/telas/consultar/autores.h"
 #include "apresentacao/tui/telas/consultar/cidades.h"
+#include "apresentacao/tui/telas/consultar/editoras.h"
 #include "apresentacao/tui/telas/consultar/generos.h"
 #include "apresentacao/tui/telas/consultar/pessoas.h"
 #include "apresentacao/tui/telas/inserir/genero.h"
@@ -47,7 +48,7 @@ int main() {
         Opcao("Autores", fabrica->criar<TelaConsultarAutores>()),
         Opcao("Cidades", fabrica->criar<TelaConsultarCidades>()),
         Opcao("Pessoas", fabrica->criar<TelaConsultarPessoas>()),
-        Opcao("Editoras", fabrica->criar<TelaReserva>()),
+        Opcao("Editoras", fabrica->criar<TelaConsultarEditoras>()),
         Opcao("Livros", fabrica->criar<TelaReserva>()),
 
         Renderer([] { return separatorEmpty(); }),
