@@ -5,7 +5,7 @@
 #include <ftxui/component/component.hpp>
 
 #include "apresentacao/tui/telas/tela.h"
-#include "apresentacao/tui/componentes/tabela.h"
+#include "apresentacao/tui/componentes/tabela/tabela.h"
 #include "apresentacao/tui/componentes/tabela/celula.h"
 
 using namespace ftxui;
