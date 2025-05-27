@@ -13,7 +13,9 @@ using namespace ftxui;
 class TelaReserva final : public Tela {
     Element Conteudo() override {
         return text("Esta tela ainda não foi implementada!")
-               | color(Color::Red);
+               | color(Color::Red)
+               | vcenter
+               | hcenter;
     }
 
 public:
