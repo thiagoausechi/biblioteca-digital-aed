@@ -31,12 +31,11 @@ struct Campo {
 };
 
 static Component criarInput(Campo &campo) {
-    InputOption opcao = {
-        .multiline = false,
-        .placeholder = campo.placeholder,
-        .on_change = campo.ao_mudar_valor,
-        .on_enter = campo.ao_enviar,
-    };
+    InputOption opcao;
+    opcao.on_change = campo.ao_mudar_valor;
+    opcao.on_enter = campo.ao_enviar;
+    opcao.placeholder = campo.placeholder;
+    opcao.multiline = false;
 
     return Input(
                &campo.valor,
