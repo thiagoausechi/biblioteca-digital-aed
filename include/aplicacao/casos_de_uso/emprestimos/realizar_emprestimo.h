@@ -56,17 +56,17 @@ namespace RealizarEmprestimo {
                 throw ArquivoNaoExisteException(pedido.id_livro, Livro::NOME_CLASSE);
 
             // Requisito 4.6
-            if (!livro->disponivel())
+            if (livro.value()->estaEmprestado())
                 throw LivroIndisponivelException(pedido.id_livro);
 
             // Requisito 4.5
             auto emprestimo = std::make_shared<Emprestimo>();
 
             // Requisito 4.5.1.3
-            livro->emprestar();
+            livro.value()->emprestar();
 
             this->_emprestimos->inserir(emprestimo);
-            this->_livros->atualizar(livro);
+            this->_livros->atualizar(livro.value());
         }
     };
 }
