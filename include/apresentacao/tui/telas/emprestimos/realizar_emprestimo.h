@@ -23,6 +23,8 @@ struct FormularioRealizarEmprestimo {
 };
 
 class TelaRealizarEmprestimo final : public Tela {
+    constexpr static auto AVISO_SEM_PESSOA = "Ao menos uma pessoa deve ser cadastrada para realizar empréstimo.";
+    constexpr static auto AVISO_SEM_LIVRO = "Ao menos um livro deve ser cadastrado para realizar empréstimo.";
     constexpr static auto BOTAO_EMPRESTAR = "Emprestar";
 
     FormularioRealizarEmprestimo _dados_formulario;
@@ -39,9 +41,38 @@ class TelaRealizarEmprestimo final : public Tela {
     std::string _nome_autor;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada.")
-               | color(Color::Red);
+        return vbox({
+            // Campo de entrada para ID da pessoa
+            hbox(
+                nome(_dados_formulario.id_pessoa),
+                _input_id_pessoa->Render(),
+                text('(' + _nome_pessoa + " - " + _nome_cidade + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso_pessoa()
+                     ? AVISO_SEM_PESSOA
+                     : "") | color(Color::Red),
+
+            // Campo de entrada para ID do livro
+            hbox(
+                nome(_dados_formulario.id_livro),
+                _input_id_livro->Render(),
+                text('(' + _nome_livro + ", " + _nome_autor + ", " + _nome_editora + ')') | dim
+            ),
+            text(this->_deve_mostrar_aviso_livro()
+                     ? AVISO_SEM_LIVRO
+                     : "") | color(Color::Red),
+
+            // Rodapé da tela
+            filler(),
+            hbox({
+                _botao_emprestar->Render() | color(Color::Green),
+                filler(),
+            })
+        });
     }
+
+    bool _deve_mostrar_aviso_pessoa() { return this->_repositorio->getPessoas()->vazia(); }
+    bool _deve_mostrar_aviso_livro() { return this->_repositorio->getLivros()->vazia(); }
 
     void _limpar_formulario() {
         _dados_formulario = FormularioRealizarEmprestimo();
