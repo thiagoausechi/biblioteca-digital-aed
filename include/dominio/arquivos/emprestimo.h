@@ -18,9 +18,12 @@ public:
         this->setId(id);
         this->setIdPessoa(id_pessoa);
         this->setIdLivro(id_livro);
+
+        // Requisito 4.5.1.1
         time_t agora = time(nullptr);
         this->setDataEmprestimo(agora);
 
+        // Requisito 4.5.1.2
         tm *data_prevista_devolucao = localtime(&agora);
         data_prevista_devolucao->tm_mday += 7;
         this->setDataPrevistaDevolucao(mktime(data_prevista_devolucao));
