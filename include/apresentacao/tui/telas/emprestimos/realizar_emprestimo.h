@@ -3,6 +3,8 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 
+#include "aplicacao/casos_de_uso/emprestimos/realizar_emprestimo.h"
+#include "apresentacao/tui/renderizador.h"
 #include "apresentacao/tui/lib/formularios/campo_de_entrada.h"
 #include "apresentacao/tui/telas/tela.h"
 
@@ -26,8 +28,10 @@ class TelaRealizarEmprestimo final : public Tela {
     constexpr static auto AVISO_SEM_PESSOA = "Ao menos uma pessoa deve ser cadastrada para realizar empréstimo.";
     constexpr static auto AVISO_SEM_LIVRO = "Ao menos um livro deve ser cadastrado para realizar empréstimo.";
     constexpr static auto BOTAO_EMPRESTAR = "Emprestar";
+    constexpr static auto MSG_SUCESSO = "Empréstimo realizado com sucesso!";
 
     FormularioRealizarEmprestimo _dados_formulario;
+    std::shared_ptr<RealizarEmprestimo::UseCase> _caso_de_uso;
 
     Component _input_id_pessoa;
     Component _input_id_livro;
@@ -133,12 +137,40 @@ class TelaRealizarEmprestimo final : public Tela {
         }
     }
 
+    void _executar_RealizarEmprestimoUC() {
+        try {
+            this->_caso_de_uso->executar({
+                .id_pessoa = _dados_formulario.id_pessoa.valor_numerico(),
+                .id_livro = _dados_formulario.id_livro.valor_numerico()
+            });
+
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
+            );
+
+            this->_limpar_formulario();
+        } catch (const std::exception &e) {
+            this->_renderizador->mostrarDialogo(
+                OpcoesDoDialog::Erro(e.what())
+            );
+        }
+    }
+
 public:
     explicit TelaRealizarEmprestimo()
         : Tela("Formulário para Realizar Empréstimo") {
     }
 
     void inicializar() override {
+        _caso_de_uso = std::make_shared<RealizarEmprestimo::UseCase>(
+            _repositorio->getPessoas(),
+            _repositorio->getCidades(),
+            _repositorio->getLivros(),
+            _repositorio->getEditoras(),
+            _repositorio->getAutores(),
+            _repositorio->getEmprestimos()
+        );
+
         _nome_pessoa = "";
         _nome_cidade = "";
         _nome_livro = "";
@@ -153,8 +185,7 @@ public:
         _botao_emprestar
                 = Button(
                     BOTAO_EMPRESTAR,
-                    [] {
-                    },
+                    [this] { this->_executar_RealizarEmprestimoUC(); },
                     ButtonOption::Border()
                 );
 
