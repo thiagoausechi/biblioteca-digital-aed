@@ -47,6 +47,25 @@ static Component criarInput(Campo &campo) {
                    // Impede de digitar letras
                    return true;
 
+               // Verifica se o usuário saiu do campo
+               if (evento == Event::ArrowDown ||
+                   evento == Event::ArrowUp ||
+                   evento == Event::Tab) {
+                   /*
+                    * Uma função `ao_sair` é mais intuitiva,
+                    * porém, seria necessário a refatoração
+                    * de todas as telas que usam campos de entrada.
+                    *
+                    * Essa é uma solução rápida para acionar o
+                    * evento que atualiza algumas informações
+                    * na tela baseado no conteúdo do campo.
+                    */
+                   campo.ao_enviar();
+
+                   // Não impede outros eventos
+                   return false;
+               }
+
                return campo.escutar_evento != nullptr ? campo.escutar_evento(evento) : false;
            });
 }
