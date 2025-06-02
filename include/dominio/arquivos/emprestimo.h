@@ -16,7 +16,7 @@ class Emprestimo final : public Arquivo {
 
         // Requisito 4.5.1.2
         tm *data_prevista_devolucao = localtime(&agora);
-        data_prevista_devolucao->tm_mday -= 7;
+        data_prevista_devolucao->tm_mday += 7;
         this->setDataPrevistaDevolucao(mktime(data_prevista_devolucao));
     }
 
