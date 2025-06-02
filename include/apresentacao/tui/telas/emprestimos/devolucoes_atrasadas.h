@@ -16,10 +16,11 @@ class TelaListarDevolucoesAtrasadas final : public Tela {
     std::shared_ptr<ListarDevolucaoAtrasada::UseCase> _caso_de_uso;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | dim
-               | vcenter
-               | hcenter;
+        return hbox({
+            separatorEmpty(),
+            _tabela->Render() | flex,
+            separatorEmpty(),
+        });
     }
 
     void _carregarTabela() {
