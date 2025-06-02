@@ -23,6 +23,7 @@
 
 // Telas de Empréstimos
 #include "apresentacao/tui/telas/emprestimos/realizar_emprestimo.h"
+#include "apresentacao/tui/telas/emprestimos/listar.h"
 
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/dados_mockados.h"
 #include "infraestrutura/fonte_de_dados/persistencia/em_memoria/tabelas/repositorio.h"
@@ -61,10 +62,9 @@ int main() {
         Renderer([] { return separatorEmpty(); }),
         Categoria("Empréstimos"),
         Opcao("Realizar empréstimo", fabrica->criar<TelaRealizarEmprestimo>()),
-        Opcao("Consultar empréstimo", fabrica->criar<TelaReserva>()),
+        Opcao("Consultar empréstimo", fabrica->criar<TelaListarEmprestimos>()),
         Opcao("Devolver livro", fabrica->criar<TelaReserva>()),
 
-        Opcao("Listar todos os empréstimos", fabrica->criar<TelaReserva>()),
         Opcao("Listar devoluções em atraso", fabrica->criar<TelaReserva>()),
     });
 
