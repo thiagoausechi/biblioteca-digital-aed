@@ -151,8 +151,7 @@ class TelaRealizarDevolucao final : public Tela {
 
 public:
     explicit TelaRealizarDevolucao()
-        : Tela("Formulário para Devolução do Empréstimo") {
-    }
+        : Tela("Formulário para Devolução do Empréstimo") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<RealizarDevolucao::UseCase>(
@@ -179,6 +178,5 @@ public:
         Add(_formulario);
     }
 };
-
 
 #endif //APRESENTACAO_TELAS_EMPRESTIMOS_REALIZAR_DEVOLUCAO_H
