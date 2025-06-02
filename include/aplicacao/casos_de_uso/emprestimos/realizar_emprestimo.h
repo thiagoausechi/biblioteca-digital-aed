@@ -60,6 +60,8 @@ namespace RealizarEmprestimo {
 
             // Requisito 4.5
             auto emprestimo = std::make_shared<Emprestimo>();
+            emprestimo->setIdPessoa(pedido.id_pessoa);
+            emprestimo->setIdLivro(pedido.id_livro);
 
             // Requisito 4.5.1.3
             livro.value()->emprestar();
