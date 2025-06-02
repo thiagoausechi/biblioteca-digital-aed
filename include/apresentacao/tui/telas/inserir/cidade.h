@@ -70,8 +70,7 @@ class TelaInserirCidade final : public Tela {
 
 public:
     explicit TelaInserirCidade()
-        : Tela("Formulário para inserção de Cidade") {
-    }
+        : Tela("Formulário para inserção de Cidade") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<InserirCidade::UseCase>(

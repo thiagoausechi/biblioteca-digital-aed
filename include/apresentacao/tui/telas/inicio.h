@@ -29,8 +29,7 @@ class TelaInicial final : public Tela {
 
 public:
     explicit TelaInicial()
-        : Tela("Seja bem-vindo(a)!") {
-    }
+        : Tela("Seja bem-vindo(a)!") {}
 
     void inicializar() override {
         _dicas_navegacao = vbox({

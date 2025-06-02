@@ -8,8 +8,7 @@ class LivroIndisponivelException final : public std::exception {
 
 public:
     explicit LivroIndisponivelException(int id_livro)
-        : _mensagem(std::format("Livro com ID {} não está disponível para empréstimo.", id_livro)) {
-    }
+        : _mensagem(std::format("Livro com ID {} não está disponível para empréstimo.", id_livro)) {}
 
     [[nodiscard]] const char *what() const noexcept override {
         return this->_mensagem.c_str();

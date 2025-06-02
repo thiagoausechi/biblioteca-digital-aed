@@ -21,28 +21,27 @@ namespace RealizarEmprestimo {
 
     // Requisito 4
     class UseCase final : public CasoDeUso<void, const Pedido> {
-        std::shared_ptr<Tabela<Pessoa> > _pessoas{};
-        std::shared_ptr<Tabela<Cidade> > _cidades{};
-        std::shared_ptr<Tabela<Livro> > _livros{};
-        std::shared_ptr<Tabela<Editora> > _editoras{};
-        std::shared_ptr<Tabela<Autor> > _autores{};
-        std::shared_ptr<Tabela<Emprestimo> > _emprestimos{};
+        std::shared_ptr<Tabela<Pessoa>> _pessoas{};
+        std::shared_ptr<Tabela<Cidade>> _cidades{};
+        std::shared_ptr<Tabela<Livro>> _livros{};
+        std::shared_ptr<Tabela<Editora>> _editoras{};
+        std::shared_ptr<Tabela<Autor>> _autores{};
+        std::shared_ptr<Tabela<Emprestimo>> _emprestimos{};
 
     public:
         explicit UseCase(
-            std::shared_ptr<Tabela<Pessoa> > pessoas,
-            std::shared_ptr<Tabela<Cidade> > cidades,
-            std::shared_ptr<Tabela<Livro> > livros,
-            std::shared_ptr<Tabela<Editora> > editoras,
-            std::shared_ptr<Tabela<Autor> > autores,
-            std::shared_ptr<Tabela<Emprestimo> > emprestimos)
+            std::shared_ptr<Tabela<Pessoa>> pessoas,
+            std::shared_ptr<Tabela<Cidade>> cidades,
+            std::shared_ptr<Tabela<Livro>> livros,
+            std::shared_ptr<Tabela<Editora>> editoras,
+            std::shared_ptr<Tabela<Autor>> autores,
+            std::shared_ptr<Tabela<Emprestimo>> emprestimos)
             : _pessoas(std::move(pessoas))
               , _cidades(std::move(cidades))
               , _livros(std::move(livros))
               , _editoras(std::move(editoras))
               , _autores(std::move(autores))
-              , _emprestimos(std::move(emprestimos)) {
-        }
+              , _emprestimos(std::move(emprestimos)) {}
 
         void executar(const Pedido pedido) override {
             auto livro = this->_livros->buscar(pedido.id_livro);
@@ -70,6 +69,5 @@ namespace RealizarEmprestimo {
         }
     };
 }
-
 
 #endif //UC_REALIZAR_EMPRESTIMO_H

@@ -43,8 +43,7 @@ namespace ListarDevolucaoAtrasada {
             : _emprestimos(std::move(repositorio_emprestimos))
               , _livros(std::move(repositorio_livros))
               , _editoras(std::move(repositorio_editoras))
-              , _autores(std::move(repositorio_autores)) {
-        }
+              , _autores(std::move(repositorio_autores)) {}
 
         const std::vector<Resposta> executar() override {
             std::vector<Resposta> respostas;

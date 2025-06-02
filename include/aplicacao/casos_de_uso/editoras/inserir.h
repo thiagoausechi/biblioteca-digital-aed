@@ -23,8 +23,7 @@ namespace InserirEditora {
             std::shared_ptr<Tabela<Editora>> repositorio_editoras,
             std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
             : _editoras(std::move(repositorio_editoras))
-              , _cidades(std::move(repositorio_cidades)) {
-        }
+              , _cidades(std::move(repositorio_cidades)) {}
 
         void executar(const Pedido pedido) override {
             if (!this->_cidades->buscar(pedido.id_cidade).has_value())

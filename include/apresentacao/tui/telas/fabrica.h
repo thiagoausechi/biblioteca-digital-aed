@@ -20,8 +20,7 @@ public:
         std::shared_ptr<Repositorio> repositorio,
         std::shared_ptr<Renderizador> renderizador)
         : _repositorio(std::move(repositorio))
-          , _renderizador(std::move(renderizador)) {
-    }
+          , _renderizador(std::move(renderizador)) {}
 
     template<class TipoDerivadoDeTela, class... Args>
     std::shared_ptr<TipoDerivadoDeTela> criar(Args &&... args) {

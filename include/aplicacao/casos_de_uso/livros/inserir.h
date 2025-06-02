@@ -35,8 +35,7 @@ namespace InserirLivro {
             : _livros(std::move(repositorio_livros))
               , _editoras(std::move(repositorio_editoras))
               , _autores(std::move(repositorio_autores))
-              , _generos(std::move(repositorio_generos)) {
-        }
+              , _generos(std::move(repositorio_generos)) {}
 
         void executar(const Pedido pedido) override {
             // Requisito 3.1

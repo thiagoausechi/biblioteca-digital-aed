@@ -17,8 +17,7 @@ namespace InserirAutor {
 
     public:
         explicit UseCase(std::shared_ptr<Tabela<Autor>> repositorio_autores)
-            : _autores(std::move(repositorio_autores)) {
-        }
+            : _autores(std::move(repositorio_autores)) {}
 
         void executar(const Pedido pedido) override {
             auto novo_autor = std::make_shared<Autor>();

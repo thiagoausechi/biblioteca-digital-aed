@@ -8,8 +8,7 @@ class PropriedadeVaziaException final : public std::exception {
 
 public:
     explicit PropriedadeVaziaException(const std::string &propriedade, const std::string &nome_arquivo)
-        : _mensagem(std::format("Propriedade '{}' de '{}' não pode ser vazia.", propriedade, nome_arquivo)) {
-    }
+        : _mensagem(std::format("Propriedade '{}' de '{}' não pode ser vazia.", propriedade, nome_arquivo)) {}
 
     [[nodiscard]] const char *what() const noexcept override {
         return _mensagem.c_str();

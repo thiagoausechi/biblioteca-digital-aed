@@ -8,8 +8,7 @@ class IdNegativoException final : public std::exception {
 
 public:
     explicit IdNegativoException(const std::string &nome_arquivo)
-        : _mensagem(std::format("ID de {} não pode ser negativo.", nome_arquivo)) {
-    }
+        : _mensagem(std::format("ID de {} não pode ser negativo.", nome_arquivo)) {}
 
     [[nodiscard]] const char *what() const noexcept override {
         return _mensagem.c_str();

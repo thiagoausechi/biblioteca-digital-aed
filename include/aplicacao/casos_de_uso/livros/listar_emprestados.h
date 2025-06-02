@@ -17,8 +17,7 @@ namespace ListarLivrosEmprestados {
 
         Resposta()
             : quantidade_emprestados(0)
-              , quantidade_disponiveis(0) {
-        }
+              , quantidade_disponiveis(0) {}
     };
 
     // Requisito 6
@@ -27,8 +26,7 @@ namespace ListarLivrosEmprestados {
 
     public:
         explicit UseCase(std::shared_ptr<Tabela<Livro>> repositorio_livros)
-            : _livros(std::move(repositorio_livros)) {
-        }
+            : _livros(std::move(repositorio_livros)) {}
 
         Resposta executar() override {
             Resposta resposta;

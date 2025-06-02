@@ -16,8 +16,7 @@ namespace InserirGenero {
 
     public:
         explicit UseCase(std::shared_ptr<Tabela<Genero>> repositorio_generos)
-            : _generos(std::move(repositorio_generos)) {
-        }
+            : _generos(std::move(repositorio_generos)) {}
 
         void executar(const Pedido pedido) override {
             auto novo_genero = std::make_shared<Genero>();

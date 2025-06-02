@@ -103,8 +103,7 @@ public:
     explicit Renderizador()
         : _indice_item_menu_selecionado(-1)
           , _indice_anterior_item_menu_selecionado(-2)
-          , _indice_mapeado_tela_selecionada(-1) {
-    }
+          , _indice_mapeado_tela_selecionada(-1) {}
 
     void carregarOpcoesDoMenu(const Components &itens_do_menu) {
         if (itens_do_menu.empty())

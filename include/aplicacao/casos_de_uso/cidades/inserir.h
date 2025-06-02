@@ -18,8 +18,7 @@ namespace InserirCidade {
 
     public:
         explicit UseCase(std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
-            : _cidades(std::move(repositorio_cidades)) {
-        }
+            : _cidades(std::move(repositorio_cidades)) {}
 
         void executar(const Pedido pedido) override {
             auto nova_cidade = std::make_shared<Cidade>();

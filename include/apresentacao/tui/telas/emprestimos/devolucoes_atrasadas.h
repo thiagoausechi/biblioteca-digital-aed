@@ -69,8 +69,7 @@ class TelaListarDevolucoesAtrasadas final : public Tela {
 
 public:
     explicit TelaListarDevolucoesAtrasadas()
-        : Tela("Consulta das devoluções em atraso") {
-    }
+        : Tela("Consulta das devoluções em atraso") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<ListarDevolucaoAtrasada::UseCase>(

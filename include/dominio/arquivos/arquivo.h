@@ -12,8 +12,7 @@ public:
     virtual ~Arquivo() = default;
 
     explicit Arquivo(std::string nome_arquivo)
-        : _nome_arquivo(std::move(nome_arquivo)) {
-    }
+        : _nome_arquivo(std::move(nome_arquivo)) {}
 
     [[nodiscard]] int getId() const { return this->_id; }
 

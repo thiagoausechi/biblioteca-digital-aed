@@ -20,8 +20,7 @@ public:
           , _emprestimos(std::make_shared<TabelaEmMemoria<Emprestimo>>())
           , _generos(std::make_shared<TabelaEmMemoria<Genero>>())
           , _livros(std::make_shared<TabelaEmMemoria<Livro>>())
-          , _pessoas(std::make_shared<TabelaEmMemoria<Pessoa>>()) {
-    }
+          , _pessoas(std::make_shared<TabelaEmMemoria<Pessoa>>()) {}
 
     std::shared_ptr<Tabela<Autor>> getAutores() override { return _autores; }
 

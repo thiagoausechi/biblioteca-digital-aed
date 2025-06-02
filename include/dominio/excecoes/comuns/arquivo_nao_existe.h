@@ -9,8 +9,7 @@ class ArquivoNaoExisteException final : public std::exception {
 
 public:
     explicit ArquivoNaoExisteException(int id_arquivo, const std::string &nome_arquivo)
-        : _mensagem(std::format("Registro de ID '{}' de {} não encontrado", id_arquivo, nome_arquivo)) {
-    }
+        : _mensagem(std::format("Registro de ID '{}' de {} não encontrado", id_arquivo, nome_arquivo)) {}
 
     [[nodiscard]] const char *what() const noexcept override {
         return _mensagem.c_str();

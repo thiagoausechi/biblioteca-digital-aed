@@ -26,8 +26,7 @@ namespace InserirPessoa {
             std::shared_ptr<Tabela<Pessoa>> repositorio_pessoas,
             std::shared_ptr<Tabela<Cidade>> repositorio_cidades)
             : _pessoas(std::move(repositorio_pessoas))
-              , _cidades(std::move(repositorio_cidades)) {
-        }
+              , _cidades(std::move(repositorio_cidades)) {}
 
         void executar(const Pedido pedido) override {
             // Requisito 2.2
