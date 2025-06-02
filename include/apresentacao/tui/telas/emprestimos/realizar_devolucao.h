@@ -142,6 +142,7 @@ class TelaRealizarDevolucao final : public Tela {
             );
 
             this->_limpar_formulario();
+            this->_atualizar_informacoes();
         } catch (const std::exception &e) {
             this->_renderizador->mostrarDialogo(
                 OpcoesDoDialog::Erro(e.what())
