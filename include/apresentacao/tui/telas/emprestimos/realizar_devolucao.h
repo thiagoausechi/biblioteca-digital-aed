@@ -92,7 +92,7 @@ class TelaRealizarDevolucao final : public Tela {
                     ->buscar(_dados_formulario.id_emprestimo.valor_numerico());
 
             if (emprestimo_buscado.has_value()) {
-                auto emprestimo = emprestimo_buscado.value();
+                const auto &emprestimo = emprestimo_buscado.value();
                 auto pessoa =
                         _repositorio
                         ->getPessoas()
