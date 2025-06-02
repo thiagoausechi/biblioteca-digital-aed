@@ -19,10 +19,22 @@ class TelaListarEmprestimos final : public Tela {
     int _quantidade_disponiveis;
 
     Element Conteudo() override {
-        return text("Esta tela ainda não foi implementada!")
-               | dim
-               | vcenter
-               | hcenter;
+        return hbox({
+            separatorEmpty(),
+            vbox({
+                _tabela->Render() | xflex,
+                hbox({
+                    text("Emprestados: " + std::to_string(_quantidade_emprestados))
+                    | center
+                    | xflex_grow,
+                    separator(),
+                    text("Disponíveis: " + std::to_string(_quantidade_disponiveis))
+                    | center
+                    | xflex_grow,
+                }) | borderStyled(LIGHT) | dim
+            }) | flex,
+            separatorEmpty(),
+        });
     }
 
     void _carregarTabela() {
@@ -46,7 +58,7 @@ class TelaListarEmprestimos final : public Tela {
         });
 
         // Dados da Tabela
-        for (const auto &[id, nome] : resposta.livros_emprestados) {
+        for (const auto &[id, nome]: resposta.livros_emprestados) {
             id_formatado << std::setfill('0') << std::setw(2) << id;
 
             linhas.emplace_back(Elements{
@@ -66,7 +78,7 @@ class TelaListarEmprestimos final : public Tela {
 
 public:
     explicit TelaListarEmprestimos()
-        : Tela("Consulta dos empréstimos registrados"){}
+        : Tela("Consulta dos empréstimos registrados") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<ListarLivrosEmprestados::UseCase>(
