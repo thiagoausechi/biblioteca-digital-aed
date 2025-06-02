@@ -139,13 +139,20 @@ class TelaRealizarEmprestimo final : public Tela {
 
     void _executar_RealizarEmprestimoUC() {
         try {
-            this->_caso_de_uso->executar({
+            auto resposta = this->_caso_de_uso->executar({
                 .id_pessoa = _dados_formulario.id_pessoa.valor_numerico(),
                 .id_livro = _dados_formulario.id_livro.valor_numerico()
             });
 
             this->_renderizador->mostrarDialogo(
-                OpcoesDoDialog::Sucesso(MSG_SUCESSO)
+                OpcoesDoDialog::Sucesso(vbox({
+                    text(MSG_SUCESSO),
+                    separatorEmpty(),
+                    hbox({
+                        text("ID do Empréstimo: "),
+                        text(std::to_string(resposta.id_emprestimo))
+                    })
+                }))
             );
 
             this->_limpar_formulario();
@@ -158,7 +165,8 @@ class TelaRealizarEmprestimo final : public Tela {
 
 public:
     explicit TelaRealizarEmprestimo()
-        : Tela("Formulário para Realizar Empréstimo") {}
+        : Tela("Formulário para Realizar Empréstimo") {
+    }
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<RealizarEmprestimo::UseCase>(
