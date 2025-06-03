@@ -36,9 +36,11 @@ public:
      */
     std::shared_ptr<Table> _tabela_base;
     std::string msg_nenhum_registro;
+    bool aplicar_estilizacao_padrao;
 
     explicit TabelaComponent()
-        : _tabela_base(std::make_shared<Table>()) {}
+        : _tabela_base(std::make_shared<Table>()),
+          aplicar_estilizacao_padrao(true) {}
 
     void definirTabelaVazia() const {
         /*
@@ -65,6 +67,8 @@ public:
 
         this->_tabela_base->SelectAll().Border(LIGHT);
         this->_tabela_base->SelectAll().SeparatorVertical(LIGHT);
+
+        if (!this->aplicar_estilizacao_padrao) return;
 
         // Estilização do Cabeçalho
         this->_tabela_base->SelectRow(0).Border(LIGHT);
