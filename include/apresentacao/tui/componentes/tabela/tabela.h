@@ -35,28 +35,29 @@ public:
      * com acesso público.
      */
     std::shared_ptr<Table> _tabela_base;
+    std::string msg_nenhum_registro;
 
-    explicit TabelaComponent() : _tabela_base(std::make_shared<Table>()) {}
+    explicit TabelaComponent()
+        : _tabela_base(std::make_shared<Table>()) {}
 
-    void definirTabelaVazia(const std::string &nome_arquivo) const {
+    void definirTabelaVazia() const {
         /*
          * Não é necessário criar uma nova Tabela
          * utilizando o make_shared, podemos
          * simplesmente alterar o conteúdo do ponteiro.
          */
         *this->_tabela_base = Table(std::vector<Elements>{
-            {
-                text(std::format(
-                        "Nenhum registro encontrado em '{}'.",
-                        nome_arquivo
-                    )
-                )
-            }
+            {text(msg_nenhum_registro)}
         });
 
         // Estilização da Tabela Vazia
         this->_tabela_base->SelectColumn(0).DecorateCells(center);
         this->_tabela_base->SelectColumn(0).DecorateCells(flex);
+    }
+
+    void definirTabelaVazia(const std::string &nome_arquivo) {
+        this->msg_nenhum_registro = std::format("Nenhum registro encontrado em '{}'.", nome_arquivo);
+        this->definirTabelaVazia();
     }
 
     void definirDadosTabela(const std::vector<Elements> &linhas) const {
