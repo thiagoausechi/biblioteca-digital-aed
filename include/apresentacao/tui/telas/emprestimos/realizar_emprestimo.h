@@ -165,16 +165,12 @@ class TelaRealizarEmprestimo final : public Tela {
 
 public:
     explicit TelaRealizarEmprestimo()
-        : Tela("Formulário para Realizar Empréstimo") {
-    }
+        : Tela("Formulário para Realizar Empréstimo") {}
 
     void inicializar() override {
         _caso_de_uso = std::make_shared<RealizarEmprestimo::UseCase>(
             _repositorio->getPessoas(),
-            _repositorio->getCidades(),
             _repositorio->getLivros(),
-            _repositorio->getEditoras(),
-            _repositorio->getAutores(),
             _repositorio->getEmprestimos()
         );
 
