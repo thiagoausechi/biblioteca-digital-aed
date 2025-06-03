@@ -26,18 +26,12 @@ class TelaRealizarDevolucao final : public Tela {
     constexpr static auto MSG_SUCESSO = "Devolução realizada com sucesso!";
 
     FormularioRealizarDevolucao _dados_formulario;
+    std::shared_ptr<TabelaComponent> _tabela;
     std::shared_ptr<RealizarDevolucao::UseCase> _caso_de_uso;
 
     Component _input_id_emprestimo;
     Component _botao_devolver;
     Component _formulario;
-
-    bool _informacoes_carregadas;
-
-    std::string _nome_pessoa;
-    std::string _info_livro;
-    std::string _data_emprestimo;
-    std::string _data_devolucao;
 
     Element Conteudo() override {
         return vbox({
@@ -52,14 +46,11 @@ class TelaRealizarDevolucao final : public Tela {
 
             // Informações
             separatorEmpty(),
-            !_informacoes_carregadas
-                ? text("Aguardando entrada do usuário...")
-                : vbox({
-                    text("Cliente: " + _nome_pessoa),
-                    text("Livro: " + _info_livro),
-                    text("Data Empréstimo: " + _data_emprestimo),
-                    text("Data Devolução: " + _data_devolucao)
-                }),
+            hbox({
+                separatorEmpty(),
+                _tabela->Render() | flex,
+                separatorEmpty()
+            }),
 
             // Rodapé da tela
             filler(),
@@ -74,14 +65,8 @@ class TelaRealizarDevolucao final : public Tela {
 
     void _limpar_formulario() {
         _dados_formulario = FormularioRealizarDevolucao();
-    }
-
-    void _limpar_informacoes() {
-        _informacoes_carregadas = false;
-        _nome_pessoa = "";
-        _info_livro = "";
-        _data_emprestimo = "";
-        _data_devolucao = "";
+        _tabela->msg_nenhum_registro = "Aguardando entrada do usuário...";
+        _tabela->definirTabelaVazia();
     }
 
     void _atualizar_informacoes() {
@@ -114,20 +99,37 @@ class TelaRealizarDevolucao final : public Tela {
                         ->buscar(livro->getIdAutor())
                         .value();
 
-                _informacoes_carregadas = true;
-                _nome_pessoa = pessoa->getNome();
-                _info_livro =
+                auto info_livro =
                         std::format("\"{}\", de {} - Editora: {}",
                                     livro->getNome(),
                                     autor->getNome(),
                                     editora->getNome());
-                _data_devolucao = formatar_data(emprestimo->getDataEfetivaDevolucao());
-                _data_emprestimo = formatar_data(emprestimo->getDataEmprestimo());
+
+                std::vector<Elements> linhas;
+                linhas.emplace_back(Elements{
+                    celula(text("Cliente")), celula(pessoa->getNome())
+                });
+                linhas.emplace_back(Elements{
+                    celula(text("Livro")), celula(info_livro)
+                });
+                linhas.emplace_back(Elements{
+                    celula(text("Data do Empréstimo")), celula(formatar_data(emprestimo->getDataEmprestimo()))
+                });
+                linhas.emplace_back(Elements{
+                    celula(text("Data da Devolução")), celula(formatar_data(emprestimo->getDataEfetivaDevolucao()))
+                });
+
+                this->_tabela->definirDadosTabela(linhas);
+
+                // Estilização de colunas específicas
+                this->_tabela->_tabela_base->SelectAll().SeparatorHorizontal(LIGHT);
+                this->_tabela->_tabela_base->SelectColumn(0).DecorateCells(color(Color::Cyan));
+                this->_tabela->_tabela_base->SelectColumn(1).Decorate(xflex_grow);
             } else {
-                this->_limpar_informacoes();
+                this->_limpar_formulario();
             }
         } catch (...) {
-            this->_limpar_informacoes();
+            this->_limpar_formulario();
         }
     }
 
@@ -159,10 +161,13 @@ public:
             _repositorio->getEmprestimos(),
             _repositorio->getLivros()
         );
-        this->_limpar_informacoes();
         _dados_formulario.id_emprestimo.ao_enviar = [this] { this->_atualizar_informacoes(); };
 
         _input_id_emprestimo = criarInput(_dados_formulario.id_emprestimo);
+        _tabela = TabelaConsulta();
+        _tabela->aplicar_estilizacao_padrao = false;
+
+        this->_atualizar_informacoes();
 
         _botao_devolver
                 = Button(
@@ -173,6 +178,7 @@ public:
 
         _formulario = Container::Vertical({
             _input_id_emprestimo,
+            _tabela,
             _botao_devolver
         });
 
