@@ -42,7 +42,7 @@ class TelaListarDevolucoesAtrasadas final : public Tela {
             celula(text("Dias em Atraso")),
         });
 
-        for (const auto livro: resposta) {
+        for (const auto &livro: resposta) {
             id_formatado << std::setfill('0') << std::setw(2) << livro.id_livro;
             auto info_livro = std::format("\"{}\", de {} - Editora: {}",
                                           livro.nome_livro,
@@ -53,7 +53,7 @@ class TelaListarDevolucoesAtrasadas final : public Tela {
                 celula(text(id_formatado.str())),
                 celula(info_livro),
                 celula(text(livro.data_prevista_devolucao_formatada)),
-                celula(text(std::to_string(livro.dias_atraso)))
+                celula(text(std::to_string(livro.dias_atraso) + " dias"))
             });
 
             id_formatado.str("");
@@ -65,6 +65,7 @@ class TelaListarDevolucoesAtrasadas final : public Tela {
         // Estilização de Colunas Específicas
         this->_tabela->_tabela_base->SelectColumn(1).Decorate(xflex_grow);
         this->_tabela->_tabela_base->SelectColumns(2, -1).Decorate(xflex);
+        this->_tabela->_tabela_base->SelectColumn(-1).DecorateCells(center);
     }
 
 public:
