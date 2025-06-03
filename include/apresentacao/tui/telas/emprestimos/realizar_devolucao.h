@@ -69,6 +69,7 @@ class TelaRealizarDevolucao final : public Tela {
         _tabela->definirTabelaVazia();
     }
 
+    // Requisito 5.1
     void _atualizar_informacoes() {
         try {
             auto emprestimo_buscado =
@@ -101,8 +102,11 @@ class TelaRealizarDevolucao final : public Tela {
 
                 auto info_livro =
                         std::format("\"{}\", de {} - Editora: {}",
+                                    // Requisito 5.1.1
                                     livro->getNome(),
+                                    // Requisito 5.1.2
                                     autor->getNome(),
+                                    // Requisito 5.1.2
                                     editora->getNome());
 
                 std::vector<Elements> linhas;
@@ -129,6 +133,7 @@ class TelaRealizarDevolucao final : public Tela {
 
                 // Montagem das linhas da tabela
                 linhas.emplace_back(Elements{
+                    // Requisito 5.1.1
                     celula(text("Cliente")), celula(pessoa->getNome())
                 });
                 linhas.emplace_back(Elements{
@@ -138,9 +143,11 @@ class TelaRealizarDevolucao final : public Tela {
                     celula(text("Data do Empréstimo")), celula(formatar_data(emprestimo->getDataEmprestimo()))
                 });
                 linhas.emplace_back(Elements{
+                    // Requisito 5.1.3
                     celula(text("Data Estimada para Devolução")), celula_data_prevista_devolucao
                 });
                 linhas.emplace_back(Elements{
+                    // Requisito 5.1.3
                     celula(text("Data da Devolução")), celula(formatar_data(emprestimo->getDataEfetivaDevolucao()))
                 });
 

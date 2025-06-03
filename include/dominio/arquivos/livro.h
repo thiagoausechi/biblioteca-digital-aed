@@ -71,8 +71,9 @@ public:
 
     [[nodiscard]] bool estaEmprestado() const { return this->_emprestado; }
 
-    void emprestar() { this->_emprestado = true; }
+    // Requisito 5.2.1
     void devolver() { this->_emprestado = false; }
+    void emprestar() { this->_emprestado = true; }
 };
 
 #endif //DOMINIO_ARQUIVOS_LIVRO_H

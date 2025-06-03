@@ -122,7 +122,9 @@ class TelaRealizarEmprestimo final : public Tela {
                         _repositorio
                         ->getAutores()
                         ->buscar(livro.value()->getIdAutor());
+
                 _nome_livro = livro.value()->getNome();
+                // Requisito 4.4
                 _nome_editora = editora.value()->getNome();
                 _nome_autor = autor.value()->getNome();
             } else {

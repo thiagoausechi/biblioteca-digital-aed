@@ -12,6 +12,7 @@
 #include "utils/date.h"
 
 namespace ListarDevolucaoAtrasada {
+    // Requisito 7.1
     struct Resposta {
         int id_livro;
         std::string nome_livro;
