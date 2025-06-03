@@ -7,6 +7,7 @@
 #include "dominio/arquivos/emprestimo.h"
 #include "dominio/arquivos/livro.h"
 #include "dominio/excecoes/comuns/arquivo_nao_existe.h"
+#include "dominio/excecoes/emprestimo/devolucao_ja_realizada.h"
 
 namespace RealizarDevolucao {
     struct Pedido {
@@ -15,16 +16,15 @@ namespace RealizarDevolucao {
 
     // Requisito 5
     class UseCase final : public CasoDeUso<void, const Pedido> {
-        std::shared_ptr<Tabela<Emprestimo> > _emprestimos{};
-        std::shared_ptr<Tabela<Livro> > _livros{};
+        std::shared_ptr<Tabela<Emprestimo>> _emprestimos{};
+        std::shared_ptr<Tabela<Livro>> _livros{};
 
     public:
         explicit UseCase(
-            std::shared_ptr<Tabela<Emprestimo> > repositorio_emprestimos,
-            std::shared_ptr<Tabela<Livro> > repositorio_livros)
+            std::shared_ptr<Tabela<Emprestimo>> repositorio_emprestimos,
+            std::shared_ptr<Tabela<Livro>> repositorio_livros)
             : _emprestimos(std::move(repositorio_emprestimos))
-              , _livros(std::move(repositorio_livros)) {
-        }
+              , _livros(std::move(repositorio_livros)) {}
 
         void executar(const Pedido pedido) override {
             auto emprestimo = this->_emprestimos->buscar(pedido.id_emprestimo);
@@ -32,7 +32,10 @@ namespace RealizarDevolucao {
             if (!emprestimo.has_value())
                 throw ArquivoNaoExisteException(pedido.id_emprestimo, Emprestimo::NOME_CLASSE);
 
-            auto emprestimo_encontrado = emprestimo.value();
+            if (emprestimo.value()->estaDevolvido())
+                throw DevolucaoJaRealizadaException();
+
+            const auto &emprestimo_encontrado = emprestimo.value();
             auto livro = this->_livros->buscar(emprestimo_encontrado->getIdLivro());
 
             emprestimo_encontrado->devolver();
