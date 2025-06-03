@@ -122,6 +122,36 @@ class MockEmMemoria {
         });
     }
 
+    static void inserirEmprestimoAtrasado(const std::shared_ptr<Repositorio> &repositorio) {
+        const auto emprestar = std::make_shared<RealizarEmprestimo::UseCase>(
+            repositorio->getPessoas(),
+            repositorio->getLivros(),
+            repositorio->getEmprestimos()
+        );
+
+        emprestar->executar({0, 0});
+        emprestar->executar({1, 1});
+
+        // Inserindo um empréstimo atrasado para testes
+        auto emprestimo_atrasado =
+                repositorio
+                ->getEmprestimos()
+                ->buscar(0)
+                .value();
+
+        // Pré calculo da data
+        time_t agora = time(nullptr);
+        tm *data_modificada = localtime(&agora);
+
+        data_modificada->tm_mday -= 7; // Atrasado em 1 semana
+        emprestimo_atrasado->setDataPrevistaDevolucao(mktime(data_modificada));
+
+        data_modificada->tm_mday -= 14; // Emprestado há 2 semanas
+        emprestimo_atrasado->setDataEmprestimo(mktime(data_modificada));
+
+        repositorio->getEmprestimos()->atualizar(emprestimo_atrasado);
+    }
+
 public:
     static void inserirDadosMockados(const std::shared_ptr<Repositorio> &repositorio) {
         inserirCidades(repositorio);
@@ -130,6 +160,7 @@ public:
         inserirGeneros(repositorio);
         inserirEditoras(repositorio);
         inserirLivros(repositorio);
+        inserirEmprestimoAtrasado(repositorio);
     }
 };
 
