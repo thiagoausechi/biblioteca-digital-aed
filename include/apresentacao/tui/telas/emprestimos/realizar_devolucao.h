@@ -106,6 +106,28 @@ class TelaRealizarDevolucao final : public Tela {
                                     editora->getNome());
 
                 std::vector<Elements> linhas;
+
+                // Formatação condicional para empréstimos em atraso
+                Element celula_data_prevista_devolucao;
+                auto data_prevista_devolucao_formatada = formatar_data(emprestimo->getDataPrevistaDevolucao());
+                time_t agora;
+                time(&agora);
+                bool devolucao_atrasada =
+                        !emprestimo->estaDevolvido() &&
+                        emprestimo->getDataPrevistaDevolucao() < agora;
+
+                if (devolucao_atrasada)
+                    celula_data_prevista_devolucao =
+                            celula(
+                                hbox({
+                                    text(data_prevista_devolucao_formatada),
+                                    text(" (Atrasado)") | color(Color::Red)
+                                })
+                            );
+                else
+                    celula_data_prevista_devolucao = celula(data_prevista_devolucao_formatada);
+
+                // Montagem das linhas da tabela
                 linhas.emplace_back(Elements{
                     celula(text("Cliente")), celula(pessoa->getNome())
                 });
@@ -114,6 +136,9 @@ class TelaRealizarDevolucao final : public Tela {
                 });
                 linhas.emplace_back(Elements{
                     celula(text("Data do Empréstimo")), celula(formatar_data(emprestimo->getDataEmprestimo()))
+                });
+                linhas.emplace_back(Elements{
+                    celula(text("Data Estimada para Devolução")), celula_data_prevista_devolucao
                 });
                 linhas.emplace_back(Elements{
                     celula(text("Data da Devolução")), celula(formatar_data(emprestimo->getDataEfetivaDevolucao()))
