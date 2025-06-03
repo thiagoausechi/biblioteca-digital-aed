@@ -9,7 +9,10 @@ class Emprestimo final : public Arquivo {
     time_t _data_prevista_devolucao{};
     time_t _data_efetiva_devolucao{};
 
-    void _atualizarDatas() {
+public:
+    constexpr static auto NOME_CLASSE = "Empréstimo";
+
+    Emprestimo(): Arquivo(NOME_CLASSE) {
         // Requisito 4.5.1.1
         time_t agora = time(nullptr);
         this->setDataEmprestimo(agora);
@@ -20,16 +23,20 @@ class Emprestimo final : public Arquivo {
         this->setDataPrevistaDevolucao(mktime(data_prevista_devolucao));
     }
 
-public:
-    constexpr static auto NOME_CLASSE = "Empréstimo";
-
-    Emprestimo(): Arquivo(NOME_CLASSE) { this->_atualizarDatas(); }
-
-    Emprestimo(const int id, const int id_pessoa, const int id_livro): Arquivo(NOME_CLASSE) {
+    Emprestimo(
+        const int id,
+        const int id_pessoa,
+        const int id_livro,
+        const time_t data_emprestimo,
+        const time_t data_prevista_devolucao,
+        const time_t data_efetiva_devolucao
+    ) : Arquivo(NOME_CLASSE) {
         this->setId(id);
         this->setIdPessoa(id_pessoa);
         this->setIdLivro(id_livro);
-        this->_atualizarDatas();
+        this->setDataEmprestimo(data_emprestimo);
+        this->setDataPrevistaDevolucao(data_prevista_devolucao);
+        this->_data_efetiva_devolucao = data_efetiva_devolucao;
     }
 
     [[nodiscard]] int getIdPessoa() const { return this->_id_pessoa; }
